@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMIR — Membership</title>
+<meta name="description" content="EMIR Membership — a peer-led private network. By invitation only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #B89A6A; --gold-light: #D4BC94; --gold-dim: #6B5A3E;
+  --ink: #080806; --ink-warm: #0E0C09; --ink-deep: #050504;
+  --off-white: #F0EDE6; --text-body: #9A9188; --text-dim: #5A5248;
+  --rule: rgba(184,154,106,0.18); --rule-soft: rgba(184,154,106,0.08);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink); color: var(--off-white);
+  font-family: 'Montserrat', sans-serif; font-weight: 300;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 52px; transition: background 0.4s ease, padding 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(8,8,6,0.92);
+  border-bottom: 1px solid rgba(184,154,106,0.12);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  padding: 14px 52px;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 15px; letter-spacing: 0.3em; color: var(--off-white); text-decoration: none; }
+.nav-links { display: flex; gap: 44px; list-style: none; }
+.nav-links a {
+  position: relative; font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(240,237,230,0.6); text-decoration: none; transition: color 0.3s; padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
+  background: var(--gold); transform: scaleX(0); transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.active { color: var(--gold); }
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-signin { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(240,237,230,0.6); text-decoration: none; white-space: nowrap; transition: color 0.3s; }
+.nav-signin:hover { color: var(--gold); }
+.nav-cta {
+  display: inline-block; padding: 10px 24px;
+  border: 1px solid var(--gold); color: var(--gold-light);
+  font-family: 'Montserrat', sans-serif; font-weight: 400;
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap;
+  transition: all 0.4s ease; position: relative; overflow: hidden;
+}
+.nav-cta::before { content: ''; position: absolute; inset: 0; background: rgba(184,154,106,0.08); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.nav-cta:hover::before { transform: scaleX(1); }
+.nav-cta:hover { color: var(--gold); }
+
+/* SECTION */
+section {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 130px 80px; position: relative;
+}
+section.flush { padding: 0; }
+.label { font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: block; }
+.display { font-family: 'Cormorant', serif; font-weight: 300; font-size: clamp(44px, 6.5vw, 84px); line-height: 1.05; color: var(--off-white); }
+.display em { font-style: italic; color: var(--gold-light); }
+.display-md { font-family: 'Cormorant', serif; font-weight: 300; font-size: clamp(30px, 4.2vw, 56px); line-height: 1.12; color: var(--off-white); }
+.display-md em { font-style: italic; color: var(--gold-light); }
+.copy { font-size: 14px; line-height: 1.95; color: var(--text-body); max-width: 580px; }
+.copy + .copy { margin-top: 18px; }
+.h-rule { width: 48px; height: 1px; background: var(--gold-dim); margin: 32px auto; opacity: 0.7; }
+.h-rule.left { margin: 32px 0; }
+
+/* HERO — full-bleed anvil */
+#hero {
+  min-height: 100vh;
+  background: var(--ink);
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+.hero-image {
+  position: absolute; inset: 0;
+  background-image: url('images/slide_20_talent.webp');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9) contrast(1.05);
+}
+.hero-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 90% at 50% 60%, rgba(8,8,6,0) 0%, rgba(8,8,6,0.5) 55%, rgba(8,8,6,0.92) 100%),
+    linear-gradient(180deg, rgba(8,8,6,0.55) 0%, transparent 28%, transparent 65%, rgba(8,8,6,0.88) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  min-height: 100vh; padding: 140px 80px 100px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.hero-content .label { color: var(--gold-light); }
+.hero-content .display-md {
+  text-shadow: 0 2px 60px rgba(8,8,6,0.7);
+}
+.hero-content .h-rule { margin: 32px auto; }
+.hero-content .copy {
+  color: var(--off-white);
+  text-shadow: 0 2px 20px rgba(8,8,6,0.85);
+  margin: 0 auto;
+}
+.hero-content .copy + .copy { margin-top: 18px; }
+
+/* ORGS — rotating marquee */
+#orgs { background: var(--ink); padding: 110px 0; overflow: hidden; }
+#orgs .label { padding: 0 80px; }
+#orgs .display-md { padding: 0 80px; }
+.org-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 56px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 36px 0;
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.org-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+  animation: scroll-left 90s linear infinite;
+  align-items: center;
+}
+.org-track:hover { animation-play-state: paused; }
+.org-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.org-item:hover { color: var(--gold-light); }
+.org-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  flex-shrink: 0;
+}
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ELIGIBILITY */
+#eligibility { background: var(--ink); }
+.eligibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  width: 100%;
+  max-width: 920px;
+  margin-top: 56px;
+  background: var(--rule);
+}
+.eligibility-cell {
+  background: var(--ink-warm);
+  padding: 32px 20px;
+  text-align: center;
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--off-white);
+  letter-spacing: 0.02em;
+}
+.eligibility-cell em { font-style: italic; color: var(--gold-light); }
+
+/* WHY JOIN */
+#why-join { background: var(--ink); }
+.why-join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  width: 100%;
+  max-width: 1080px;
+  margin-top: 56px;
+  background: var(--rule);
+}
+.why-cell {
+  background: var(--ink-warm);
+  padding: 48px 44px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background 0.4s ease;
+}
+.why-cell:hover { background: var(--ink-deep); }
+.why-roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+}
+.why-name {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: var(--gold-light);
+  line-height: 1.15;
+}
+.why-body {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--text-body);
+}
+
+/* TESTIMONIALS */
+#testimonials { background: var(--ink-warm); }
+.testimonials-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  width: 100%;
+  max-width: 1180px;
+  margin-top: 64px;
+  background: var(--rule);
+}
+.testimonial {
+  background: var(--ink-warm);
+  padding: 72px 56px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+.t-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  color: var(--gold-dim);
+  line-height: 0.4;
+  margin-bottom: 32px;
+  display: block;
+}
+.t-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(20px, 1.9vw, 24px);
+  color: var(--off-white);
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 36px;
+}
+.t-attr {
+  font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+}
+
+/* ACCESS — frost full-bleed */
+#access {
+  position: relative;
+  min-height: 90vh;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+.access-image {
+  position: absolute; inset: 0;
+  background-image: url('images/slide_23_frozen_metal.webp');
+  background-size: cover;
+  background-position: center 55%;
+  filter: saturate(0.85) contrast(1.05);
+}
+.access-image::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 60%, rgba(8,8,6,0.2) 0%, rgba(8,8,6,0.7) 60%, rgba(8,8,6,0.95) 100%),
+    linear-gradient(180deg, rgba(8,8,6,0.7) 0%, transparent 30%, transparent 70%, rgba(8,8,6,0.9) 100%);
+}
+.access-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 90vh; padding: 120px 80px;
+  text-align: center; width: 100%;
+}
+.access-content .display { text-shadow: 0 2px 40px rgba(8,8,6,0.7); }
+.access-body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--off-white);
+  max-width: 460px;
+  margin: 36px auto 48px;
+  text-shadow: 0 2px 20px rgba(8,8,6,0.8);
+}
+.btn-primary {
+  display: inline-block;
+  padding: 18px 64px;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  background: rgba(8,8,6,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before { content: ''; position: absolute; inset: 0; background: rgba(184,154,106,0.12); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.btn-primary:hover::before { transform: scaleX(1); }
+.btn-primary:hover { color: var(--off-white); border-color: var(--gold-light); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.12s; }
+.reveal-d2 { transition-delay: 0.24s; }
+.reveal-d3 { transition-delay: 0.40s; }
+.reveal-d4 { transition-delay: 0.56s; }
+
+/* GRAIN */
+body::after {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.5; mix-blend-mode: overlay;
+}
+
+/* FOOTER */
+footer { border-top: 1px solid var(--rule-soft); background: var(--ink-deep); }
+.footer-inner { max-width: 1280px; margin: 0 auto; width: 100%; padding: 80px 80px 48px; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 64px; gap: 60px; flex-wrap: wrap; }
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.3em; color: var(--off-white); margin-bottom: 12px; }
+.footer-brand-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--text-dim); }
+.footer-cols { display: flex; gap: 80px; flex-wrap: wrap; }
+.footer-col-label { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 22px; }
+.footer-col-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-col-links a, .footer-col-links span { font-size: 12px; color: var(--text-body); text-decoration: none; letter-spacing: 0.04em; line-height: 1.6; transition: color 0.3s; }
+.footer-col-links a:hover { color: var(--gold-light); }
+.footer-divider { width: 100%; height: 1px; background: var(--rule-soft); margin-bottom: 28px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 11px; color: var(--text-dim); }
+.footer-legal { display: flex; gap: 28px; }
+.footer-legal a { font-size: 11px; color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+.footer-legal a:hover { color: var(--gold); }
+
+@media (max-width: 1100px) {
+  .testimonials-row { grid-template-columns: 1fr; }
+  .eligibility-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  nav, nav.scrolled { padding: 20px 28px; }
+  .nav-links { display: none; }
+  section, .footer-inner { padding-left: 28px; padding-right: 28px; }
+  .hero-content { padding: 120px 28px 80px; }
+  .testimonials-row { grid-template-columns: 1fr; }
+  .testimonial { padding: 52px 36px; min-height: auto; }
+  .eligibility-grid { grid-template-columns: 1fr; }
+  .why-join-grid { grid-template-columns: 1fr; }
+  .why-cell { padding: 36px 28px; }
+  .access-content { padding: 100px 28px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div style="display:flex; align-items:center; gap:44px;">
+    <a href="index.html" class="nav-logo">EMIR</a>
+    <ul class="nav-links">
+      <li><a href="membership.html" class="active">Membership</a></li>
+      <li><a href="value.html">Value</a></li>
+      <li><a href="request.html">Request</a></li>
+    </ul>
+  </div>
+  <a href="#" class="nav-cta">Member sign in</a>
+</nav>
+
+<!-- ───── HERO — full-bleed anvil ───── -->
+<section id="hero" class="flush">
+  <div class="hero-image" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="label reveal">Membership</span>
+    <div class="display-md reveal reveal-d1" style="margin-bottom:24px;">
+      A peer-advisory network for the world's <em>most successful and influential leaders.</em>
+    </div>
+    <div class="h-rule reveal reveal-d2"></div>
+    <p class="copy reveal reveal-d2">Members convene in closed-door sessions to discuss the sensitive matters of critical concern to them and their enterprises.</p>
+    <p class="copy reveal reveal-d3">EMIR is not a management consultancy, not an events agency, not an investment fund. It is more than the sum of all three.</p>
+  </div>
+</section>
+
+<!-- ───── BY INVITATION ONLY — frost full-bleed (moved up) ───── -->
+<section id="access">
+  <div class="access-image"></div>
+  <div class="access-content">
+    <span class="label reveal" style="color: var(--gold-light);">Membership</span>
+    <div class="display reveal reveal-d1" style="white-space:nowrap;">
+      By invitation <em>only.</em>
+    </div>
+    <div class="h-rule reveal reveal-d2"></div>
+    <p class="access-body reveal reveal-d2">Membership begins with a trusted introduction, from an existing EMIR member or an invitation from one of the Founders.</p>
+    <a href="request.html" class="btn-primary reveal reveal-d3">Request Information</a>
+  </div>
+</section>
+
+<!-- ───── ELIGIBILITY ───── -->
+<section id="eligibility">
+  <span class="label reveal">Eligibility</span>
+  <div class="display-md reveal reveal-d1" style="max-width:880px;">
+    For CEOs, owners, board members<br>and <em>senior officials.</em>
+  </div>
+  <div class="h-rule reveal reveal-d2"></div>
+  <p class="copy reveal reveal-d2" style="margin:0 auto;">
+    EMIR is a network of chairs, CEOs, ministers, family-offices, and sovereign executives coming together in a peer-learning environment to share insights, seek counsel, and discuss topics they cannot discuss anywhere else.
+  </p>
+  <div class="eligibility-grid reveal reveal-d3">
+    <div class="eligibility-cell">Chairs</div>
+    <div class="eligibility-cell">CEOs</div>
+    <div class="eligibility-cell">Ministers</div>
+    <div class="eligibility-cell">Family Office<br>Principals</div>
+    <div class="eligibility-cell">Sovereign Wealth<br>Executives</div>
+    <div class="eligibility-cell">Capital Allocators<br>&amp; Exited Founders</div>
+  </div>
+</section>
+
+<!-- ───── ORGS MARQUEE ───── -->
+<section id="orgs" style="text-align:center;">
+  <div class="display-md reveal reveal-d1" style="max-width:920px; margin:0 auto;">
+    Members come from the world's most <em>influential institutions and companies.</em>
+  </div>
+  <div class="org-marquee reveal reveal-d2">
+    <div class="org-track">
+      <span class="org-item">SAMI</span><span class="org-dot"></span>
+      <span class="org-item">PepsiCo</span><span class="org-dot"></span>
+      <span class="org-item">Deutsche Bank</span><span class="org-dot"></span>
+      <span class="org-item">Accenture</span><span class="org-dot"></span>
+      <span class="org-item">Cisco</span><span class="org-dot"></span>
+      <span class="org-item">Honeywell</span><span class="org-dot"></span>
+      <span class="org-item">Reckitt</span><span class="org-dot"></span>
+      <span class="org-item">BAE Systems</span><span class="org-dot"></span>
+      <span class="org-item">GE</span><span class="org-dot"></span>
+      <span class="org-item">Northrop Grumman</span><span class="org-dot"></span>
+      <span class="org-item">Barclays</span><span class="org-dot"></span>
+      <span class="org-item">Procter &amp; Gamble</span><span class="org-dot"></span>
+      <span class="org-item">Pfizer</span><span class="org-dot"></span>
+      <span class="org-item">Expo 2020 Dubai</span><span class="org-dot"></span>
+      <span class="org-item">Raedon</span><span class="org-dot"></span>
+      <span class="org-item">Dentons</span><span class="org-dot"></span>
+      <span class="org-item">Government of Dubai</span><span class="org-dot"></span>
+      <span class="org-item">Government of Abu Dhabi</span><span class="org-dot"></span>
+      <!-- duplicate for seamless loop -->
+      <span class="org-item">SAMI</span><span class="org-dot"></span>
+      <span class="org-item">PepsiCo</span><span class="org-dot"></span>
+      <span class="org-item">Deutsche Bank</span><span class="org-dot"></span>
+      <span class="org-item">Accenture</span><span class="org-dot"></span>
+      <span class="org-item">Cisco</span><span class="org-dot"></span>
+      <span class="org-item">Honeywell</span><span class="org-dot"></span>
+      <span class="org-item">Reckitt</span><span class="org-dot"></span>
+      <span class="org-item">BAE Systems</span><span class="org-dot"></span>
+      <span class="org-item">GE</span><span class="org-dot"></span>
+      <span class="org-item">Northrop Grumman</span><span class="org-dot"></span>
+      <span class="org-item">Barclays</span><span class="org-dot"></span>
+      <span class="org-item">Procter &amp; Gamble</span><span class="org-dot"></span>
+      <span class="org-item">Pfizer</span><span class="org-dot"></span>
+      <span class="org-item">Expo 2020 Dubai</span><span class="org-dot"></span>
+      <span class="org-item">Raedon</span><span class="org-dot"></span>
+      <span class="org-item">Dentons</span><span class="org-dot"></span>
+      <span class="org-item">Government of Dubai</span><span class="org-dot"></span>
+      <span class="org-item">Government of Abu Dhabi</span><span class="org-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ───── WHY JOIN ───── -->
+<section id="why-join">
+  <div class="display-md reveal reveal-d1" style="max-width:680px;">
+    Why <em>join.</em>
+  </div>
+
+  <div class="why-join-grid reveal reveal-d2">
+    <div class="why-cell">
+      <div class="why-roman">I</div>
+      <div class="why-name">Unconflicted counsel.</div>
+      <div class="why-body">External advisors have a stake in the outcome. EMIR peers do not. They give counsel from the position you sit in, not the position of advising it.</div>
+    </div>
+    <div class="why-cell">
+      <div class="why-roman">II</div>
+      <div class="why-name">Access you cannot engineer.</div>
+      <div class="why-body">Sovereign principals, sitting ministers, family-office heads. Conversations that cannot be arranged through normal channels.</div>
+    </div>
+    <div class="why-cell">
+      <div class="why-roman">III</div>
+      <div class="why-name">Under House Rules.</div>
+      <div class="why-body">Sessions held in confidence. No notes are taken. No record is kept.</div>
+    </div>
+    <div class="why-cell">
+      <div class="why-roman">IV</div>
+      <div class="why-name">Exclusive access &amp; unique insight.</div>
+      <div class="why-body">Pre-market intelligence and dealflow available only to members. What you see before the market does.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── TESTIMONIALS ───── -->
+<section id="testimonials">
+  <div class="display-md reveal reveal-d1" style="max-width:680px;">
+    What members <em>say.</em>
+  </div>
+  <div class="testimonials-row reveal reveal-d2">
+    <div class="testimonial">
+      <div>
+        <span class="t-mark">"</span>
+        <div class="t-text">When the decision cannot be discussed inside the company, this is who you call.</div>
+      </div>
+      <div class="t-attr">Chair · MENA-listed Industrial Group</div>
+    </div>
+    <div class="testimonial">
+      <div>
+        <span class="t-mark">"</span>
+        <div class="t-text">I had an answer from three sitting CEOs by the end of the week.</div>
+      </div>
+      <div class="t-attr">CEO · GCC Regional Bank</div>
+    </div>
+    <div class="testimonial">
+      <div>
+        <span class="t-mark">"</span>
+        <div class="t-text">More accurate diligence than what we get from advisors paid to advise us.</div>
+      </div>
+      <div class="t-attr">Senior Principal · Sovereign Wealth Fund</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">EMIR</div>
+        <div class="footer-brand-tagline">Where decisions are made.</div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <div class="footer-col-label">Navigate</div>
+          <div class="footer-col-links">
+            <a href="index.html">Home</a>
+            <a href="membership.html">Membership</a>
+            <a href="value.html">Value</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-label">Contact</div>
+          <div class="footer-col-links">
+            <a href="mailto:intel@emirintelligence.com">intel@emirintelligence.com</a>
+            <a href="tel:+97145326750">+971 4 532 6750</a>
+            <span>Office 124, Building 9<br>Dubai Media City<br>Dubai, UAE</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-label">Follow</div>
+          <div class="footer-col-links">
+            <a href="https://www.linkedin.com/company/emiradvisory" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://twitter.com/EMIRadvisory" target="_blank" rel="noopener">X / Twitter</a>
+            <a href="https://www.youtube.com/@emiradvisory" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Emerging Markets Intelligence &amp; Research — EMIR. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+</script>
+</body>
+</html>
