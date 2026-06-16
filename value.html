@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMIR · Value</title>
-<meta name="description" content="EMIR. One membership, four privileges. Peer Advisory, Intelligence &amp; Briefings, Meetings &amp; Events, Investor Circle.">
+<meta name="description" content="EMIR. One membership, five privileges. Peer Advisory, Intelligence &amp; Briefings, Meetings &amp; Events, Investor Circle, Special Services.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -130,14 +130,14 @@ section.flush { padding: 0; }
   opacity: 0; animation: fadeUp 1.4s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* PRIVILEGES 4-column overview */
+/* PRIVILEGES 5-column overview */
 #privileges { background: var(--ink-warm); }
 .privileges-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   width: 100%;
-  max-width: 1180px;
+  max-width: 1320px;
   margin-top: 56px;
   background: var(--rule);
 }
@@ -430,6 +430,25 @@ section.flush { padding: 0; }
   padding-top: 20px; border-top: 1px solid var(--rule);
 }
 
+/* TYPOGRAPHIC BANNER — for Special Services (no image) */
+.priv-banner.typographic {
+  background: var(--ink);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  min-height: 56vh;
+}
+.priv-banner.typographic::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 70% at 25% 50%, rgba(184,154,106,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 60%, rgba(184,154,106,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.priv-section.alt .priv-banner.typographic { background: var(--ink-warm); }
+
 /* CLOSING CTA */
 #continue { background: var(--ink); padding: 110px 80px; }
 .btn-primary {
@@ -546,10 +565,10 @@ footer { border-top: 1px solid var(--rule-soft); background: var(--ink-deep); }
   </div>
 </section>
 
-<!-- ───── PRIVILEGES — 4 column ───── -->
+<!-- ───── PRIVILEGES — 5 column ───── -->
 <section id="privileges">
   <div class="display reveal reveal-d1" style="max-width:700px;">
-    One membership.<br><em>Four privileges.</em>
+    One membership.<br><em>Five privileges.</em>
   </div>
   <div class="h-rule reveal reveal-d2"></div>
   <p class="copy reveal reveal-d2" style="margin:0 auto;">
@@ -579,6 +598,12 @@ footer { border-top: 1px solid var(--rule-soft); background: var(--ink-deep); }
       <div class="privilege-roman">IV</div>
       <div class="privilege-name"><span>Investor</span>Circle.</div>
       <div class="privilege-body">Peer-to-peer dealflow and co-investment, formed between members rather than through intermediaries. Direct access to capital introductions and sovereign and institutional relationships.</div>
+      <div class="privilege-jump">See examples ↓</div>
+    </a>
+    <a href="#special-services" class="privilege-cell">
+      <div class="privilege-roman">V</div>
+      <div class="privilege-name"><span>Special</span>Services.</div>
+      <div class="privilege-body">Bespoke services for members navigating specific moments: exclusive master classes, executive placement, media training, board search, and crisis preparation. By application.</div>
       <div class="privilege-jump">See examples ↓</div>
     </a>
   </div>
@@ -754,6 +779,47 @@ footer { border-top: 1px solid var(--rule-soft); background: var(--ink-deep); }
         <div class="vignette-divider"></div>
         <div class="vignette-body">A member operating in the emerging space resources sector sought to understand the sovereign capital and regulatory landscape across the GCC before committing to a market entry strategy. The Advisory Council provided a confidential read from three former senior officials with direct knowledge of each jurisdiction's investment mandate.</div>
         <div class="vignette-outcome">The member entered with a targeted strategy and two anchor sovereign relationships, without a single public announcement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── V · SPECIAL SERVICES ───── -->
+<section id="special-services" class="priv-section">
+  <div class="priv-banner typographic">
+    <div class="priv-banner-content reveal">
+      <div class="priv-numeral">V</div>
+      <div class="priv-banner-text">
+        <span class="priv-banner-label">Privilege Five</span>
+        <div class="priv-banner-title">Special <em>Services.</em></div>
+        <p class="priv-banner-desc">Bespoke services for members navigating specific moments. Exclusive master classes, executive placement, media training, board search, crisis preparation, and speech work. Available by application, costed and convened individually.</p>
+      </div>
+    </div>
+  </div>
+  <div class="priv-examples">
+    <div class="priv-examples-eyebrow reveal">Recent Engagements</div>
+    <div class="priv-examples-title reveal reveal-d1">Three engagements from the last quarter.</div>
+    <div class="vignette-grid reveal reveal-d2">
+      <div class="vignette-card">
+        <div class="vignette-tag">Master Class</div>
+        <div class="vignette-title">Monetary policy response to prolonged geopolitical disruption.</div>
+        <div class="vignette-divider"></div>
+        <div class="vignette-body">Five members assembled for a half-day master class with a former central bank governor on the playbook for inflation control during prolonged geopolitical disruption. Held in confidence, with no recording or attribution.</div>
+        <div class="vignette-outcome">Three members applied the framework directly to their board's macro positioning within the following quarter.</div>
+      </div>
+      <div class="vignette-card">
+        <div class="vignette-tag">Executive Placement</div>
+        <div class="vignette-title">A confidential search for a sovereign-backed chair.</div>
+        <div class="vignette-divider"></div>
+        <div class="vignette-body">A member institution required a chair with prior experience operating between London, the Gulf, and Washington. EMIR ran the search inside the network rather than through a retained executive firm. The brief was never circulated publicly.</div>
+        <div class="vignette-outcome">Three candidates met. One appointment confirmed within ten weeks, before the search would have begun externally.</div>
+      </div>
+      <div class="vignette-card">
+        <div class="vignette-tag">Media Training</div>
+        <div class="vignette-title">Preparation before a televised parliamentary appearance.</div>
+        <div class="vignette-divider"></div>
+        <div class="vignette-body">A sitting member faced a public hearing on a regulatory issue with international press coverage. EMIR convened a two-day private preparation programme with a former senior broadcast anchor and a former cabinet press secretary.</div>
+        <div class="vignette-outcome">The appearance proceeded without misstep. The downstream press coverage held the member's framing.</div>
       </div>
     </div>
   </div>
