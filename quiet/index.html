@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMIR</title>
+<meta name="description" content="EMIR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #B89A6A; --gold-light: #D4BC94; --gold-dim: #6B5A3E;
+  --ink: #080806; --ink-deep: #050504;
+  --off-white: #F0EDE6; --text-body: #9A9188; --text-dim: #5A5248;
+  --rule: rgba(184,154,106,0.18); --rule-soft: rgba(184,154,106,0.06);
+}
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink); color: var(--off-white);
+  font-family: 'Montserrat', sans-serif; font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ───── PAGE FRAME ───── */
+.frame {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.frame-image {
+  position: absolute; inset: 0;
+  background-image: url('../images/slide_17_wheat.webp');
+  background-size: cover;
+  background-position: center 62%;
+  filter: saturate(0.7) contrast(1.06) brightness(0.82);
+}
+.frame-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 55%, rgba(8,8,6,0.10) 0%, rgba(8,8,6,0.55) 55%, rgba(8,8,6,0.96) 100%),
+    linear-gradient(180deg, rgba(8,8,6,0.72) 0%, transparent 22%, transparent 70%, rgba(8,8,6,0.95) 100%);
+}
+
+/* ───── CORNER MARKS ───── */
+.corner {
+  position: absolute;
+  z-index: 3;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(240,237,230,0.55);
+  opacity: 0;
+  animation: fadeIn 2.2s 1.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.corner a { color: inherit; text-decoration: none; transition: color 0.4s ease; }
+.corner a:hover { color: var(--gold); }
+
+.corner-tl { top: 40px; left: 52px; }
+.corner-tr { top: 40px; right: 52px; }
+.corner-bl { bottom: 40px; left: 52px; }
+.corner-br { bottom: 40px; right: 52px; }
+
+.corner-tl .mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.32em;
+  color: var(--off-white);
+}
+.corner-tr {
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  color: var(--text-dim);
+}
+
+/* ───── CENTER ───── */
+.stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 120px 80px;
+  text-align: center;
+}
+.wordmark {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-size: clamp(96px, 16vw, 220px);
+  line-height: 0.86;
+  color: var(--off-white);
+  text-shadow: 0 2px 80px rgba(8,8,6,0.7);
+  opacity: 0;
+  animation: rise 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 2.1vw, 24px);
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  margin-top: 38px;
+  opacity: 0;
+  animation: rise 1.8s 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.rule {
+  width: 1px; height: 84px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin-top: 64px;
+  opacity: 0;
+  animation: rise 1.8s 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* ───── WHISPER (bottom band) ───── */
+.whisper {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 2s 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  white-space: nowrap;
+}
+
+/* ───── SECOND PAGE (optional scroll) ───── */
+.second {
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 80px;
+}
+.second-inner {
+  max-width: 680px;
+  text-align: left;
+}
+.second-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.55vw, 20px);
+  line-height: 1.72;
+  color: var(--off-white);
+  text-align: left;
+  margin-bottom: 28px;
+}
+.second-body:last-of-type { margin-bottom: 0; }
+.second-emphasis {
+  font-family: 'Cormorant', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.45;
+  color: var(--gold-light);
+  text-align: left;
+  margin-top: 44px;
+  max-width: 620px;
+}
+.second-rule {
+  width: 56px; height: 1px;
+  background: var(--gold-dim);
+  margin: 68px 0;
+  opacity: 0.6;
+}
+.second-meta {
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: left;
+}
+.second-meta a {
+  color: var(--gold-light);
+  text-decoration: none;
+  letter-spacing: 0.25em;
+  text-transform: none;
+  font-size: 13px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  margin-left: 8px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+.second-meta a:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ───── FOOTER (single line) ───── */
+.foot {
+  position: relative;
+  background: var(--ink-deep);
+  border-top: 1px solid var(--rule-soft);
+  padding: 28px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.foot a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.4s ease;
+  margin-left: 28px;
+}
+.foot a:first-child { margin-left: 0; }
+.foot a:hover { color: var(--gold); }
+
+/* ───── ANIMATIONS ───── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ───── GRAIN ───── */
+body::after {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.5; mix-blend-mode: overlay;
+}
+
+/* ───── RESPONSIVE ───── */
+@media (max-width: 900px) {
+  .corner-tl, .corner-bl { left: 24px; }
+  .corner-tr, .corner-br { right: 24px; }
+  .corner-tl, .corner-tr { top: 24px; }
+  .corner-bl, .corner-br { bottom: 24px; }
+  .stage { padding: 100px 24px; }
+  .whisper {
+    bottom: 80px;
+    font-size: 12.5px;
+    white-space: normal;
+    max-width: 80%;
+    line-height: 1.5;
+  }
+  .foot { padding: 22px 24px; font-size: 9px; letter-spacing: 0.22em; }
+  .foot a { margin-left: 18px; }
+  .second { padding: 120px 24px; }
+}
+@media (max-width: 560px) {
+  .corner-tr { display: none; }
+  .corner-br { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ───── PAGE ONE · the frame ───── -->
+<div class="frame">
+  <div class="frame-image"></div>
+
+  <div class="corner corner-tl"><span class="mark">EMIR</span></div>
+  <div class="corner corner-tr">Dubai &nbsp;·&nbsp; Est. 2011</div>
+
+  <div class="stage">
+    <div class="wordmark">EMIR</div>
+    <div class="tagline">Where decisions are made.</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="whisper">Membership is by introduction.</div>
+
+  <div class="corner corner-bl"><a href="mailto:intel@emirintelligence.com">intel@emirintelligence.com</a></div>
+  <div class="corner corner-br"><a href="#further">↓ Further</a></div>
+</div>
+
+<!-- ───── PAGE TWO · the single sentence ───── -->
+<section class="second" id="further">
+  <div class="second-inner">
+    <p class="second-body">EMIR is a private membership network founded in Dubai in 2011 by Trevor McFarlane. Our members are chairs, chief executives, ministers, and family-office principals. They meet four times a year, in confidence, to discuss the decisions they can't discuss in public.</p>
+    <p class="second-body">Between meetings, members draw on private briefings from our analysts, peer counsel from one another, and an investor circle that surfaces deals before they reach the market.</p>
+    <p class="second-emphasis">When everyone else has a stake in the outcome, you need people who have none. That is what EMIR is for.</p>
+    <div class="second-rule"></div>
+    <div class="second-meta">
+      Membership is by introduction
+      <a href="mailto:intel@emirintelligence.com">intel@emirintelligence.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FOOTER · single thin line ───── -->
+<footer class="foot">
+  <div>© Emerging Markets Intelligence &amp; Research</div>
+  <div>
+    <a href="membership.html">Membership</a>
+    <a href="#" style="opacity:0.55;">Sign in</a>
+  </div>
+</footer>
+
+</body>
+</html>
