@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <script src="js/gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMIR</title>
-<meta name="description" content="EMIR is a private network for the world's fastest-growing economies. By invitation only.">
+<title>EMIR About</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,75 +15,88 @@
   --ink: #080806; --ink-warm: #0E0C09; --ink-deep: #050504;
   --off-white: #F5F3EF; --text-body: #9A9188; --text-dim: #8A8176;
   --rule: rgba(201,169,110,0.18); --rule-soft: rgba(201,169,110,0.08);
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
-  --gutter: 52px;
-  --space-m: 32px;
-  --space-l: clamp(56px, 7vw, 96px);
-  --space-xl: clamp(96px, 12vw, 168px);
-  --ease: cubic-bezier(0.16,1,0.3,1);
 }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
-body { background: var(--ink); color: var(--off-white); font-family: var(--sans); font-weight: 400; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body { background: var(--ink); color: var(--off-white); font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
 :focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px var(--gutter); transition: background 0.4s ease, padding 0.4s ease; }
-nav.scrolled { background: rgba(8,8,6,0.92); border-bottom: 1px solid rgba(201,169,110,0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding-block: 14px; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 52px; background: rgba(8,8,6,0.92); border-bottom: 1px solid rgba(201,169,110,0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
 .nav-links a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); transition: color 0.3s; }
-.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
 .nav-right { display: flex; align-items: center; gap: 20px; }
 .nav-signin { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); white-space: nowrap; transition: color 0.3s; }
-.nav-cta { display: inline-block; padding: 10px 24px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; transition: background 0.4s ease, color 0.4s ease; }
-.nav-cta:hover { background: rgba(201,169,110,0.08); color: var(--gold); }
+.nav-cta { display: inline-block; padding: 10px 24px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; transition: all 0.4s ease; }
+.nav-cta:hover { background: rgba(201,169,110,0.08); }
 
-/* SHARED TYPE */
-.label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+section { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 80px; position: relative; }
+.display { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; color: var(--off-white); }
+.display em { font-style: italic; color: var(--gold-light); }
+.copy { font-size: 16px; line-height: 1.75; color: var(--text-body); max-width: 640px; }
+.copy + .copy { margin-top: 18px; }
+.copy b { color: var(--off-white); font-weight: 400; }
+.h-rule { width: 48px; height: 1px; background: var(--gold-dim); margin: 32px auto; opacity: 0.7; }
 
-/* SPLASH */
-body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
-main { flex: 1; display: flex; }
-#hero { position: relative; flex: 1; display: flex; align-items: flex-end; overflow: hidden; background: var(--ink); min-height: 560px; }
-.hero-media { position: absolute; inset: 0; }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; opacity: 0.66; transform: scale(1.06); animation: settle 3.2s var(--ease) forwards; }
-.hero-media::after { content: ''; position: absolute; inset: 0; background:
-  linear-gradient(90deg, rgba(8,8,6,0.95) 0%, rgba(8,8,6,0.82) 34%, rgba(8,8,6,0.28) 72%, rgba(8,8,6,0.42) 100%),
-  linear-gradient(180deg, rgba(8,8,6,0.6) 0%, transparent 22%, transparent 70%, var(--ink) 100%); }
-.hero-content { position: relative; z-index: 2; width: 100%; padding: clamp(96px, 15vh, 150px) var(--gutter) clamp(36px, 7vh, 104px); }
-.wordmark { font-family: var(--serif); font-weight: 500; letter-spacing: 0; font-size: clamp(72px, min(15vw, 21vh), 216px); line-height: 0.8; color: var(--off-white); margin-left: -0.05em; opacity: 0; animation: fadeUp 1.6s var(--ease) forwards; }
-.hero-lede { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, min(3vw, 5vh), 40px); line-height: 1.3; color: var(--off-white); max-width: 30ch; text-wrap: balance; margin-top: clamp(20px, 4vh, 40px); opacity: 0; animation: fadeUp 1.6s 0.3s var(--ease) forwards; }
-.hero-sub { font-size: 16px; line-height: 1.75; color: var(--text-body); max-width: 58ch; margin-top: clamp(16px, 3vh, 26px); opacity: 0; animation: fadeUp 1.6s 0.45s var(--ease) forwards; }
-.hero-rule { display: flex; align-items: center; gap: 16px; margin-top: clamp(20px, 3.6vh, 36px); opacity: 0; animation: fadeUp 1.6s 0.6s var(--ease) forwards; }
-.hero-rule::before { content: ''; width: 56px; height: 1px; background: var(--gold); }
+#top { padding-top: 170px; }
 
-/* MOTION */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes settle { to { transform: scale(1); } }
-.reveal-d1 { transition-delay: 0.12s; } .reveal-d2 { transition-delay: 0.24s; } .reveal-d3 { transition-delay: 0.4s; }
-
+.reveal-d1 { transition-delay: 0.12s; } .reveal-d2 { transition-delay: 0.24s; } .reveal-d3 { transition-delay: 0.40s; }
 
 body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 250; opacity: 0.5; mix-blend-mode: overlay; }
 
-/* SPLASH FOOTER */
-.splash-foot { background: var(--ink); border-top: 1px solid var(--rule-soft); padding: 18px var(--gutter) 20px; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 22px; } .nav-links { display: none; }
+  section { padding: 90px 24px; } #top { padding-top: 130px; }
+}
+
+/* STORY (about page, 2026-09-28): text left, full-bleed image right */
+#top.story { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: calc(100vh - 66px); min-height: calc(100svh - 66px); padding: 0; text-align: left; background: var(--ink-warm); }
+.story .story-wrap { max-width: none; margin: 0; align-self: center; padding: clamp(104px, 15vh, 150px) clamp(40px, 6vw, 96px) clamp(40px, 7vh, 96px) 52px; }
+.story .display { max-width: 18ch; font-size: clamp(38px, min(4.6vw, 7.4vh), 72px); }
+.story .h-rule.left { margin: 32px 0; }
+.story .copy { max-width: 60ch; }
+.story .copy + .copy { margin-top: 18px; }
+.story-media { position: relative; overflow: hidden; background: var(--ink-deep); }
+.story-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+.story-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,0.35) 22%, transparent 45%), linear-gradient(180deg, rgba(8,8,6,0.5) 0%, transparent 18%); }
+@media (max-width: 900px) {
+  #top.story { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .story .story-wrap { padding: 120px 22px 56px; }
+  .story-media { height: 62vw; min-height: 260px; }
+  .story-media img { width: 145%; left: auto; right: 0; object-position: 100% 60%; }
+  .story-media::after { background: linear-gradient(180deg, var(--ink-warm) 0%, transparent 30%); }
+}
+
+/* BOTTOM BAR (replaces full footer, 2026-09-28) */
+.splash-foot { background: var(--ink); border-top: 1px solid var(--rule-soft); padding: 18px 52px 20px; }
 .splash-foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 32px; font-size: 12px; color: var(--text-dim); }
 .splash-foot a { color: var(--text-dim); transition: color 0.3s; }
 .splash-foot a:hover { color: var(--gold-light); }
 .splash-foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+@media (max-width: 900px) { .splash-foot { padding: 18px 22px 20px; } }
+@media (max-width: 560px) { .splash-foot-inner { flex-direction: column; } }
 
-@media (max-width: 900px) {
-  :root { --gutter: 22px; }
-  nav, nav.scrolled { padding: 14px 22px; }
-  .nav-links { display: none; }
-  .hero-media img { object-position: 70% 50%; opacity: 0.8; }
-  .hero-media::after { background: linear-gradient(180deg, rgba(8,8,6,0.55) 0%, rgba(8,8,6,0.1) 14%, rgba(8,8,6,0.05) 34%, rgba(8,8,6,0.8) 58%, var(--ink) 100%); }
-  .hero-content { padding-top: 140px; }
+/* PAGE TITLE POSITION (2026-09-28): every inner page title sits at the same height and size */
+.split-text, .story .story-wrap, .contact .story-wrap { align-self: start !important; padding-top: clamp(124px, 17vh, 156px) !important; }
+.split-text .display, .story .display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); line-height: 1.06; text-wrap: balance; }
+@media (max-width: 900px) { .split-text, .story .story-wrap, .contact .story-wrap { padding-top: 120px !important; } }
+
+/* PAGE-OPEN ANIMATION (2026-09-28): same motion as the homepage hero */
+@keyframes heroRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes heroSettle { from { transform: scale(1.06); } to { transform: scale(1); } }
+.split-text > *, .story .story-wrap > * { opacity: 0; animation: heroRise 1.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+.split-text > :nth-child(1), .story .story-wrap > :nth-child(1) { animation-delay: 0s; }
+.split-text > :nth-child(2), .story .story-wrap > :nth-child(2) { animation-delay: 0.3s; }
+.split-text > :nth-child(3), .story .story-wrap > :nth-child(3) { animation-delay: 0.45s; }
+.split-text > :nth-child(4), .story .story-wrap > :nth-child(4) { animation-delay: 0.6s; }
+.split-text > :nth-child(n+5), .story .story-wrap > :nth-child(n+5) { animation-delay: 0.75s; }
+.split-media img, .story-media img { animation: heroSettle 3.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .split-text > *, .story .story-wrap > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .split-media img, .story-media img { transform: none !important; animation: none !important; }
 }
-@media (max-width: 560px) { .splash-foot-inner { flex-direction: column; } .hero-sub { font-size: 15px; line-height: 1.65; } }
 
 /* ===== SITE SHARED (impeccable pass 2026-09-28): keep identical across pages ===== */
 .nav-signin { cursor: default; }
@@ -121,10 +133,11 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 
 <nav>
   <div style="display:flex; align-items:center; gap:40px;">
-    <a href="index.html" class="nav-logo" aria-label="EMIR home">EMIR</a>
+    <a href="index.html" class="nav-logo">EMIR</a>
     <ul class="nav-links" id="site-menu">
       <li><a href="membership.html">Members</a></li>
       <li><a href="private-office.html">Private Office</a></li>
+      <li><a href="about.html" class="active">About</a></li>
       <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
       <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>
@@ -137,17 +150,21 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 </nav>
 
 <main id="main">
-<section id="hero">
-  <div class="hero-media">
-    <img src="images/forge-damascus.jpg" alt="" fetchpriority="high">
+
+<!-- STORY -->
+<section id="top" class="story">
+  <div class="story-wrap">
+    <h1 class="display">From the GCC's most influential network to a global network of <em>leaders</em>.</h1>
+    <div class="h-rule left"></div>
+    <p class="copy"><b>Trevor McFarlane</b> founded EMIR on a single conviction: that the quality of a decision is determined by the calibre of the people in the room, and the rigour of the intelligence they act on.</p>
+    <p class="copy">As a result, EMIR has become a global network of leaders across the world's fastest growing economies.</p>
+    <p class="copy"><b>Dr Noah Raford</b> joined EMIR as Managing Partner in 2023, after spending over 12 years in the UAE Prime Minister's Office and the Government of Dubai. As Chief Futurist and founding Executive Director of the Dubai Future Foundation and the Museum of the Future, he led intelligence, investment, strategy and special projects.</p>
   </div>
-  <div class="hero-content">
-    <h1 class="wordmark">EMIR</h1>
-    <p class="hero-lede">A private network for the world's fastest-growing economies.</p>
-    <p class="hero-sub">Chairs, CEOs, Ministers, family office and sovereign executives. Members meet in confidence, and call on the EMIR Private Office for the problems that matter most.</p>
-    <p class="hero-rule"><span class="label">By invitation only</span></p>
+  <div class="story-media">
+    <img src="images/forge-strata.jpg" alt="Gold-veined rock strata rising from the sea" fetchpriority="high">
   </div>
 </section>
+
 </main>
 
 <footer class="splash-foot">
@@ -162,15 +179,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 80) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
 
 /* site nav: mobile menu */
 (function () {
