@@ -195,18 +195,9 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .members-map { margin: clamp(48px, 5vw, 72px) -52px 0; border-top: 1px solid var(--rule); }
 .members-map .map-svg { display: block; width: 100%; height: 255px; }
 .members-map .city .halo { transform-box: fill-box; transform-origin: center; }
-.members-map .city:nth-of-type(2) { --d: 0.3s; } .members-map .city:nth-of-type(3) { --d: 0.8s; } .members-map .city:nth-of-type(4) { --d: 1.3s; } .members-map .city:nth-of-type(5) { --d: 1.8s; }
-.js .members-map .city { opacity: 0; transition: opacity 0.8s ease var(--d, 0s); }
-.js .members-map .city line { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s ease calc(var(--d, 0s) + 0.25s); }
-.js .members-map .city text { opacity: 0; transition: opacity 0.9s ease calc(var(--d, 0s) + 0.6s); }
-.members-map.visible .city { opacity: 1; }
-.members-map.visible .city line { stroke-dashoffset: 0; }
-.members-map.visible .city text { opacity: 1; }
-.members-map.visible .city .halo { animation: cityPulse 1.6s ease-out var(--d, 0s) both; }
-@keyframes cityPulse { 0% { transform: scale(0.2); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1); } }
+.members-map .city line { stroke-dasharray: 1; }
 #members:has(.members-map) { padding-bottom: 0; }
 @media (max-width: 600px) { .members-map { margin: 48px -22px 0; } .members-map .map-svg { height: 180px; } }
-@media (prefers-reduced-motion: reduce) { .js .members-map .city, .js .members-map .city text { opacity: 1; } .js .members-map .city line { stroke-dashoffset: 0; } .members-map .city .halo { animation: none !important; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -265,7 +256,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="tier"><h3 class="tier-name">Capital</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
     <div class="tier"><h3 class="tier-name">Government</h3><p class="tier-desc">Sitting and former ministers, senior officials and policymakers.</p></div>
   </div>
-  <div class="members-map reveal">
+  <div class="members-map">
 <svg class="map-svg" xmlns="http://www.w3.org/2000/svg" viewBox="572.9 218.5 1165.4 206.4" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map marking Dubai, Abu Dhabi, Riyadh and Singapore">
 <g fill="none" stroke="#C9A96E" stroke-width="0.73" stroke-opacity="0.55" stroke-linejoin="round">
 <path d="M573.5,666.8 L577.2,669.0 L576.5,670.8 L571.8,672.3 L569.5,670.5 L566.9,672.7 L564.3,670.5 L568.1,667.6 L571.7,668.8 L573.5,666.8Z"/>
@@ -414,6 +405,34 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
+})();
+/* members map: cities draw in tied to scroll position (forward on scroll down, back on scroll up) */
+(function () {
+  const map = document.querySelector('.members-map');
+  if (!map) return;
+  const cities = Array.from(map.querySelectorAll('.city'));
+  const clamp = v => Math.max(0, Math.min(1, v));
+  function apply(p) {
+    cities.forEach((c, i) => {
+      const t = clamp((p - i * 0.18) / 0.3);
+      const dot = clamp(t / 0.4), line = clamp((t - 0.25) / 0.45), label = clamp((t - 0.55) / 0.45);
+      c.style.opacity = dot;
+      c.querySelector('.halo').style.transform = 'scale(' + (0.2 + 0.8 * dot) + ')';
+      c.querySelector('line').style.strokeDashoffset = 1 - line;
+      c.querySelector('text').style.opacity = label;
+    });
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { apply(1); return; }
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight, top = map.getBoundingClientRect().top;
+    apply(clamp((vh - top) / (vh * 0.75)));   // 0 when the map enters at the bottom, 1 when its top reaches a quarter of the way down
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
 </script>
 </body>
