@@ -122,15 +122,6 @@ body::after { content: ''; position: fixed; inset: 0; background-image: url("dat
 @media (max-width: 600px) { .stacked { padding: 80px 22px; } .cols-4 { grid-template-columns: minmax(0, 1fr); row-gap: 24px; } }
 
 .values-intro { max-width: 38ch; margin: 24px 0 0; }
-.sector-block { margin-top: clamp(64px, 7vw, 96px); }
-.sector-caption { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; color: var(--off-white); margin-bottom: 18px; }
-.sector-legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px clamp(24px, 3vw, 48px); margin-top: 8px; }
-.sb-item dt { margin-bottom: 8px; }
-.sb-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(34px, 3.4vw, 46px); line-height: 1; color: var(--gold); }
-.sb-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 21px; line-height: 1.2; color: var(--off-white); margin-bottom: 6px; }
-.sb-desc { font-size: 15px; line-height: 1.6; color: var(--text-body); }
-@media (max-width: 1100px) { .sector-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .sector-legend { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
 /* SPLIT HERO (members page, 2026-09-28): text left, full-bleed image right */
 #top.split-hero { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: clamp(520px, 74vh, 780px); padding: 0; text-align: left; background: var(--ink-warm); }
 .split-text { align-self: center; padding: clamp(110px, 16vh, 160px) clamp(40px, 6vw, 96px) clamp(48px, 8vh, 96px) 52px; }
@@ -257,15 +248,6 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="tier"><h3 class="tier-name">Chief executives</h3><p class="tier-desc">Sitting CEOs and senior leaders making strategic decisions at scale.</p></div>
     <div class="tier"><h3 class="tier-name">Capital</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
     <div class="tier"><h3 class="tier-name">Government</h3><p class="tier-desc">Sitting and former ministers, senior officials and policymakers.</p></div>
-  </div>
-  <div class="sector-block reveal reveal-d3">
-    <p class="sector-caption">Members by category</p>
-    <dl class="sector-legend">
-      <div class="sb-item"><dt><span class="sb-num">40%</span></dt><dd class="sb-name">Global corporates</dd><dd class="sb-desc">Multinationals and international companies, from established groups to high-growth firms.</dd></div>
-      <div class="sb-item"><dt><span class="sb-num">40%</span></dt><dd class="sb-name">GCC private sector</dd><dd class="sb-desc">Regional corporates, family groups, conglomerates and founders.</dd></div>
-      <div class="sb-item"><dt><span class="sb-num">13%</span></dt><dd class="sb-name">Finance and investment</dd><dd class="sb-desc">Banks, funds, private equity, family offices and sovereign wealth funds.</dd></div>
-      <div class="sb-item"><dt><span class="sb-num">7%</span></dt><dd class="sb-name">Government and state</dd><dd class="sb-desc">Ministries, authorities and state-owned companies.</dd></div>
-    </dl>
   </div>
 </section>
 
