@@ -94,6 +94,7 @@ body::after { content: ''; position: fixed; inset: 0; background-image: url("dat
 #top.split-hero { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: 100vh; min-height: 100svh; padding: 0; text-align: left; background: var(--ink-warm); }
 .split-text { align-self: center; padding: clamp(110px, 16vh, 160px) clamp(40px, 6vw, 96px) clamp(48px, 8vh, 96px) 52px; }
 .split-text .display { max-width: 16ch; }
+.copy b { font-weight: 600; color: var(--off-white); }
 .lead { font-weight: 500; font-size: 18px; line-height: 1.6; color: var(--off-white); }
 @media (min-width: 901px) and (max-height: 880px) { #top .split-text { padding-bottom: 32px; } #top .copy + .copy { margin-top: 12px; } #top .mandate-echo { margin-top: 14px; } }
 @media (min-width: 901px) { .split-text .display.one-line { max-width: none; white-space: nowrap; } }
@@ -175,6 +176,22 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   .values-head { position: static; padding: 0; }
   .values-stack { padding: 0; }
 }
+/* Select special projects: carousel row + modal */
+.projects-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 1fr); gap: clamp(20px, 2.4vw, 36px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+.projects-row::-webkit-scrollbar { display: none; }
+.project-card { scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; text-align: left; min-height: 240px; padding: 28px 28px 26px; background: rgba(201,169,110,0.04); border: 1px solid var(--rule-soft); border-top: 1px solid var(--rule); color: inherit; font: inherit; cursor: pointer; transition: background 0.3s, border-color 0.3s; }
+.project-card:hover, .project-card:focus-visible { background: rgba(201,169,110,0.09); border-color: var(--rule); outline: none; }
+.project-card .pc-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
+.project-card .pc-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.1vw, 28px); line-height: 1.2; color: var(--off-white); margin-bottom: 12px; }
+.project-card .pc-line { font-size: 15px; line-height: 1.6; color: var(--text-body); }
+.project-card .pc-more { margin-top: auto; padding-top: 22px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.project-modal { margin: auto; width: min(640px, calc(100vw - 44px)); max-height: calc(100vh - 80px); padding: clamp(32px, 4vw, 48px); background: var(--ink-warm); color: var(--text-body); border: 1px solid var(--rule); }
+.project-modal::backdrop { background: rgba(5,4,3,0.78); }
+.project-modal .pm-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+.project-modal h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3vw, 36px); line-height: 1.15; color: var(--off-white); margin-bottom: 20px; }
+.project-modal p { font-size: 16px; line-height: 1.75; }
+.project-modal .pm-close { position: absolute; top: 14px; right: 14px; min-width: 44px; min-height: 44px; background: none; border: 0; color: var(--gold); font-size: 26px; line-height: 1; cursor: pointer; }
+@media (max-width: 900px) { .projects-row { grid-auto-columns: 82%; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -208,7 +225,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="h-rule left"></div>
     <p class="copy lead">The Private Office is EMIR's in-house team for special projects and high-stakes mandates.</p>
     <p class="copy">Complex, ambitious, one-of-a-kind, politically sensitive situations need people who have faced them before. When everyone around you has a stake in the outcome, you need people who have none.</p>
-    <p class="copy">We call these Special Projects. For each one, we draw on the EMIR network to assemble former Chairs, CEOs, Ministers and specialists, and we do the work in confidence.</p>
+    <p class="copy">We call these <b>Special Projects</b>. For each one, we draw on the EMIR network to assemble former Chairs, CEOs, Ministers and specialists, and we do the work in confidence.</p>
     <p class="copy">Whether the moment calls for a major investment or a turnaround, a global campaign or entry into a new market, the Private Office is your first port of call. Consultancies send their juniors and a deck. We send the people who used to hire them.</p>
   </div>
   <div class="split-media">
@@ -229,6 +246,21 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="value-item reveal"><h3 class="value-name">Thought leadership and executive content</h3><p class="value-desc">[Placeholder] Private research, briefings, speeches and published thought leadership for leaders with something to say.</p></div>
     <div class="value-item reveal"><h3 class="value-name">Private convenings</h3><p class="value-desc">[Placeholder] Custom gatherings, from a private dinner to a flagship event, with the right people present and nothing on the record.</p></div>
   </div>
+</section>
+
+<!-- SELECT SPECIAL PROJECTS (placeholders; real anonymised projects to follow) -->
+<section id="projects" class="stacked">
+  <div class="stacked-head">
+    <h2 class="display reveal">Select special projects.</h2>
+  </div>
+  <div class="projects-row reveal reveal-d1">
+    <button type="button" class="project-card" data-project="p1"><span class="pc-meta">Sovereign capital · GCC</span><span class="pc-title">A first move into a new asset class</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
+    <button type="button" class="project-card" data-project="p2"><span class="pc-meta">Family group · Gulf</span><span class="pc-title">Rebuilding a board through succession</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
+    <button type="button" class="project-card" data-project="p3"><span class="pc-meta">National champion · Asia</span><span class="pc-title">Entering a new market at speed</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
+  </div>
+  <dialog class="project-modal" id="p1" aria-labelledby="p1-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">Sovereign capital · GCC</p><h3 id="p1-t">A first move into a new asset class</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
+  <dialog class="project-modal" id="p2" aria-labelledby="p2-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">Family group · Gulf</p><h3 id="p2-t">Rebuilding a board through succession</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
+  <dialog class="project-modal" id="p3" aria-labelledby="p3-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">National champion · Asia</p><h3 id="p3-t">Entering a new market at speed</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
 </section>
 
 <!-- HOW TO WORK WITH THE PRIVATE OFFICE -->
@@ -275,6 +307,15 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
 })();
+/* select special projects: open each card's modal */
+document.querySelectorAll('.project-card').forEach(card => {
+  const dlg = document.getElementById(card.dataset.project);
+  if (!dlg || !dlg.showModal) return;
+  card.addEventListener('click', () => dlg.showModal());
+  dlg.querySelector('.pm-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => card.focus());
+});
 </script>
 </body>
 </html>
