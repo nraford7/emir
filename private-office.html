@@ -176,22 +176,61 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   .values-head { position: static; padding: 0; }
   .values-stack { padding: 0; }
 }
-/* Select special projects: carousel row + modal */
-.projects-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 1fr); gap: clamp(20px, 2.4vw, 36px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+/* Select special projects: ledger carousel + project modal */
+#projects { padding-bottom: clamp(80px, 8vw, 110px); }
+.projects-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 44px; }
+.projects-head .display { font-size: clamp(34px, 3.6vw, 48px); }
+.projects-controls { display: flex; align-items: center; gap: 8px; }
+.projects-count { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; color: var(--text-dim); margin-right: 14px; font-variant-numeric: lining-nums; }
+.projects-count b { color: var(--off-white); font-weight: 400; }
+.proj-arrow { width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 1px solid var(--rule); color: var(--gold); cursor: pointer; transition: background 0.3s, border-color 0.3s, opacity 0.3s; }
+.proj-arrow:hover:not(:disabled), .proj-arrow:focus-visible { background: rgba(201,169,110,0.1); border-color: var(--gold); outline: none; }
+.proj-arrow:disabled { opacity: 0.3; cursor: default; }
+.proj-arrow svg { width: 16px; height: 16px; }
+.projects-row { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(300px, 29vw, 400px); gap: clamp(20px, 2.6vw, 40px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 52px; margin: 0 -52px; padding: 0 52px 4px; scrollbar-width: none; overscroll-behavior-x: contain; }
 .projects-row::-webkit-scrollbar { display: none; }
-.project-card { scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; text-align: left; min-height: 240px; padding: 28px 28px 26px; background: rgba(201,169,110,0.04); border: 1px solid var(--rule-soft); border-top: 1px solid var(--rule); color: inherit; font: inherit; cursor: pointer; transition: background 0.3s, border-color 0.3s; }
-.project-card:hover, .project-card:focus-visible { background: rgba(201,169,110,0.09); border-color: var(--rule); outline: none; }
-.project-card .pc-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
-.project-card .pc-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.1vw, 28px); line-height: 1.2; color: var(--off-white); margin-bottom: 12px; }
-.project-card .pc-line { font-size: 15px; line-height: 1.6; color: var(--text-body); }
-.project-card .pc-more { margin-top: auto; padding-top: 22px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
-.project-modal { margin: auto; width: min(640px, calc(100vw - 44px)); max-height: calc(100vh - 80px); padding: clamp(32px, 4vw, 48px); background: var(--ink-warm); color: var(--text-body); border: 1px solid var(--rule); }
-.project-modal::backdrop { background: rgba(5,4,3,0.78); }
-.project-modal .pm-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
-.project-modal h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3vw, 36px); line-height: 1.15; color: var(--off-white); margin-bottom: 20px; }
-.project-modal p { font-size: 16px; line-height: 1.75; }
-.project-modal .pm-close { position: absolute; top: 14px; right: 14px; min-width: 44px; min-height: 44px; background: none; border: 0; color: var(--gold); font-size: 26px; line-height: 1; cursor: pointer; }
-@media (max-width: 900px) { .projects-row { grid-auto-columns: 82%; } }
+.projects-row:focus-visible { outline: 1px solid var(--rule); outline-offset: 8px; }
+.project-card { scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 0; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
+.pc-band { width: 100%; height: 132px; background-image: url('images/forge-damascus.jpg'); background-size: 720% auto; background-position-y: 55%; filter: saturate(0.85) brightness(0.8); transition: filter 0.6s cubic-bezier(0.16,1,0.3,1); }
+.project-card:nth-child(1) .pc-band { background-position-x: 0%; } .project-card:nth-child(2) .pc-band { background-position-x: 16.6%; } .project-card:nth-child(3) .pc-band { background-position-x: 33.3%; } .project-card:nth-child(4) .pc-band { background-position-x: 50%; } .project-card:nth-child(5) .pc-band { background-position-x: 66.6%; } .project-card:nth-child(6) .pc-band { background-position-x: 83.3%; } .project-card:nth-child(7) .pc-band { background-position-x: 100%; }
+.pc-rule { width: 100%; height: 1px; background: var(--rule); position: relative; margin-bottom: 26px; }
+.pc-rule::after { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.pc-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 56px; line-height: 1; color: var(--gold-dim); margin: 22px 0 18px; font-variant-numeric: lining-nums; transition: color 0.4s, transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.pc-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; }
+.pc-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(25px, 2.1vw, 30px); line-height: 1.18; color: var(--off-white); margin-bottom: 12px; text-wrap: balance; }
+.pc-line { font-size: 15px; line-height: 1.65; color: var(--text-body); max-width: 34ch; }
+.pc-more { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 14px; color: var(--gold); }
+.pc-more span { display: inline-block; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.project-card:hover .pc-band, .project-card:focus-visible .pc-band { filter: saturate(1.05) brightness(1); }
+.project-card:hover .pc-rule::after, .project-card:focus-visible .pc-rule::after { transform: scaleX(1); }
+.project-card:hover .pc-num, .project-card:focus-visible .pc-num { color: var(--gold); transform: translateX(4px); }
+.project-card:hover .pc-more span, .project-card:focus-visible .pc-more span { transform: translateX(5px); }
+.project-card:focus-visible { outline: none; }
+.projects-progress { position: relative; height: 1px; background: var(--rule-soft); margin-top: 40px; }
+.projects-progress i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold); }
+.js .projects-row .project-card { opacity: 0; transform: translateX(24px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.projects-row.visible .project-card { opacity: 1; transform: none; }
+.projects-row.visible .project-card:nth-child(2) { transition-delay: 0.06s; } .projects-row.visible .project-card:nth-child(3) { transition-delay: 0.12s; } .projects-row.visible .project-card:nth-child(4) { transition-delay: 0.18s; } .projects-row.visible .project-card:nth-child(n+5) { transition-delay: 0.24s; }
+/* project modal: one dialog, filled per project, with previous / next */
+.project-modal { margin: auto; width: min(680px, calc(100vw - 44px)); max-height: calc(100vh - 80px); padding: 0; background: var(--ink-warm); color: var(--text-body); border: 1px solid var(--rule); opacity: 0; transform: translateY(12px); transition: opacity 0.35s cubic-bezier(0.25,1,0.5,1), transform 0.35s cubic-bezier(0.25,1,0.5,1), overlay 0.35s allow-discrete, display 0.35s allow-discrete; }
+.project-modal[open] { opacity: 1; transform: none; }
+@starting-style { .project-modal[open] { opacity: 0; transform: translateY(12px); } }
+.project-modal::backdrop { background: rgba(5,4,3,0.8); }
+.pm-band { height: 120px; background-image: url('images/forge-damascus.jpg'); background-size: 720% auto; background-position-y: 55%; filter: saturate(0.9) brightness(0.85); }
+.pm-body { padding: clamp(28px, 4vw, 44px) clamp(28px, 4vw, 48px) clamp(24px, 3vw, 36px); }
+.pm-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 44px; line-height: 1; color: var(--gold-dim); margin-bottom: 14px; }
+.project-modal .pm-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; }
+.project-modal h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3vw, 36px); line-height: 1.15; color: var(--off-white); margin-bottom: 18px; }
+.project-modal .pm-text { font-size: 16px; line-height: 1.75; }
+.pm-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule-soft); padding: 14px clamp(20px, 3vw, 36px); }
+.pm-foot button { min-height: 44px; background: none; border: 0; color: var(--gold); font: inherit; font-size: 14px; cursor: pointer; padding: 0 8px; }
+.pm-foot button:hover, .pm-foot button:focus-visible { color: var(--off-white); outline: none; }
+.project-modal .pm-close { position: absolute; z-index: 2; top: 10px; right: 10px; width: 44px; height: 44px; background: rgba(10,9,8,0.55); border: 0; color: var(--off-white); font-size: 24px; line-height: 1; cursor: pointer; }
+@media (max-width: 900px) {
+  .projects-row { grid-auto-columns: 78%; margin: 0 -22px; padding: 0 22px 4px; scroll-padding-inline: 22px; }
+  .projects-head { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .js .projects-row .project-card { opacity: 1; transform: none; transition: none; } .project-modal { transition: none; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -249,18 +288,31 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 </section>
 
 <!-- SELECT SPECIAL PROJECTS (placeholders; real anonymised projects to follow) -->
-<section id="projects" class="stacked">
-  <div class="stacked-head">
-    <h2 class="display reveal">Select special projects.</h2>
+<section id="projects" class="stacked" aria-labelledby="projects-title">
+  <div class="projects-head">
+    <h2 class="display reveal" id="projects-title">Select special projects.</h2>
+    <div class="projects-controls reveal reveal-d1">
+      <span class="projects-count" aria-live="polite"><b class="pc-now">01</b> / 07</span>
+      <button type="button" class="proj-arrow" data-dir="-1" aria-label="Previous projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 3 5 8l5 5"/></svg></button>
+      <button type="button" class="proj-arrow" data-dir="1" aria-label="Next projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m6 3 5 5-5 5"/></svg></button>
+    </div>
   </div>
-  <div class="projects-row reveal reveal-d1">
-    <button type="button" class="project-card" data-project="p1"><span class="pc-meta">Sovereign capital · GCC</span><span class="pc-title">A first move into a new asset class</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
-    <button type="button" class="project-card" data-project="p2"><span class="pc-meta">Family group · Gulf</span><span class="pc-title">Rebuilding a board through succession</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
-    <button type="button" class="project-card" data-project="p3"><span class="pc-meta">National champion · Asia</span><span class="pc-title">Entering a new market at speed</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read more</span></button>
+  <div class="projects-row" role="region" aria-label="Special projects, scroll sideways" tabindex="0">
+    <button type="button" class="project-card" data-i="0" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">01</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Sovereign capital · GCC</span><span class="pc-title">A first move into a new asset class</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="1" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">02</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Family group · Gulf</span><span class="pc-title">Rebuilding a board through succession</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="2" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">03</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">National champion · Asia</span><span class="pc-title">Entering a new market at speed</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="3" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">04</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Listed group · MENA</span><span class="pc-title">Restoring confidence after a crisis</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="4" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">05</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Government entity · GCC</span><span class="pc-title">Designing a new regulatory regime</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="5" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">06</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Private investor · Europe</span><span class="pc-title">A cross-border acquisition, closed quietly</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
+    <button type="button" class="project-card" data-i="6" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true"></span><span class="pc-num" aria-hidden="true">07</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-meta">Sovereign funds · Gulf and Asia</span><span class="pc-title">Convening principals behind closed doors</span><span class="pc-line">[Placeholder] One line on the mandate and the result.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
   </div>
-  <dialog class="project-modal" id="p1" aria-labelledby="p1-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">Sovereign capital · GCC</p><h3 id="p1-t">A first move into a new asset class</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
-  <dialog class="project-modal" id="p2" aria-labelledby="p2-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">Family group · Gulf</p><h3 id="p2-t">Rebuilding a board through succession</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
-  <dialog class="project-modal" id="p3" aria-labelledby="p3-t"><button type="button" class="pm-close" aria-label="Close">&times;</button><p class="pm-meta">National champion · Asia</p><h3 id="p3-t">Entering a new market at speed</h3><p>[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></dialog>
+  <div class="projects-progress" aria-hidden="true"><i></i></div>
+  <dialog class="project-modal" aria-labelledby="pm-title">
+    <button type="button" class="pm-close" aria-label="Close">&times;</button>
+    <div class="pm-band" aria-hidden="true"></div>
+    <div class="pm-body"><p class="pm-num" aria-hidden="true"></p><p class="pm-meta"></p><h3 id="pm-title"></h3><p class="pm-text">[Placeholder] Project description to follow: the situation, what the Private Office assembled, and the outcome, anonymised.</p></div>
+    <div class="pm-foot"><button type="button" class="pm-prev">&larr; Previous</button><button type="button" class="pm-next">Next &rarr;</button></div>
+  </dialog>
 </section>
 
 <!-- HOW TO WORK WITH THE PRIVATE OFFICE -->
@@ -307,15 +359,44 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
 })();
-/* select special projects: open each card's modal */
-document.querySelectorAll('.project-card').forEach(card => {
-  const dlg = document.getElementById(card.dataset.project);
+/* select special projects: carousel controls, progress, and one modal with previous / next */
+(function () {
+  const sec = document.getElementById('projects');
+  if (!sec) return;
+  const row = sec.querySelector('.projects-row'), cards = Array.from(row.querySelectorAll('.project-card'));
+  const prev = sec.querySelector('.proj-arrow[data-dir="-1"]'), next = sec.querySelector('.proj-arrow[data-dir="1"]');
+  const now = sec.querySelector('.pc-now'), bar = sec.querySelector('.projects-progress i');
+  const pad = n => String(n).padStart(2, '0');
+  const step = () => cards[1].offsetLeft - cards[0].offsetLeft;
+  function sync() {
+    const max = row.scrollWidth - row.clientWidth;
+    const i = Math.round(row.scrollLeft / step());
+    now.textContent = pad(Math.min(cards.length, i + 1));
+    prev.disabled = row.scrollLeft < 4; next.disabled = row.scrollLeft > max - 4;
+    bar.style.width = (max > 0 ? (row.scrollLeft + row.clientWidth) / row.scrollWidth * 100 : 100) + '%';
+  }
+  [prev, next].forEach(b => b.addEventListener('click', () => row.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' })));
+  row.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); row.scrollBy({ left: step() * (e.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' }); } });
+  row.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  window.addEventListener('resize', sync); sync();
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { row.classList.add('visible'); o.disconnect(); } }), { threshold: 0.2 }).observe(row);
+  const dlg = sec.querySelector('.project-modal');
   if (!dlg || !dlg.showModal) return;
-  card.addEventListener('click', () => dlg.showModal());
+  let cur = 0, opener = null;
+  function fill(i) {
+    cur = (i + cards.length) % cards.length; const c = cards[cur];
+    dlg.querySelector('.pm-num').textContent = pad(cur + 1);
+    dlg.querySelector('.pm-meta').textContent = c.querySelector('.pc-meta').textContent;
+    dlg.querySelector('#pm-title').textContent = c.querySelector('.pc-title').textContent;
+    dlg.querySelector('.pm-band').style.backgroundPositionX = (cur / (cards.length - 1) * 100) + '%';
+  }
+  cards.forEach((c, i) => c.addEventListener('click', () => { opener = c; fill(i); dlg.showModal(); }));
   dlg.querySelector('.pm-close').addEventListener('click', () => dlg.close());
+  dlg.querySelector('.pm-prev').addEventListener('click', () => fill(cur - 1));
+  dlg.querySelector('.pm-next').addEventListener('click', () => fill(cur + 1));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener('close', () => card.focus());
-});
+  dlg.addEventListener('close', () => { (opener || cards[cur]).focus(); });
+})();
 </script>
 </body>
 </html>
