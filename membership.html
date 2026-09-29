@@ -427,7 +427,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   function update() {
     ticking = false;
     const vh = window.innerHeight, top = map.getBoundingClientRect().top;
-    apply(clamp((vh - top) / (vh * 0.75)));   // 0 when the map enters at the bottom, 1 when its top reaches a quarter of the way down
+    apply(clamp((vh * 0.65 - top) / (vh * 0.45)));   // starts once the whole map is on screen (top at 65% of the viewport), done when its top reaches 20%
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   window.addEventListener('scroll', onScroll, { passive: true });
