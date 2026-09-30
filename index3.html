@@ -163,10 +163,6 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 
 /* EMIR INSIGHTS standalone portal (index3, 2026-09-30) */
 nav { transition: padding 0.4s ease; }
-.nav-brand { display: flex; align-items: baseline; gap: 14px; }
-.nav-brand-sub { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; line-height: 1; color: var(--gold-light); padding-left: 14px; border-left: 1px solid var(--rule); }
-.nav-home { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); white-space: nowrap; transition: color 0.3s; }
-.nav-home:hover { color: var(--gold); }
 .portal-lead { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(22px, 2vw, 27px); line-height: 1.35; color: var(--off-white); max-width: 34ch; margin-bottom: 18px; }
 .split-text .latest { margin-top: 36px; max-width: 54ch; }
 .latest-title { font-size: clamp(40px, 3.8vw, 56px); line-height: 1.02; }
@@ -180,14 +176,7 @@ nav { transition: padding 0.4s ease; }
 .about-emir .copy { max-width: 56ch; margin-bottom: 18px; }
 .about-emir .text-link { margin-top: 10px; }
 @media (max-width: 900px) {
-  .nav-brand-sub { font-size: 19px; }
-  .nav-home { display: none; }
   .about-emir { grid-template-columns: minmax(0, 1fr); padding: 64px 22px 80px; }
-}
-.nav-contact-mobile { display: none !important; }
-@media (max-width: 520px) {
-  .nav-right .nav-cta { display: none; }
-  nav.menu-open .nav-contact-mobile { display: block !important; }
 }
 
 /* FEATURED REPORT CARD (index4, 2026-09-30) */
@@ -246,21 +235,18 @@ nav { transition: padding 0.4s ease; }
 
 <nav>
   <div style="display:flex; align-items:center; gap:40px;">
-    <div class="nav-brand">
-      <a href="index.html" class="nav-logo" aria-label="EMIR home">EMIR</a>
-      <span class="nav-brand-sub">Insights</span>
-    </div>
+    <a href="index.html" class="nav-logo" aria-label="EMIR home">EMIR</a>
     <ul class="nav-links" id="site-menu">
-      <li><a href="#latest">Latest report</a></li>
-      <li><a href="#reports">Past reports</a></li>
-      <li><a href="#about">About EMIR</a></li>
-      <li class="nav-mobile-only"><a href="index.html">Visit EMIR</a></li>
-      <li class="nav-mobile-only nav-contact-mobile"><a href="mailto:info@emirintelligence.com?subject=EMIR%20Insights">Contact us</a></li>
+      <li><a href="membership.html">Members</a></li>
+      <li><a href="private-office.html">Private Office</a></li>
+      <li><a href="index3.html" class="active" aria-current="page">Insights</a></li>
+      <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
+      <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>
   </div>
   <div class="nav-right">
-    <a href="index.html" class="nav-home">Visit EMIR</a>
-    <a href="mailto:info@emirintelligence.com?subject=EMIR%20Insights" class="nav-cta">Contact us</a>
+    <span class="nav-signin">Member sign in</span>
+    <a href="contact.html" class="nav-cta">Contact us</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu<span class="nav-toggle-bars" aria-hidden="true"></span></button>
   </div>
 </nav>
