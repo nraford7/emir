@@ -9,7 +9,4 @@
     if (sessionStorage.getItem(KEY) !== '1') return;
   } catch (e) { if (page !== 'index2.html') return; }
   document.documentElement.classList.add('full-nav');
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('a[href="index.html"]').forEach(function (a) { a.setAttribute('href', 'index2.html'); });
-  });
 })();
