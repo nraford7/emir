@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="js/gate.js"></script>
+<script src="js/nav-mode.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMIR Private Office</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -232,6 +233,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   .projects-head { flex-direction: column; align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { .js .projects-row .project-card { opacity: 1; transform: none; transition: none; } .project-modal { transition: none; } }
+.nav-extra { display: none; }
+.full-nav .nav-extra { display: list-item; }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -245,6 +248,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <ul class="nav-links" id="site-menu">
       <li><a href="membership.html">Members</a></li>
       <li><a href="private-office.html" class="active">Private Office</a></li>
+      <li class="nav-extra"><a href="about.html">About</a></li>
+      <li class="nav-extra"><a href="insights.html">Insights</a></li>
       <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
       <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>

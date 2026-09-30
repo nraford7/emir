@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="js/gate.js"></script>
+<script src="js/nav-mode.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMIR Membership</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,6 +199,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .members-map .city line { stroke-dasharray: 1; }
 #members:has(.members-map) { padding-bottom: 0; }
 @media (max-width: 600px) { .members-map { margin: 48px -22px 0; } .members-map .map-svg { height: 180px; } }
+.nav-extra { display: none; }
+.full-nav .nav-extra { display: list-item; }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -211,6 +214,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <ul class="nav-links" id="site-menu">
       <li><a href="membership.html" class="active">Members</a></li>
       <li><a href="private-office.html">Private Office</a></li>
+      <li class="nav-extra"><a href="about.html">About</a></li>
+      <li class="nav-extra"><a href="insights.html">Insights</a></li>
       <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
       <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>
