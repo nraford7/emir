@@ -217,6 +217,21 @@ nav { transition: padding 0.4s ease; }
   .feature-card { grid-template-columns: minmax(0, 1fr); }
   .feature-media { min-height: 0; height: 72vw; }
 }
+
+/* ABOUT EMIR full-bleed image (2026-09-30): text left, gold right */
+.about-emir { position: relative; overflow: hidden; isolation: isolate; display: block; padding-block: clamp(120px, 14vw, 200px); }
+.about-inner { max-width: 560px; }
+.about-emir .display { margin-bottom: 28px; }
+.about-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.about-bg img { position: absolute; top: 0; left: 0; width: 125%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 42%; transform: scaleX(-1); }
+.about-bg::after { content: ''; position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(8,8,6,0.94) 0%, rgba(8,8,6,0.86) 36%, rgba(8,8,6,0.35) 58%, rgba(8,8,6,0.2) 100%),
+  linear-gradient(180deg, var(--ink) 0%, transparent 18%, transparent 80%, var(--ink) 100%); }
+@media (max-width: 900px) {
+  .about-emir { padding-block: 96px; }
+  .about-bg img { left: 0; width: 100%; transform: none; object-position: 45% 50%; }
+  .about-bg::after { background: linear-gradient(180deg, var(--ink) 0%, rgba(8,8,6,0.6) 20%, rgba(8,8,6,0.86) 55%, rgba(8,8,6,0.93) 100%); }
+}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -333,8 +348,9 @@ nav { transition: padding 0.4s ease; }
 
 <!-- ABOUT EMIR -->
 <section id="about" class="about-emir">
+  <div class="about-bg" aria-hidden="true"><img src="images/insights-river-gold.jpg" alt="" loading="lazy"></div>
+  <div class="about-inner">
   <h2 class="display">About <em>EMIR</em>.</h2>
-  <div>
     <p class="lede">A private network for the world's fastest-growing economies.</p>
     <p class="copy">Chairs, CEOs, Ministers, family office and sovereign executives. Members meet in confidence, and call on the EMIR Private Office for the problems that matter most. Membership is by invitation only.</p>
     <a href="index.html" class="text-link">Visit EMIR</a>
