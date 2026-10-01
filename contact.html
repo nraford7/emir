@@ -149,6 +149,36 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 /* ===== END SITE SHARED ===== */
 .nav-extra { display: none; }
 .full-nav .nav-extra { display: list-item; }
+/* CONTACT form (2026-10-01; UI only, NR will wire a form service later) */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
+
+#message { display: block; text-align: left; padding: clamp(88px, 10vw, 140px) 52px clamp(96px, 10vw, 140px); background: var(--ink); border-top: 1px solid var(--rule-soft); }
+.form-wrap { max-width: 880px; }
+.form-wrap .display { font-size: clamp(34px, 3.6vw, 48px); margin-bottom: 16px; }
+.form-wrap > .copy { max-width: 56ch; margin: 0 0 48px; }
+.reg-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
+.field { display: flex; flex-direction: column; gap: 10px; }
+.field.wide { grid-column: 1 / -1; }
+.field label, .field legend { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.field .opt { color: var(--text-dim); letter-spacing: 0.08em; text-transform: none; font-weight: 400; }
+.field input, .field select, .field textarea { width: 100%; background: rgba(201,169,110,0.05); border: 0; border-bottom: 1px solid var(--rule); color: var(--off-white); font: inherit; font-size: 16px; padding: 14px 14px; border-radius: 0; transition: border-color 0.3s, background 0.3s; }
+.field textarea { min-height: 180px; resize: vertical; line-height: 1.6; }
+.field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
+.field select option { background: var(--ink-warm); color: var(--off-white); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-bottom-color: var(--gold); background: rgba(201,169,110,0.09); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+.check { grid-column: 1 / -1; display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--text-body); }
+.check input { margin-top: 5px; width: 18px; height: 18px; accent-color: var(--gold); flex: none; }
+.form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 8px; }
+.cta-btn { display: inline-block; padding: 17px 44px; border: 1px solid var(--gold); background: rgba(201,169,110,0.06); color: var(--gold-light); font: inherit; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.4s ease, color 0.4s ease; }
+.cta-btn:hover { background: rgba(201,169,110,0.14); color: var(--off-white); }
+.form-status { font-size: 15px; line-height: 1.6; color: var(--gold-light); max-width: 56ch; }
+@media (max-width: 900px) {
+  #message { padding: 72px 22px 88px; }
+  .reg-form { grid-template-columns: minmax(0, 1fr); }
+}
+.contact .contact-actions { margin: 4px 0 44px; }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -181,8 +211,13 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   <div class="story-wrap">
     <h1 class="display">Contact us.</h1>
     <div class="h-rule left"></div>
-    <p class="copy contact-intro">Write to us about membership, an introduction or the Private Office. Every enquiry is read by the EMIR team, handled in confidence and answered personally.</p>
+    <p class="copy contact-intro">Write to us about membership, an introduction or the Private Office. Every enquiry is read by the EMIR team, handled in confidence and answered personally. To be considered for membership, please register your profile.</p>
+    <div class="contact-actions"><a href="register.html" class="cta-btn">Register your profile</a></div>
     <div class="contact-grid">
+      <div class="contact-block wide">
+        <h2 class="contact-label">Email</h2>
+        <p><a href="mailto:info@emirintelligence.com">info@emirintelligence.com</a></p>
+      </div>
       <div class="contact-block">
         <h2 class="contact-label">Office</h2>
         <address>Office 124, Building 9<br>Dubai Media City<br>Dubai, UAE</address>
@@ -197,6 +232,34 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <img src="images/forge-gold-pour.jpg" alt="Molten gold poured from a crucible in a dark forge" fetchpriority="high">
   </div>
 </section>
+
+<!-- MESSAGE FORM -->
+<section id="message">
+  <div class="form-wrap">
+    <h2 class="display reveal">Send us a message.</h2>
+    <p class="copy reveal reveal-d1">Tell us how we can help. Every message is read by the EMIR team and handled in confidence.</p>
+    <form class="reg-form" id="msg-form" novalidate>
+      <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required></div>
+      <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization"></div>
+      <div class="field"><label for="m-type">Enquiry about</label>
+        <select id="m-type" name="Enquiry about" required>
+          <option value="">Please choose</option>
+          <option>Membership</option>
+          <option>The Private Office</option>
+          <option>Partnerships</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required></textarea></div>
+      <div class="form-actions">
+        <button type="submit" class="cta-btn">Send message</button>
+        <p class="form-status" id="msg-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
 
 
 </main>
@@ -227,6 +290,21 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
+})();
+
+/* contact form (UI only; NR will wire a form service later): for now, submit composes an email */
+(function () {
+  const f = document.getElementById('msg-form'); if (!f) return;
+  const status = document.getElementById('msg-status');
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = Array.from(f.querySelectorAll('[required]')).find(el => !el.value.trim() || (el.type === 'email' && !el.checkValidity()));
+    if (bad) { status.textContent = 'Please complete the highlighted field before sending.'; bad.focus(); return; }
+    const lines = Array.from(f.querySelectorAll('input, select, textarea')).filter(el => el.value.trim()).map(el => el.name + ': ' + el.value.trim());
+    const subject = (f.querySelector('#m-type').value || 'Enquiry') + ': ' + f.querySelector('#m-name').value.trim();
+    location.href = 'mailto:info@emirintelligence.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n\n'));
+    status.textContent = 'Thank you. Your email app will open with your message ready to send.';
+  });
 })();
 </script>
 </body>
