@@ -179,6 +179,24 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   .reg-form { grid-template-columns: minmax(0, 1fr); }
 }
 .contact .contact-actions { margin: 4px 0 44px; }
+
+/* CRITIQUE FIXES (2026-10-01): error states, placeholder contrast, aside */
+#message .profile-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+#message .form-wrap { max-width: none; }
+.form-note { font-size: 14px; color: var(--text-dim); margin: -24px 0 40px; }
+.field input, .field select, .field textarea { scroll-margin-top: 120px; }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-dim); opacity: 1; }
+.field [aria-invalid="true"] { border-bottom-color: var(--gold-light); background: rgba(201,169,110,0.12); }
+.field-error { font-size: 14px; line-height: 1.5; color: var(--gold-light); }
+.field-error[hidden] { display: none; }
+.aside-panel { position: sticky; top: 120px; padding: 32px 30px; background: rgba(201,169,110,0.07); }
+.aside-panel h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); color: var(--off-white); margin-bottom: 18px; }
+.aside-panel p { font-size: 15px; line-height: 1.65; color: var(--text-body); }
+.aside-panel p + p { margin-top: 14px; }
+.aside-panel b { color: var(--off-white); font-weight: 500; }
+.aside-panel a, .form-status a { color: var(--off-white); border-bottom: 1px solid var(--rule); }
+.aside-panel a:hover { color: var(--gold-light); }
+@media (max-width: 900px) { #message .profile-grid { grid-template-columns: minmax(0, 1fr); } .aside-panel { position: static; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -209,7 +227,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 <!-- CONTACT -->
 <section id="top" class="story contact">
   <div class="story-wrap">
-    <h1 class="display">Contact us.</h1>
+    <h1 class="display">Contact <em>us</em>.</h1>
     <div class="h-rule left"></div>
     <p class="copy contact-intro">Write to us about membership, an introduction or the Private Office. Every enquiry is read by the EMIR team, handled in confidence and answered personally. To be considered for membership, please register your profile.</p>
     <div class="contact-actions"><a href="register.html" class="cta-btn">Register your profile</a></div>
@@ -235,28 +253,34 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 
 <!-- MESSAGE FORM -->
 <section id="message">
+  <div class="profile-grid">
   <div class="form-wrap">
     <h2 class="display reveal">Send us a message.</h2>
     <p class="copy reveal reveal-d1">Tell us how we can help. Every message is read by the EMIR team and handled in confidence.</p>
+    <p class="form-note">All fields are required unless marked optional.</p>
     <form class="reg-form" id="msg-form" novalidate>
-      <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required></div>
-      <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization"></div>
-      <div class="field"><label for="m-type">Enquiry about</label>
-        <select id="m-type" name="Enquiry about" required>
+        <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required aria-required="true" aria-describedby="m-name-err"><p class="field-error" id="m-name-err" hidden></p></div>
+        <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required aria-required="true" aria-describedby="m-email-err"><p class="field-error" id="m-email-err" hidden></p></div>
+        <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization" aria-describedby="m-org-err"><p class="field-error" id="m-org-err" hidden></p></div>
+        <div class="field"><label for="m-type">Enquiry about</label><select id="m-type" name="Enquiry about" required aria-required="true" aria-describedby="m-type-err">
           <option value="">Please choose</option>
           <option>Membership</option>
           <option>The Private Office</option>
           <option>Partnerships</option>
           <option>Something else</option>
-        </select>
-      </div>
-      <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required></textarea></div>
+        </select><p class="field-error" id="m-type-err" hidden></p></div>
+        <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required aria-required="true" aria-describedby="m-msg-err"></textarea><p class="field-error" id="m-msg-err" hidden></p></div>
       <div class="form-actions">
         <button type="submit" class="cta-btn">Send message</button>
         <p class="form-status" id="msg-status" role="status" aria-live="polite"></p>
       </div>
     </form>
+  </div>
+  <aside class="aside-panel" aria-label="What happens next">
+    <h3>What happens next.</h3>
+    <p><b>Read personally.</b> Every message goes to the EMIR team, is handled in confidence and is answered personally.</p>
+    <p><b>Interested in membership?</b> Please <a href="register.html">register your profile</a>, so we can consider it against our criteria.</p>
+  </aside>
   </div>
 </section>
 
@@ -292,18 +316,23 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
 })();
 
-/* contact form (UI only; NR will wire a form service later): for now, submit composes an email */
+/* contact form (UI only; NR will wire a form service later). Validates inline, then composes an email. */
 (function () {
   const f = document.getElementById('msg-form'); if (!f) return;
   const status = document.getElementById('msg-status');
+  const msgs = { 'm-name': 'Please add your full name.', 'm-email': 'Please add an email address we can reply to.', 'm-type': 'Please choose what your enquiry is about.', 'm-msg': 'Please write your message.' };
+  const fields = Array.from(f.querySelectorAll('input, select, textarea'));
+  function setErr(el, text) { const e = document.getElementById(el.id + '-err'); if (text) { el.setAttribute('aria-invalid', 'true'); if (e) { e.textContent = text; e.hidden = false; } } else { el.removeAttribute('aria-invalid'); if (e) { e.textContent = ''; e.hidden = true; } } }
+  function check(el) { if (!el.required) return ''; if (!el.value.trim()) return msgs[el.id]; if (el.type === 'email' && !el.checkValidity()) return 'Please check the email address, for example name@company.com.'; return ''; }
+  fields.forEach(el => el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { if (el.hasAttribute('aria-invalid')) setErr(el, check(el)); }));
   f.addEventListener('submit', e => {
     e.preventDefault();
-    const bad = Array.from(f.querySelectorAll('[required]')).find(el => !el.value.trim() || (el.type === 'email' && !el.checkValidity()));
-    if (bad) { status.textContent = 'Please complete the highlighted field before sending.'; bad.focus(); return; }
-    const lines = Array.from(f.querySelectorAll('input, select, textarea')).filter(el => el.value.trim()).map(el => el.name + ': ' + el.value.trim());
-    const subject = (f.querySelector('#m-type').value || 'Enquiry') + ': ' + f.querySelector('#m-name').value.trim();
+    const bad = fields.filter(el => { const m = check(el); setErr(el, m); return !!m; });
+    if (bad.length) { status.textContent = bad.length === 1 ? 'One field needs your attention.' : bad.length + ' fields need your attention.'; bad[0].focus(); return; }
+    const lines = fields.filter(el => el.value.trim()).map(el => el.name + ': ' + el.value.trim());
+    const subject = document.getElementById('m-type').value + ': ' + document.getElementById('m-name').value.trim();
     location.href = 'mailto:info@emirintelligence.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n\n'));
-    status.textContent = 'Thank you. Your email app will open with your message ready to send.';
+    status.innerHTML = 'Thank you. Your email app should now open with your message ready to send. If it does not, please write to us at <a href="mailto:info@emirintelligence.com">info@emirintelligence.com</a>.';
   });
 })();
 </script>
