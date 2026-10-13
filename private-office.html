@@ -246,13 +246,14 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .po-slide .display { font-size: clamp(34px, 3.6vw, 48px); text-wrap: balance; margin-bottom: 24px; font-variant-numeric: lining-nums; }
 .po-cap .display:last-child { margin-bottom: 0; }
 .po-slide .copy { margin: 0; text-wrap: pretty; }
+.po-cap .copy { max-width: min(520px, 36vw); }   /* keeps the line on the dark side of the scrim */
 .po-project { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(20px, 1.5vw, 22px); line-height: 1.2; color: var(--off-white); margin-bottom: 6px; font-variant-numeric: lining-nums; }
 .nw { white-space: nowrap; }
 @media (max-width: 900px) {
   .po-slide { height: auto; min-height: 100svh; max-height: none; padding: 96px 22px 64px; justify-content: flex-start; gap: 48px; }
   .po-bg { left: 0; width: 100%; }
   .po-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.78) 45%, rgba(8,8,6,.92) 100%); }
-  .po-cap, .po-case { max-width: none; }
+  .po-cap, .po-case, .po-cap .copy { max-width: none; }
   .po-case { margin-top: auto; }
 }
 .values-placeholder .stacked-head { margin-bottom: 0; } .values-placeholder .display { margin-bottom: 24px; max-width: none; }
@@ -312,18 +313,12 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
       <p class="copy">Nearly sixty confidential board briefings as the Strait of Hormuz closed.</p>
     </div>
   </article>
-  <article class="po-slide no-image">
-    <!-- image to come (NR 2026-10-13) -->
-    <div class="po-cap reveal">
-      <h2 class="display">Strategy &amp; <em>initiation</em>.</h2>
-      <p class="copy"><b>Strategy, organisation design, transformation and portfolio management,</b> from the first question to a plan that leadership can act on.</p>
-    </div>
-  </article>
   <article class="po-slide">
     <img class="po-bg" src="images/project-ras-el-hekma.jpg" alt="Two guests looking at a large projected model of a coastal city" loading="lazy">
     <div class="po-scrim"></div>
     <div class="po-cap reveal">
       <h2 class="display">Positioning and <em>influence</em>.</h2>
+      <p class="copy"><b>We shape your story, choose your platforms and build your relationships,</b> so you are seen and heard by the people who matter.</p>
     </div>
     <div class="po-case reveal reveal-d1">
       <p class="po-project">Positioning, protocol and presidential launch for a $35bn new city</p>
@@ -335,10 +330,18 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="po-scrim"></div>
     <div class="po-cap reveal">
       <h2 class="display">Moonshots and <em>masterpieces</em>.</h2>
+      <p class="copy"><b>We imagine, design and deliver</b> institutions, landmarks and experiences the world has never seen.</p>
     </div>
     <div class="po-case reveal reveal-d1">
       <p class="po-project">Designing a royal institution of science and wonder</p>
       <p class="copy">Fifty luminaries, including Nobel laureates, and 350 ideas, shaped into one cultural institution for a royal patron.</p>
+    </div>
+  </article>
+  <article class="po-slide no-image">
+    <!-- image to come (NR 2026-10-13) -->
+    <div class="po-cap reveal">
+      <h2 class="display">Strategy &amp; <em>initiation</em>.</h2>
+      <p class="copy"><b>We set strategy, design organisations and manage portfolios,</b> then see leadership through the transformation that follows.</p>
     </div>
   </article>
   <article class="po-slide">
@@ -346,6 +349,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="po-scrim"></div>
     <div class="po-cap reveal">
       <h2 class="display">Tailored gatherings and <em>influential events</em>.</h2>
+      <p class="copy"><b>We curate the guests, shape the conversation and host it in confidence,</b> so the right people meet and decisions move.</p>
     </div>
     <div class="po-case reveal reveal-d1">
       <p class="po-project">Opening a <span class="nw">Gulf-Europe</span> investment corridor</p>
