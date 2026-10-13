@@ -61,6 +61,8 @@ main { flex: 1; display: flex; }
 .hero-sub { font-size: 16px; line-height: 1.75; color: var(--text-body); max-width: 58ch; margin-top: clamp(16px, 3vh, 26px); opacity: 0; animation: fadeUp 1.6s 0.45s var(--ease) forwards; }
 .hero-rule { display: flex; align-items: center; gap: 16px; margin-top: clamp(20px, 3.6vh, 36px); opacity: 0; animation: fadeUp 1.6s 0.6s var(--ease) forwards; }
 .hero-rule::before { content: ''; width: 56px; height: 1px; background: var(--gold); }
+.hero-cta { display: inline-block; margin-top: clamp(20px, 3.6vh, 36px); padding: 17px 44px; border: 1px solid var(--gold); background: rgba(201,169,110,0.06); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0; animation: fadeUp 1.6s 0.6s var(--ease) forwards; transition: background 0.4s ease, color 0.4s ease; }
+.hero-cta:hover { background: rgba(201,169,110,0.14); color: var(--off-white); }
 
 /* MOTION */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
@@ -110,7 +112,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 }
 @media (max-width: 380px) { .nav-cta { padding: 0 12px; } }
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .wordmark, .hero-sub, .hero-rule, .hero-lede { opacity: 1 !important; transform: none !important; }
+  .reveal, .wordmark, .hero-sub, .hero-rule, .hero-cta, .hero-lede { opacity: 1 !important; transform: none !important; }
 }
 /* ===== END SITE SHARED ===== */
 .nav-extra { display: none; }
@@ -149,6 +151,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <h1 class="wordmark">EMIR</h1>
     <p class="hero-lede">The leading executive intelligence network for the world's fastest-growing economies.</p>
     <p class="hero-sub">Trusted by CEOs, owners, board members and ministers around the world.</p>
+    <a href="membership.html" class="hero-cta">Find out more</a>
   </div>
 </section>
 </main>
