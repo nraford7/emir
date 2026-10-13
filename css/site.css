@@ -84,11 +84,17 @@ h1.display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); }
 .cta-btn { display: inline-block; padding: 17px 44px; border: 1px solid var(--gold); background: var(--fill); color: var(--gold-light); font: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.4s ease, color 0.4s ease; }
 .cta-btn:hover { background: var(--fill-hover); color: var(--off-white); }
 
+/* ===== TEXT LINK (DESIGN.md: gold capitals, a short gold line that lengthens on hover) ===== */
+.text-link { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); transition: color 0.3s ease; }
+.text-link::after { content: ''; width: 24px; height: 1px; background: var(--gold); transition: width 0.4s var(--ease); }
+.text-link:hover { color: var(--off-white); }
+.text-link:hover::after { width: 40px; }
+
 /* ===== SCROLL REVEAL ===== */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .reveal.visible { opacity: 1; transform: none; }
 .reveal-d1 { transition-delay: 0.12s; } .reveal-d2 { transition-delay: 0.24s; } .reveal-d3 { transition-delay: 0.40s; }
-@media (prefers-reduced-motion: reduce) { .reveal, .wordmark, .hero-sub, .hero-cta, .hero-lede { opacity: 1 !important; transform: none !important; } }
+@media (prefers-reduced-motion: reduce) { .reveal, .wordmark, .hero-sub, .hero-actions, .hero-lede { opacity: 1 !important; transform: none !important; } }
 
 /* ===== HERO (inner pages): text left, image right two thirds with the deck scrim ===== */
 #top.split-hero { position: relative; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: 100vh; min-height: 100svh; padding: 0; text-align: left; background: var(--ink-warm); }
