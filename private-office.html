@@ -235,6 +235,26 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .js .projects-row .project-card { opacity: 1; transform: none; transition: none; } .project-modal { transition: none; } }
 .nav-extra { display: none; }
 .full-nav .nav-extra { display: list-item; }
+/* AREAS OF WORK (NR 2026-10-13): deck slides 13-16; image right two thirds with the deck scrim; type is the site's own (.display section head, .copy body) */
+#work.po-work { display: block; padding: 0; text-align: left; background: var(--ink); border-top: 1px solid var(--rule-soft); }
+.po-slide { position: relative; height: 100vh; min-height: 640px; max-height: 1100px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(112px, 16vh, 168px) 52px clamp(64px, 11vh, 120px); background: var(--ink); }
+.po-slide + .po-slide { border-top: 1px solid var(--rule-soft); }
+.po-bg { position: absolute; top: 0; left: 34%; width: 66%; height: 100%; object-fit: cover; }
+.po-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 34%, rgba(8,8,6,.55) 46%, rgba(8,8,6,0) 62%), linear-gradient(180deg, rgba(8,8,6,.35) 0%, rgba(8,8,6,0) 22%, rgba(8,8,6,0) 78%, rgba(8,8,6,.6) 100%); }
+.po-cap, .po-case { position: relative; z-index: 2; max-width: min(620px, 44vw); }
+.po-example { font-size: 14px; font-weight: 500; color: var(--gold); margin-bottom: 14px; }
+.po-slide .display { font-size: clamp(34px, 3.6vw, 48px); text-wrap: balance; margin-bottom: 24px; font-variant-numeric: lining-nums; }
+.po-cap .display:last-child { margin-bottom: 0; }
+.po-slide .copy { margin: 0; text-wrap: pretty; }
+.po-project { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(20px, 1.5vw, 22px); line-height: 1.2; color: var(--off-white); margin-bottom: 6px; font-variant-numeric: lining-nums; }
+.nw { white-space: nowrap; }
+@media (max-width: 900px) {
+  .po-slide { height: auto; min-height: 100svh; max-height: none; padding: 96px 22px 64px; justify-content: flex-start; gap: 48px; }
+  .po-bg { left: 0; width: 100%; }
+  .po-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.78) 45%, rgba(8,8,6,.92) 100%); }
+  .po-cap, .po-case { max-width: none; }
+  .po-case { margin-top: auto; }
+}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -277,53 +297,57 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   </div>
 </section>
 
-<!-- HOW WE WORK (service descriptions are placeholders, Kata nmfb) -->
-<section id="services" class="values-split">
-  <div class="values-head">
-    <h2 class="display reveal">What we take on.</h2>
-    <p class="copy values-intro reveal reveal-d1">Our work falls into five areas.</p>
-  </div>
-  <div class="values-stack">
-    <div class="value-item reveal"><h3 class="value-name">Capital and investment</h3><p class="value-desc">Sourcing, structuring and closing sensitive or sizeable deals with the right counterparts.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Positioning and influence</h3><p class="value-desc">How you are seen and heard by the people who matter, from markets and media to governments.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Strategy and governance</h3><p class="value-desc">Clear direction through moments of change, and the boards and structures to see it through.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Private gatherings and events</h3><p class="value-desc">Curating the conversations that move decisions, giving you a leading voice in them and building relationships with the right people.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Moonshots and masterpieces</h3><p class="value-desc">Imagination and wonder on a grand scale, for institutions, landmarks and experiences the world has never seen.</p></div>
-  </div>
-</section>
-
-<!-- SELECT SPECIAL PROJECTS (placeholders; real anonymised projects to follow) -->
-<section id="projects" class="stacked" aria-labelledby="projects-title">
-  <div class="projects-head">
-    <h2 class="display reveal" id="projects-title">Notable special projects.</h2>
-    <div class="projects-controls reveal reveal-d1">
-      <span class="projects-count" aria-live="polite"><b class="pc-now">01</b> / 06</span>
-      <button type="button" class="proj-arrow" data-dir="-1" aria-label="Previous projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 3 5 8l5 5"/></svg></button>
-      <button type="button" class="proj-arrow" data-dir="1" aria-label="Next projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m6 3 5 5-5 5"/></svg></button>
+<!-- AREAS OF WORK (NR 2026-10-13): deck slides 13-16 as full-screen sections, replacing 'What we take on' and the 'Notable special projects' carousel. Old version: private-office.backup-2026-10-13-services-projects.html -->
+<section id="work" class="po-work">
+  <article class="po-slide">
+    <img class="po-bg" src="images/project-hormuz-storm.jpg" alt="A cargo ship in a storm beside sea cliffs" loading="lazy">
+    <div class="po-scrim"></div>
+    <div class="po-cap reveal">
+      <p class="po-example">Example</p>
+      <h2 class="display">Board strategy and <em>governance</em>.</h2>
+      <p class="copy"><b>We help assemble boards and board advisory teams,</b> and develop <span class="nw">pre-RFP</span> strategies and governance.</p>
     </div>
-  </div>
-  <div class="projects-row" role="region" aria-label="Special projects, scroll sideways" tabindex="0">
-    <button type="button" class="project-card" data-i="0" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 0.0%"></span><span class="pc-num" aria-hidden="true">01</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Strategy and presidential launch for a $35bn new city</span><span class="pc-line">Strategy, institution and launch for Ras El-Hekma, the landmark UAE and Egypt investment, 2026.</span><span class="pc-desc" hidden>Ras El-Hekma is a <b>$35bn government-to-government investment between the UAE and Egypt</b> to build a new city on the Mediterranean.||The Private Office worked alongside the development company from the start: <b>shaping the strategy and portfolio for the city build-out</b>, shaping how the project was understood before its launch, managing key stakeholders and counterparties, overseeing other consultants, and helping build the leadership team at chairman, CEO and group level.||When the deadline came, it <b>delivered the public launch in eight weeks</b>, culminating in the presidential visit and signing between Sheikh Mohamed bin Zayed and President Sisi, signing ceremonies with global brands, and the public debut of the project. It then oversaw the launch of the first phase.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="1" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 11.1%"></span><span class="pc-num" aria-hidden="true">02</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Creating a nation's first international financial centre</span><span class="pc-line">From draft law to presidential signature in a major Southeast Asian economy.</span><span class="pc-desc" hidden>A head of state and national sovereign wealth fund wanted to <b>bring capital home</b> and make their country a destination for global and regional families and firms.||In a <b>six-week sprint</b>, the Private Office and leading authorities on financial centre policy, regulation and institution design drafted the laws to do it. Those drafts went through the regulatory and parliamentary process and became the foundation of the law the president signed and announced, <b>creating the country's first international financial centre</b>.||The Private Office then built the stakeholder engagement, launch and operating plans, several strategic initiatives, and the public positioning, including presidential speeches.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="2" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 22.2%"></span><span class="pc-num" aria-hidden="true">03</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Designing a royal institution of science and wonder</span><span class="pc-line">Fifty luminaries, including Nobel laureates, and 350 ideas, shaped into one cultural institution for a royal patron.</span><span class="pc-desc" hidden>A regional head of state envisioned <b>a public institution unlike any other</b>: part cultural landmark, part global research centre, part extraordinary visitor experience, uniting science, wonder, art, culture and philanthropy.||The Private Office convened <b>more than fifty of the world's leading scientists, authors, researchers, designers, artists, historians and academics, Nobel laureates among them</b>.||Together they generated <b>more than 350 concepts and initiatives</b>, which the Private Office shaped into a single, coherent institution designed to inspire the world.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="3" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 33.3%"></span><span class="pc-num" aria-hidden="true">04</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Opening a Gulf-Europe investment corridor</span><span class="pc-line">Investopia Dublin: the UAE's flagship investment platform, hosted by EMIR with Ireland's Deputy Prime Minister, 2025.</span><span class="pc-desc" hidden>Investopia is <b>the UAE Ministry of Economy's flagship international investment platform</b>, and EMIR is a longstanding partner of the Ministry.||To mark fifty years of UAE-Ireland relations, the Private Office brought Investopia to Dublin. It brought together the UAE Ministers of Economy and Investment, more than fifty UAE companies, and Ireland's Tánaiste, ministers, state-owned enterprises, sovereign and private investors, banks and founders: <b>around 250 decision-makers in all</b>.||The day closed with <b>three major investment agreements signed</b> and new partnerships announced between two of the world's most open economies.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="4" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 44.4%"></span><span class="pc-num" aria-hidden="true">05</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Board strategy through the Hormuz disruption</span><span class="pc-line">Nearly sixty confidential board briefings as the Strait of Hormuz closed.</span><span class="pc-desc" hidden>When conflict in the region closed the Strait of Hormuz, EMIR Members needed to know what was happening, what would happen next, and what to do about it.||The Private Office delivered <b>close to sixty confidential briefings to boards and executive teams</b>, drawing on <b>off-market intelligence from EMIR's diplomatic and commercial networks</b>. Each came with scenarios and sector-by-sector strategies, benchmarked against peers using confidential data.||Members went back to their boards with clarity and confidence, repositioned their businesses, and <b>kept to their growth plans through the disruption</b>.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="5" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 55.6%"></span><span class="pc-num" aria-hidden="true">06</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">A significant stake in a Formula 1 team</span><span class="pc-line">An off-market opportunity brought to EMIR, and placed in front of qualified investors from the network.</span><span class="pc-desc" hidden>A Formula 1 team looking for a strategic investor brought <b>a significant minority stake to EMIR, off-market</b>.||The Private Office assessed the opportunity and introduced it to several qualified investors from the EMIR network.||It is one example of <b>the deal flow that reaches EMIR Members first</b>: assets rarely offered in the open market, presented discreetly to the people able to act on them.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <!-- HIDDEN 2026-09-30 (NR): Bahrain EDB UK roundtable (was 03 briefly on 30 Sept, NR swapped Hormuz back) and projects 07 to 10. To restore, move cards above this comment, renumber data-i / pc-num / band positions, and update the count.
-    <button type="button" class="project-card" data-i="bahrain" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 22.2%"></span><span class="pc-num" aria-hidden="true">03</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Opening UK boardrooms to Bahrain</span><span class="pc-line">Senior UK executives across four sectors, in private dialogue with Bahrain's Minister of Sustainable Development, 2026.</span><span class="pc-desc" hidden>In July 2026, the Bahrain Economic Development Board made a five-day visit to the United Kingdom, led by H.E. Noor bint Ali Alkhulaif, Minister of Sustainable Development and Chief Executive of the EDB, to deepen ties with investors after the UK-GCC Free Trade Agreement.||The Private Office hosted one of the visit's invitation-only roundtables with the EDB and curated it from end to end: <b>the guest list of senior executives from financial services, technology, manufacturing and tourism</b>, <b>the agenda and speakers</b>, and <b>the insights and reports that framed the discussion</b>.||The conversation covered regional market dynamics, emerging opportunities and areas for collaboration, and gave every guest a direct and private view of Bahrain's business environment and strengths.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="6" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 66.7%"></span><span class="pc-num" aria-hidden="true">07</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">GCC market entry for a listed global commodities group</span><span class="pc-line">Structure, incorporation, introductions and board support for a new regional presence.</span><span class="pc-desc" hidden>A <b>publicly listed international commodities group</b> was building its presence in the GCC and needed to get the foundations right.||The Private Office advised on <b>corporate structure and positioning</b>, supported incorporation, and <b>made the introductions that mattered</b>.||It also worked with the board to <b>understand, refine and stress-test the level of investment and the market-entry plan</b> before commitments were made.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="7" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 77.8%"></span><span class="pc-num" aria-hidden="true">08</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">A ten-year vision for one of the region's leading founders</span><span class="pc-line">Personal and family vision, family office restructuring and group strategy, aligned end to end.</span><span class="pc-desc" hidden>One of the region's most successful founders wanted <b>a clear ten-year vision for himself, his family and everything he had built</b>.||The Private Office worked with him directly, combining coaching, strategic positioning and expert advice to <b>align his personal, family, philanthropic and business ambitions</b>.||It then <b>restructured the family office</b> and the brands and values across his philanthropy and group, and cascaded the new vision into operating and growth strategies for the major companies within it.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="8" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 88.9%"></span><span class="pc-num" aria-hidden="true">09</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">UHNW strategy for a national flagship project</span><span class="pc-line">A strategy to draw ultra-high-net-worth individuals and family offices to a flagship national project.</span><span class="pc-desc" hidden>A UAE state-owned enterprise planning a flagship, not-yet-announced project needed to attract a very particular audience: <b>the world's ultra-high-net-worth individuals and family offices</b>.||The Private Office <b>mapped and profiled that audience in depth</b>, through demographic analysis and ethnographic interviews drawing on the EMIR network, to understand what these families need, want and value.||It then <b>designed the programmes, policies and partnerships to engage them</b> in the UAE and abroad, including several new institutions and concepts built for the purpose.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    <button type="button" class="project-card" data-i="9" aria-haspopup="dialog"><span class="pc-band" aria-hidden="true" style="background-position-x: 100.0%"></span><span class="pc-num" aria-hidden="true">10</span><span class="pc-rule" aria-hidden="true"></span><span class="pc-title">Thirty-year portfolio strategy for a sovereign developer</span><span class="pc-line">An independent test of a national developer's long-term plans: 23% less projected capex, 19% more profit.</span><span class="pc-desc" hidden>A major UAE sovereign developer was planning initiatives that will <b>shape much of the country over the next thirty years</b>.||The Private Office tested and rationalised those growth plans, convening senior experts across education, healthcare, transport, security, retail, residential, legislation, finance, entertainment, and arts and culture, and bringing their views together in <b>a confidential, integrated review of the whole portfolio</b>.||The result was a clearer phasing of the major initiatives, <b>a 23% reduction in projected capital expenditure, and a 19% increase in profitability</b> across the portfolio.</span><span class="pc-more">Read the project <span aria-hidden="true">&rarr;</span></span></button>
-    -->
-  </div>
-  <div class="projects-progress" aria-hidden="true"><i></i></div>
-  <dialog class="project-modal" aria-labelledby="pm-title">
-    <button type="button" class="pm-close" aria-label="Close">&times;</button>
-    <div class="pm-band" aria-hidden="true"></div>
-    <div class="pm-body"><p class="pm-num" aria-hidden="true"></p><h3 id="pm-title"></h3><div class="pm-text"></div></div>
-    <div class="pm-foot"><button type="button" class="pm-prev">&larr; Previous</button><button type="button" class="pm-next">Next &rarr;</button></div>
-  </dialog>
+    <div class="po-case reveal reveal-d1">
+      <p class="po-project">Board strategy through the Hormuz disruption</p>
+      <p class="copy">Nearly sixty confidential board briefings as the Strait of Hormuz closed.</p>
+    </div>
+  </article>
+  <article class="po-slide">
+    <img class="po-bg" src="images/project-ras-el-hekma.jpg" alt="Two guests looking at a large projected model of a coastal city" loading="lazy">
+    <div class="po-scrim"></div>
+    <div class="po-cap reveal">
+      <p class="po-example">Example</p>
+      <h2 class="display">Positioning and <em>influence</em>.</h2>
+    </div>
+    <div class="po-case reveal reveal-d1">
+      <p class="po-project">Strategy and presidential launch for a $35bn new city</p>
+      <p class="copy">Strategy, institution and launch for Ras <span class="nw">El-Hekma</span>, the landmark UAE and Egypt investment, 2026.</p>
+    </div>
+  </article>
+  <article class="po-slide">
+    <img class="po-bg" src="images/project-institution-hall.jpg" alt="A vast curved hall with a beam of light falling onto rows of small figures" loading="lazy">
+    <div class="po-scrim"></div>
+    <div class="po-cap reveal">
+      <p class="po-example">Example</p>
+      <h2 class="display">Moonshots and <em>masterpieces</em>.</h2>
+    </div>
+    <div class="po-case reveal reveal-d1">
+      <p class="po-project">Designing a royal institution of science and wonder</p>
+      <p class="copy">Fifty luminaries, including Nobel laureates, and 350 ideas, shaped into one cultural institution for a royal patron.</p>
+    </div>
+  </article>
+  <article class="po-slide">
+    <img class="po-bg" src="images/project-investopia-dublin.jpg" alt="A ministerial panel on stage at Investopia Dublin" loading="lazy">
+    <div class="po-scrim"></div>
+    <div class="po-cap reveal">
+      <p class="po-example">Example</p>
+      <h2 class="display">Tailored gatherings and <em>influential events</em>.</h2>
+    </div>
+    <div class="po-case reveal reveal-d1">
+      <p class="po-project">Opening a <span class="nw">Gulf-Europe</span> investment corridor</p>
+      <p class="copy">Investopia Dublin: the UAE’s flagship investment platform, hosted by EMIR with Ireland’s Deputy Prime Minister, 2025.</p>
+    </div>
+  </article>
 </section>
 
 <!-- HOW TO WORK WITH THE PRIVATE OFFICE -->
