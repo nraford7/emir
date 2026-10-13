@@ -10,231 +10,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --gold: #C9A96E; --gold-light: #D4B87A; --gold-dim: #A08452;
-  --ink: #080806; --ink-warm: #0E0C09; --ink-deep: #050504;
-  --off-white: #F5F3EF; --text-body: #9A9188; --text-dim: #8A8176;
-  --rule: rgba(201,169,110,0.18); --rule-soft: rgba(201,169,110,0.08);
-}
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
-body { background: var(--ink); color: var(--off-white); font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-a { text-decoration: none; color: inherit; }
-:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+/* REGISTER page only. Shared styles live in css/site.css (see DESIGN.md). */
+/* the form is the first section, so it clears the fixed nav like a page hero */
+#profile { padding-top: clamp(124px, 17vh, 156px); border-top: 0; }
+@media (max-width: 900px) { #profile { padding-top: 120px; } }
 
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 52px; background: rgba(8,8,6,0.92); border-bottom: 1px solid rgba(201,169,110,0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-.nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
-.nav-links a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); transition: color 0.3s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
-.nav-right { display: flex; align-items: center; gap: 20px; }
-.nav-signin { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); white-space: nowrap; transition: color 0.3s; }
-.nav-cta { display: inline-block; padding: 10px 24px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; transition: all 0.4s ease; }
-.nav-cta:hover { background: rgba(201,169,110,0.08); }
-
-section { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 80px; position: relative; }
-.display { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; color: var(--off-white); }
-.display em { font-style: italic; color: var(--gold-light); }
-.copy { font-size: 16px; line-height: 1.75; color: var(--text-body); max-width: 640px; }
-.copy + .copy { margin-top: 18px; }
-.copy b { color: var(--off-white); font-weight: 400; }
-.h-rule { width: 48px; height: 1px; background: var(--gold-dim); margin: 32px auto; opacity: 0.7; }
-
-#top { padding-top: 170px; }
-
-.reveal-d1 { transition-delay: 0.12s; } .reveal-d2 { transition-delay: 0.24s; } .reveal-d3 { transition-delay: 0.40s; }
-
-body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 250; opacity: 0.5; mix-blend-mode: overlay; }
-
-
-@media (max-width: 900px) {
-  nav { padding: 16px 22px; } .nav-links { display: none; }
-  section { padding: 90px 24px; } #top { padding-top: 130px; }
-}
-
-/* STORY (about page, 2026-09-28): text left, full-bleed image right */
-#top.story { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: calc(100vh - 66px); min-height: calc(100svh - 66px); padding: 0; text-align: left; background: var(--ink-warm); }
-.story .story-wrap { max-width: none; margin: 0; align-self: center; padding: clamp(104px, 15vh, 150px) clamp(40px, 6vw, 96px) clamp(40px, 7vh, 96px) 52px; }
-.story .display { max-width: 18ch; font-size: clamp(38px, min(4.6vw, 7.4vh), 72px); }
-.story .h-rule.left { margin: 32px 0; }
-.story .copy { max-width: 60ch; }
-.story .copy + .copy { margin-top: 18px; }
-.story-media { position: relative; overflow: hidden; background: var(--ink-deep); }
-.story-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
-.story-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,0.35) 22%, transparent 45%), linear-gradient(180deg, rgba(8,8,6,0.5) 0%, transparent 18%); }
-@media (max-width: 900px) {
-  #top.story { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .story .story-wrap { padding: 120px 22px 56px; }
-  .story-media { height: 62vw; min-height: 260px; }
-  .story-media::after { background: linear-gradient(180deg, var(--ink-warm) 0%, transparent 30%); }
-}
-
-/* CONTACT page */
-.contact .story-media img { object-position: 88% 45%; }
-.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 36px 72px; max-width: 640px; }
-.contact-block.wide { grid-column: 1 / -1; }
-.contact .story-wrap { align-self: start; padding-top: clamp(140px, 24vh, 240px); }
-.contact-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.contact-block p, .contact-block address { font-style: normal; font-size: 16px; line-height: 1.75; color: var(--off-white); }
-.contact-block a { color: var(--off-white); border-bottom: 1px solid var(--rule); transition: color 0.3s, border-color 0.3s; }
-.contact-block a:hover { color: var(--gold-light); border-color: var(--gold); }
-
-@media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; gap: 28px; } .contact-block a { overflow-wrap: anywhere; } }
-@media (max-width: 900px) { .contact .story-wrap { padding-top: 120px; } }
-
-/* CLOSING SECTION WITH IMAGE (2026-09-28) */
-@media (max-width: 900px) {
-  .close-split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .close-split .close-text { padding: 72px 22px; }
-  .close-media { height: 60vw; min-height: 240px; }
-  .close-media::after { background: linear-gradient(180deg, var(--ink-warm) 0%, transparent 30%); }
-}
-
-.contact-intro { max-width: 52ch; margin: 0 0 40px; }
-
-/* BOTTOM BAR (replaces full footer, 2026-09-28) */
-.splash-foot { background: var(--ink); border-top: 1px solid var(--rule-soft); padding: 18px 52px 20px; }
-.splash-foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 32px; font-size: 12px; color: var(--text-dim); }
-.splash-foot a { color: var(--text-dim); transition: color 0.3s; }
-.splash-foot a:hover { color: var(--gold-light); }
-.splash-foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-@media (max-width: 900px) { .splash-foot { padding: 18px 22px 20px; } }
-@media (max-width: 560px) { .splash-foot-inner { flex-direction: column; } }
-
-/* PAGE TITLE POSITION (2026-09-28): every inner page title sits at the same height and size */
-.split-text, .story .story-wrap, .contact .story-wrap { align-self: start !important; padding-top: clamp(124px, 17vh, 156px) !important; }
-.split-text .display, .story .display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); line-height: 1.06; text-wrap: balance; }
-@media (max-width: 900px) { .split-text, .story .story-wrap, .contact .story-wrap { padding-top: 120px !important; } }
-
-/* PAGE-OPEN ANIMATION (2026-09-28): same motion as the homepage hero */
-@keyframes heroRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes heroSettle { from { transform: scale(1.06); } to { transform: scale(1); } }
-.split-text > *, .story .story-wrap > * { opacity: 0; animation: heroRise 1.6s cubic-bezier(0.16,1,0.3,1) forwards; }
-.split-text > :nth-child(1), .story .story-wrap > :nth-child(1) { animation-delay: 0s; }
-.split-text > :nth-child(2), .story .story-wrap > :nth-child(2) { animation-delay: 0.3s; }
-.split-text > :nth-child(3), .story .story-wrap > :nth-child(3) { animation-delay: 0.45s; }
-.split-text > :nth-child(4), .story .story-wrap > :nth-child(4) { animation-delay: 0.6s; }
-.split-text > :nth-child(n+5), .story .story-wrap > :nth-child(n+5) { animation-delay: 0.75s; }
-.split-media img, .story-media img { animation: heroSettle 3.2s cubic-bezier(0.16,1,0.3,1) forwards; }
-@media (prefers-reduced-motion: reduce) {
-  .split-text > *, .story .story-wrap > * { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .split-media img, .story-media img { transform: none !important; animation: none !important; }
-}
-
-/* ===== SITE SHARED (impeccable pass 2026-09-28): keep identical across pages ===== */
-.nav-signin { cursor: default; }
-.nav-cta[aria-current="page"] { background: rgba(201,169,110,0.14); color: var(--off-white); }
-.skip-link { position: absolute; left: 16px; top: -60px; z-index: 400; background: var(--gold); color: var(--ink); padding: 10px 16px; font-size: 12px; font-weight: 500; }
-.skip-link:focus { top: 12px; }
-.nav-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 26px; letter-spacing: 0; line-height: 1; }
-.nav-toggle { display: none; align-items: center; justify-content: center; min-height: 44px; padding: 0 4px 0 14px; background: none; border: 0; color: var(--off-white); font: inherit; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
-.nav-toggle-bars { display: inline-block; width: 18px; height: 7px; margin-left: 10px; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); transition: height 0.3s ease; }
-nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
-.nav-mobile-only { display: none; }
-@media (max-width: 900px) {
-  .nav-toggle { display: inline-flex; }
-  .nav-signin { display: none; }
-  .nav-right { gap: 8px; }
-  .nav-cta { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; }
-  nav.menu-open { background: rgba(8,8,6,0.97); }
-  nav.menu-open .nav-links { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,8,6,0.97); border-bottom: 1px solid var(--rule); padding: 8px 24px 24px; }
-  nav.menu-open .nav-links a { display: block; padding: 14px 0; font-size: 13px; border-bottom: 1px solid var(--rule-soft); }
-  nav.menu-open .nav-mobile-only { display: block; }
-  nav.menu-open .nav-mobile-text { display: block; padding: 14px 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.5); border-bottom: 1px solid var(--rule-soft); }
-}
-@media (max-width: 380px) { .nav-cta { padding: 0 12px; } }
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .wordmark, .hero-sub, .hero-rule, .hero-lede { opacity: 1 !important; transform: none !important; }
-}
-/* ===== END SITE SHARED ===== */
-.nav-extra { display: none; }
-.full-nav .nav-extra { display: list-item; }
-
-/* REGISTER page (2026-10-01) */
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
-.reveal.visible { opacity: 1; transform: none; }
-
-.register .story-media img { object-position: 50% 60%; }
-.register .contact-intro { max-width: 54ch; }
-.reg-note { font-size: 14px; color: var(--text-dim); max-width: 52ch; margin-top: 8px; }
-#criteria.values-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0; align-items: start; text-align: left; padding: clamp(96px, 12vw, 150px) 0; background: var(--ink-warm); border-top: 1px solid var(--rule-soft); }
-.values-head { position: sticky; top: 120px; padding: 0 clamp(40px, 6vw, 96px) 0 52px; }
-.values-head .display { font-size: clamp(34px, 3.6vw, 48px); max-width: 16ch; }
-.values-intro { max-width: 38ch; margin: 24px 0 0; }
-.values-stack { display: flex; flex-direction: column; gap: 36px; padding: 8px 52px 0 0; list-style: none; counter-reset: crit; }
-.value-item { position: relative; padding-left: 56px; counter-increment: crit; }
-.value-item::before { content: counter(crit, decimal-leading-zero); position: absolute; left: 0; top: 4px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; color: var(--gold); }
-.value-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin-bottom: 8px; }
-.value-desc { font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 52ch; }
-#profile { display: block; text-align: left; padding: clamp(124px, 17vh, 156px) 52px clamp(96px, 10vw, 140px); background: var(--ink); }   /* first section since NR 2026-10-13 */
-.form-wrap { max-width: 880px; }
-.form-wrap .display { font-size: clamp(34px, 3.6vw, 48px); margin-bottom: 16px; }
-.form-wrap > .copy { max-width: 56ch; margin: 0 0 48px; }
-.reg-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
-.field { display: flex; flex-direction: column; gap: 10px; }
-.field.wide { grid-column: 1 / -1; }
-.field label, .field legend { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
-.field .opt { color: var(--text-dim); letter-spacing: 0.08em; text-transform: none; font-weight: 400; }
-.field input, .field select, .field textarea { width: 100%; background: rgba(201,169,110,0.05); border: 0; border-bottom: 1px solid var(--rule); color: var(--off-white); font: inherit; font-size: 16px; padding: 14px 14px; border-radius: 0; transition: border-color 0.3s, background 0.3s; }
-.field textarea { min-height: 180px; resize: vertical; line-height: 1.6; }
-.field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
-.field select option { background: var(--ink-warm); color: var(--off-white); }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-bottom-color: var(--gold); background: rgba(201,169,110,0.09); }
-.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
-.check { grid-column: 1 / -1; display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--text-body); }
-.check input { margin-top: 5px; width: 18px; height: 18px; accent-color: var(--gold); flex: none; }
-.form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 8px; }
-.cta-btn { display: inline-block; padding: 17px 44px; border: 1px solid var(--gold); background: rgba(201,169,110,0.06); color: var(--gold-light); font: inherit; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.4s ease, color 0.4s ease; }
-.cta-btn:hover { background: rgba(201,169,110,0.14); color: var(--off-white); }
-.form-status { font-size: 15px; line-height: 1.6; color: var(--gold-light); max-width: 56ch; }
-@media (max-width: 900px) {
-  #criteria.values-split { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 80px 22px; }
-  .values-head { position: static; padding: 0; }
-  .values-stack { padding: 0; }
-  #profile { padding: 120px 22px 88px; }
-  .reg-form { grid-template-columns: minmax(0, 1fr); }
-}
-
-/* CRITIQUE FIXES (2026-10-01): criteria split, grouped form, aside, error states, checkbox */
-.crit-group + .crit-group { margin-top: clamp(48px, 5vw, 64px); }
-.crit-group-name { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(22px, 2vw, 26px); color: var(--gold-light); margin-bottom: 28px; padding-left: 56px; }
-.crit-group .values-stack { padding-top: 0; }
-#profile .profile-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.form-wrap { max-width: none; }
-.form-head { max-width: 880px; margin-bottom: 40px; }
-.form-head .display { font-size: clamp(34px, 3.6vw, 48px); margin-bottom: 16px; }
-.form-head .copy { max-width: 56ch; margin: 0; }
-.form-note { font-size: 14px; color: var(--text-dim); margin: 0 0 32px; }
+/* grouped form */
 .reg-form fieldset { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; grid-column: 1 / -1; }
-.reg-form fieldset + fieldset { margin-top: 24px; }
-.reg-form legend { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(22px, 2vw, 26px); font-weight: 400; color: var(--off-white); padding: 0; margin-bottom: 20px; grid-column: 1 / -1; float: left; width: 100%; }
+.reg-form fieldset + fieldset, #behalf-set { margin-top: 24px; }
+.reg-form fieldset[hidden] { display: none; }
+.reg-form legend { font-family: var(--serif); font-size: clamp(22px, 2vw, 26px); font-weight: 400; color: var(--off-white); padding: 0; margin-bottom: 20px; grid-column: 1 / -1; float: left; width: 100%; }
 .reg-form legend + * { clear: both; }
-.reg-form legend .opt { font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; color: var(--text-dim); margin-left: 6px; }   /* subtext beside 'Who introduced you' */
-.field input, .field select, .field textarea { scroll-margin-top: 120px; }
-.field ::placeholder, .field input::placeholder, .field textarea::placeholder { color: var(--text-dim); opacity: 1; }
-.field [aria-invalid="true"] { border-bottom-color: var(--gold-light); background: rgba(201,169,110,0.12); }
-.field-error { font-size: 14px; line-height: 1.5; color: var(--gold-light); }
-.field-error[hidden] { display: none; }
-.check input { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin: 3px 0 0; border: 1px solid var(--gold); background: transparent; cursor: pointer; display: grid; place-content: center; transition: background 0.2s ease; }
+.reg-form legend .opt { font-family: var(--sans); font-size: 14px; color: var(--text-dim); margin-left: 6px; }
+.check-wrap { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.check { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--text-body); }
+.check input { appearance: none; -webkit-appearance: none; flex: none; width: 20px; height: 20px; margin: 3px 0 0; border: 1px solid var(--gold); background: transparent; cursor: pointer; display: grid; place-content: center; transition: background 0.2s ease; }
 .check input::after { content: ''; width: 10px; height: 6px; border-left: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
 .check input:checked { background: var(--gold); }
 .check input:checked::after { opacity: 1; }
 .check input:focus-visible { outline: 1px solid var(--gold-light); outline-offset: 3px; }
-.check input[aria-invalid="true"] { border-color: var(--gold-light); box-shadow: 0 0 0 3px rgba(201,169,110,0.18); }
-.check-wrap { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.reg-form fieldset[hidden] { display: none; }
-#behalf-set { margin-top: 24px; }
-.aside-panel { position: sticky; top: 120px; padding: 32px 30px; background: rgba(201,169,110,0.07); }
-.aside-panel h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); color: var(--off-white); margin-bottom: 18px; }
-.aside-panel p { font-size: 15px; line-height: 1.65; color: var(--text-body); }
-.aside-panel p + p { margin-top: 14px; }
-.aside-panel b { color: var(--off-white); font-weight: 500; }
-.form-status a { color: var(--off-white); border-bottom: 1px solid var(--rule); }
+.check input[aria-invalid="true"] { border-color: var(--gold-light); outline: 1px solid var(--gold-light); outline-offset: 3px; }
+@media (max-width: 900px) { .reg-form fieldset { grid-template-columns: minmax(0, 1fr); } }
+
+/* criteria for membership */
+#criteria { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0; align-items: start; text-align: left; padding: clamp(96px, 10vw, 130px) 0; background: var(--ink-warm); border-top: 1px solid var(--rule-soft); }
+.values-head { position: sticky; top: 120px; padding: 0 clamp(40px, 6vw, 96px) 0 var(--gutter); }
+.values-head .display { max-width: 16ch; margin-bottom: 24px; }
+.values-head .copy { max-width: 38ch; margin: 0; }
+.crit-group + .crit-group { margin-top: clamp(48px, 5vw, 64px); }
+.crit-group-name { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(22px, 2vw, 26px); color: var(--gold-light); margin-bottom: 28px; padding-left: 56px; }
+.values-stack { display: flex; flex-direction: column; gap: 36px; padding: 0 var(--gutter) 0 0; list-style: none; counter-reset: crit; }
+.value-item { position: relative; padding-left: 56px; counter-increment: crit; }
+.value-item::before { content: counter(crit, decimal-leading-zero); position: absolute; left: 0; top: 4px; font-family: var(--serif); font-size: 22px; color: var(--gold); font-variant-numeric: lining-nums; }
+.value-item .t-title { margin-bottom: 8px; }
+.value-item .copy { max-width: 52ch; line-height: 1.7; }
 @media (max-width: 900px) {
-  #profile .profile-grid { grid-template-columns: minmax(0, 1fr); }
-  .aside-panel { position: static; order: -1; }
-  .reg-form fieldset { grid-template-columns: minmax(0, 1fr); }
+  #criteria { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 80px var(--gutter); }
+  .values-head { position: static; padding: 0; }
+  .values-stack { padding: 0; }
   .crit-group-name { padding-left: 0; }
 }
 </style>
@@ -245,12 +60,11 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 
 
 <nav>
-  <div style="display:flex; align-items:center; gap:40px;">
+  <div class="nav-left">
     <a href="index.html" class="nav-logo">EMIR</a>
     <ul class="nav-links" id="site-menu">
       <li><a href="membership.html">Members</a></li>
       <li><a href="private-office.html">Private Office</a></li>
-      <li class="nav-extra"><a href="about.html">About</a></li>
       <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
       <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>
@@ -265,10 +79,10 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 <main id="main">
 
 <!-- PROFILE FORM -->
-<section id="profile">
-  <div class="form-head">
-    <h1 class="display reveal">Your profile.</h1>
-    <p class="copy reveal reveal-d1">Tell us who you are and what you would bring to the network. Your profile is read only by the EMIR team and handled in confidence.</p>
+<section id="profile" class="form-section">
+  <div class="form-head page-open">
+    <h1 class="display">Your profile.</h1>
+    <p class="copy">Tell us who you are and what you would bring to the network. Your profile is read only by the EMIR team and handled in confidence.</p>
   </div>
   <div class="profile-grid">
   <div class="form-wrap">
@@ -304,7 +118,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     </form>
   </div>
   <aside class="aside-panel" aria-label="Before you submit">
-    <h3>Before you submit.</h3>
+    <h3 class="t-title">Before you submit.</h3>
     <p><b>Your profile stays private.</b> It is read only by the EMIR team and never shared without your permission.</p>
     <p><b>What happens next.</b> Every profile is reviewed personally against the criteria below. Where there is a fit, we will reach out for an introductory call.</p>
     <p><b>On your behalf.</b> An assistant or chief of staff is welcome to submit this profile for you, and can add their own contact details in the form.</p>
@@ -313,26 +127,26 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 </section>
 
 <!-- CRITERIA -->
-<section id="criteria" class="values-split">
+<section id="criteria">
   <div class="values-head">
     <h2 class="display reveal">Criteria for membership.</h2>
-    <p class="copy values-intro reveal reveal-d1">Membership rests on three qualities and follows three steps. Together they keep the network what its members value most: senior, trusted and among peers.</p>
+    <p class="copy reveal reveal-d1">Membership rests on three qualities and follows three steps. Together they keep the network what its members value most: senior, trusted and among peers.</p>
   </div>
   <div class="crit-groups">
     <div class="crit-group">
       <h3 class="crit-group-name reveal">What we look for</h3>
       <ol class="values-stack">
-        <li class="value-item reveal"><h4 class="value-name">Seniority</h4><p class="value-desc">Members lead at the very top of their organisations and offices, as chairs, board members, CEOs, managing directors, managing partners, directors general, ministers, ambassadors or the regional head of a multinational.</p></li>
-        <li class="value-item reveal"><h4 class="value-name">A record of impact</h4><p class="value-desc">A demonstrated history of success, influence, operating experience and strategic impact.</p></li>
-        <li class="value-item reveal"><h4 class="value-name">Discretion</h4><p class="value-desc">Every member agrees to EMIR's confidentiality agreement and house rules, which allow members to speak freely with one another.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">Seniority</h4><p class="copy">Members lead at the very top of their organisations and offices, as chairs, board members, CEOs, managing directors, managing partners, directors general, ministers, ambassadors or the regional head of a multinational.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">A record of impact</h4><p class="copy">A demonstrated history of success, influence, operating experience and strategic impact.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">Discretion</h4><p class="copy">Every member agrees to EMIR's confidentiality agreement and house rules, which allow members to speak freely with one another.</p></li>
       </ol>
     </div>
     <div class="crit-group">
       <h3 class="crit-group-name reveal">How membership happens</h3>
       <ol class="values-stack">
-        <li class="value-item reveal"><h4 class="value-name">A trusted introduction</h4><p class="value-desc">A recommendation from a current or former EMIR member, or an invitation from one of EMIR's senior advisors or founding leadership. If you have not yet been introduced, we will seek a recommendation from within the network where there is a fit.</p></li>
-        <li class="value-item reveal"><h4 class="value-name">A first gathering</h4><p class="value-desc">Candidates join at least one EMIR gathering as our guest.</p></li>
-        <li class="value-item reveal"><h4 class="value-name">A personal conversation</h4><p class="value-desc">Before membership is considered, every candidate speaks one to one with the EMIR team.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">A trusted introduction</h4><p class="copy">A recommendation from a current or former EMIR member, or an invitation from one of EMIR's senior advisors or founding leadership. If you have not yet been introduced, we will seek a recommendation from within the network where there is a fit.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">A first gathering</h4><p class="copy">Candidates join at least one EMIR gathering as our guest.</p></li>
+        <li class="value-item reveal"><h4 class="t-title">A personal conversation</h4><p class="copy">Before membership is considered, every candidate speaks one to one with the EMIR team.</p></li>
       </ol>
     </div>
   </div>

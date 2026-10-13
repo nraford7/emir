@@ -9,205 +9,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --gold: #C9A96E; --gold-light: #D4B87A; --gold-dim: #A08452;
-  --ink: #080806; --ink-warm: #0E0C09; --ink-deep: #050504;
-  --off-white: #F5F3EF; --text-body: #9A9188; --text-dim: #8A8176;
-  --rule: rgba(201,169,110,0.18); --rule-soft: rgba(201,169,110,0.08);
-}
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
-body { background: var(--ink); color: var(--off-white); font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-a { text-decoration: none; color: inherit; }
-:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+/* MEMBERS page only. Shared styles live in css/site.css (see DESIGN.md). */
+.split-media img { object-position: 50% 35%; }
 
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 52px; background: rgba(8,8,6,0.92); border-bottom: 1px solid rgba(201,169,110,0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-.nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
-.nav-links a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); transition: color 0.3s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
-.nav-right { display: flex; align-items: center; gap: 20px; }
-.nav-signin { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.72); white-space: nowrap; transition: color 0.3s; }
-.nav-cta { display: inline-block; padding: 10px 24px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; transition: all 0.4s ease; }
-.nav-cta:hover { background: rgba(201,169,110,0.08); }
-
-section { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 80px; position: relative; }
-.display { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; color: var(--off-white); }
-.display em { font-style: italic; color: var(--gold-light); }
-.copy { font-size: 16px; line-height: 1.75; color: var(--text-body); max-width: 620px; }
-.copy + .copy { margin-top: 18px; }
-.cta-btn { display: inline-block; margin-top: 44px; padding: 17px 52px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; transition: all 0.4s ease; }
-.cta-btn:hover { background: rgba(201,169,110,0.08); color: var(--gold); }
-
-#top { padding-top: 168px; }
-
-/* stats */
+/* stats bar and map */
 #stats { padding: 0; background: var(--ink-warm); }
 .stats-row { display: flex; gap: 1px; width: 100%; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .stat { flex: 1; padding: 46px 24px; background: var(--ink-warm); text-align: center; }
-.stat-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(34px, 4.6vw, 56px); color: var(--gold); line-height: 1; margin-bottom: 14px; }
-.stat-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-body); }
-
-
-/* value of membership */
-#value { background: var(--ink); }
-
-/* benefits */
-
-/* origin */
-
-/* joining */
-
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-d1 { transition-delay: 0.12s; } .reveal-d2 { transition-delay: 0.24s; } .reveal-d3 { transition-delay: 0.40s; }
-
-body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 250; opacity: 0.5; mix-blend-mode: overlay; }
-
-
-@media (max-width: 1100px) { .stats-row { flex-wrap: wrap; } .stat { flex: 1 1 calc(50% - 1px); } }
-@media (max-width: 900px) {
-  nav { padding: 16px 22px; } .nav-links { display: none; }
-  section { padding: 90px 24px; } #top { padding-top: 130px; }
-  .stat { padding: 30px 12px; }
-  .stat-label { letter-spacing: 0.08em; }
-}
-
-
-
-/* CLOSING SECTION WITH IMAGE (2026-09-28) */
-.close-split { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); min-height: clamp(520px, 70vh, 720px); padding: 0; text-align: left; align-items: stretch; background: var(--ink-warm); border-top: 1px solid var(--rule-soft); }
-.close-split .close-text { align-self: center; padding: 96px clamp(40px, 6vw, 96px) 96px 52px; }
-.close-split .close-text .display { font-size: clamp(34px, 3.6vw, 48px); max-width: 18ch; margin-bottom: 28px; text-wrap: balance; }
-.close-split .close-text .copy { max-width: 56ch; margin: 0; }
-.close-split .close-text .copy + .copy { margin-top: 16px; }
-.close-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 36px; }
-.close-actions .cta-btn { margin: 0; background: rgba(201,169,110,0.06); }
-.close-actions .cta-btn:hover { background: rgba(201,169,110,0.14); color: var(--off-white); }
-.close-email { font-size: 14px; color: var(--text-dim); }
-.close-email a { color: var(--text-body); border-bottom: 1px solid var(--rule); transition: color 0.3s; }
-.close-email a:hover { color: var(--gold-light); }
-.close-media { position: relative; overflow: hidden; background: var(--ink-deep); }
-.close-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.close-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,0.35) 22%, transparent 45%); }
-@media (max-width: 900px) {
-  .close-split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .close-split .close-text { padding: 72px 22px; }
-  .close-media { height: 60vw; min-height: 240px; }
-  .close-media::after { background: linear-gradient(180deg, var(--ink-warm) 0%, transparent 30%); }
-}
-
-/* WHO OUR MEMBERS ARE (2026-09-28) */
-.stacked { display: block; text-align: left; padding: clamp(96px, 10vw, 130px) 52px; background: var(--ink); border-top: 1px solid var(--rule-soft); }
-.stacked-head { margin-bottom: 48px; }
-.stacked-head .display { font-size: clamp(34px, 3.6vw, 48px); max-width: 22ch; text-wrap: balance; margin-bottom: 24px; }
-.stacked-head .copy { max-width: 64ch; margin: 0; }
-.cols-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 48px); }
-.tier { border-top: 1px solid var(--rule); padding-top: 24px; }
-.tier-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin-bottom: 10px; }
-.tier-desc { font-size: 16px; line-height: 1.65; color: var(--text-body); }
-@media (max-width: 1100px) { .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } }
-@media (max-width: 600px) { .stacked { padding: 80px 22px; } .cols-4 { grid-template-columns: minmax(0, 1fr); row-gap: 24px; } }
-
-/* SPLIT HERO (members page, 2026-09-28): text left, full-bleed image right */
-#top.split-hero { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: stretch; min-height: clamp(520px, 74vh, 780px); padding: 0; text-align: left; background: var(--ink-warm); }
-.split-text { align-self: center; padding: clamp(110px, 16vh, 160px) clamp(40px, 6vw, 96px) clamp(48px, 8vh, 96px) 52px; }
-.split-text .display { max-width: 24ch; }
-.split-media { position: relative; overflow: hidden; background: var(--ink-deep); }
-.split-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
-.split-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,0.35) 22%, transparent 45%), linear-gradient(180deg, rgba(8,8,6,0.5) 0%, transparent 18%); }
-@media (max-width: 900px) {
-  #top.split-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .split-text { padding: 120px 22px 48px; }
-  .split-media { height: 62vw; min-height: 240px; }
-  .split-media::after { background: linear-gradient(180deg, var(--ink-warm) 0%, transparent 30%); }
-}
-
-/* BOTTOM BAR (replaces full footer, 2026-09-28) */
-.splash-foot { background: var(--ink); border-top: 1px solid var(--rule-soft); padding: 18px 52px 20px; }
-.splash-foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 32px; font-size: 12px; color: var(--text-dim); }
-.splash-foot a { color: var(--text-dim); transition: color 0.3s; }
-.splash-foot a:hover { color: var(--gold-light); }
-.splash-foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-@media (max-width: 900px) { .splash-foot { padding: 18px 22px 20px; } }
-@media (max-width: 560px) { .splash-foot-inner { flex-direction: column; } }
-
-/* PAGE TITLE POSITION (2026-09-28): every inner page title sits at the same height and size */
-.split-text, .story .story-wrap, .contact .story-wrap { align-self: start !important; padding-top: clamp(124px, 17vh, 156px) !important; }
-.split-text .display, .story .display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); line-height: 1.06; text-wrap: balance; }
-@media (max-width: 900px) { .split-text, .story .story-wrap, .contact .story-wrap { padding-top: 120px !important; } }
-
-/* PAGE-OPEN ANIMATION (2026-09-28): same motion as the homepage hero */
-@keyframes heroRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-@keyframes heroSettle { from { transform: scale(1.06); } to { transform: scale(1); } }
-.split-text > *, .story .story-wrap > * { opacity: 0; animation: heroRise 1.6s cubic-bezier(0.16,1,0.3,1) forwards; }
-.split-text > :nth-child(1), .story .story-wrap > :nth-child(1) { animation-delay: 0s; }
-.split-text > :nth-child(2), .story .story-wrap > :nth-child(2) { animation-delay: 0.3s; }
-.split-text > :nth-child(3), .story .story-wrap > :nth-child(3) { animation-delay: 0.45s; }
-.split-text > :nth-child(4), .story .story-wrap > :nth-child(4) { animation-delay: 0.6s; }
-.split-text > :nth-child(n+5), .story .story-wrap > :nth-child(n+5) { animation-delay: 0.75s; }
-.split-media img, .story-media img { animation: heroSettle 3.2s cubic-bezier(0.16,1,0.3,1) forwards; }
-@media (prefers-reduced-motion: reduce) {
-  .split-text > *, .story .story-wrap > * { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .split-media img, .story-media img { transform: none !important; animation: none !important; }
-}
-
-/* ===== SITE SHARED (impeccable pass 2026-09-28): keep identical across pages ===== */
-.nav-signin { cursor: default; }
-.nav-cta[aria-current="page"] { background: rgba(201,169,110,0.14); color: var(--off-white); }
-.skip-link { position: absolute; left: 16px; top: -60px; z-index: 400; background: var(--gold); color: var(--ink); padding: 10px 16px; font-size: 12px; font-weight: 500; }
-.skip-link:focus { top: 12px; }
-.nav-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 26px; letter-spacing: 0; line-height: 1; }
-.nav-toggle { display: none; align-items: center; justify-content: center; min-height: 44px; padding: 0 4px 0 14px; background: none; border: 0; color: var(--off-white); font: inherit; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
-.nav-toggle-bars { display: inline-block; width: 18px; height: 7px; margin-left: 10px; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); transition: height 0.3s ease; }
-nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
-.nav-mobile-only { display: none; }
-@media (max-width: 900px) {
-  .nav-toggle { display: inline-flex; }
-  .nav-signin { display: none; }
-  .nav-right { gap: 8px; }
-  .nav-cta { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; }
-  nav.menu-open { background: rgba(8,8,6,0.97); }
-  nav.menu-open .nav-links { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,8,6,0.97); border-bottom: 1px solid var(--rule); padding: 8px 24px 24px; }
-  nav.menu-open .nav-links a { display: block; padding: 14px 0; font-size: 13px; border-bottom: 1px solid var(--rule-soft); }
-  nav.menu-open .nav-mobile-only { display: block; }
-  nav.menu-open .nav-mobile-text { display: block; padding: 14px 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,243,239,0.5); border-bottom: 1px solid var(--rule-soft); }
-}
-@media (max-width: 380px) { .nav-cta { padding: 0 12px; } }
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .wordmark, .hero-sub, .hero-rule, .hero-lede { opacity: 1 !important; transform: none !important; }
-}
-/* ===== END SITE SHARED ===== */
-/* WHAT HAPPENS INSIDE (NR 2026-10-13): deck slides 8-10 as full-screen sections; image right two thirds with the deck's scrim; type is the page's own (section .display, .copy). */
-#value.inside { display: block; padding: 0; text-align: left; background: var(--ink); border-top: 1px solid var(--rule-soft); }
-.inside-slide { position: relative; height: 100vh; min-height: 640px; max-height: 1100px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(112px, 16vh, 168px) 52px clamp(64px, 11vh, 120px); background: var(--ink); }
-.inside-bg { position: absolute; top: 0; left: 34%; width: 66%; height: 100%; object-fit: cover; }
-.inside-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 34%, rgba(8,8,6,.55) 46%, rgba(8,8,6,0) 62%), linear-gradient(180deg, rgba(8,8,6,.35) 0%, rgba(8,8,6,0) 22%, rgba(8,8,6,0) 78%, rgba(8,8,6,.6) 100%); }
-.inside-cap, .inside-foot { position: relative; z-index: 2; max-width: min(620px, 44vw); }
-.inside-slide .display { font-size: clamp(34px, 3.6vw, 48px); text-wrap: balance; margin-bottom: 24px; font-variant-numeric: lining-nums; }
-.inside-slide .copy { margin: 0; text-wrap: pretty; }
-.values-stack { display: flex; flex-direction: column; gap: clamp(28px, 4vh, 40px); }   /* the previous list format */
-.value-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(20px, 1.5vw, 22px); line-height: 1.2; color: var(--off-white); margin-bottom: 6px; }   /* NR 2026-10-13: subheading size, well below the section head */
-.value-desc { font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 52ch; }
-@media (max-width: 900px) {
-  .inside-slide { height: auto; min-height: 100svh; max-height: none; padding: 96px 22px 64px; justify-content: flex-start; gap: 48px; }
-  .inside-bg { left: 0; width: 100%; }
-  .inside-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.84) 45%, rgba(8,8,6,.92) 100%); }
-  .inside-cap, .inside-foot { max-width: none; }
-  .inside-foot { margin-top: auto; }
-}
-/* members map (after the member-type row): inline SVG so the city labels can animate in */
-.members-map { margin: clamp(48px, 5vw, 72px) -52px 0; border-top: 1px solid var(--rule); }
-.members-map .map-svg { display: block; width: 100%; height: clamp(255px, 18.2vw, 360px); }   /* height follows width so Istanbul (top) and Singapore (bottom) stay in frame on wide screens */
+.stat-num { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.6vw, 56px); color: var(--gold); line-height: 1; margin-bottom: 14px; }
+.stat-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-body); }
+.members-map { width: 100%; border-bottom: 1px solid var(--rule); }
+.members-map .map-svg { display: block; width: 100%; height: clamp(255px, 18.2vw, 360px); }   /* height follows width so Istanbul (top) and Singapore (bottom) stay in frame */
 .members-map .city .halo { transform-box: fill-box; transform-origin: center; }
 .members-map .city line { stroke-dasharray: 1; }
-#stats .members-map { width: 100%; margin: 0; border-top: 0; border-bottom: 1px solid var(--rule); }   /* gold line closes the map, same as the stats bar lines (NR 2026-10-13) */   /* NR 2026-10-13: map sits directly under the stats bar */
+@media (max-width: 1100px) { .stats-row { flex-wrap: wrap; } .stat { flex: 1 1 calc(50% - 1px); } }
+@media (max-width: 900px) { .stat { padding: 30px 12px; } .stat-label { letter-spacing: 0.08em; } }
 @media (max-width: 600px) { .members-map .map-svg { height: 180px; } }
-.nav-extra { display: none; }
-.full-nav .nav-extra { display: list-item; }
-.values-placeholder .stacked-head { margin-bottom: 0; } .values-placeholder .display { margin-bottom: 24px; max-width: none; }
-.values-placeholder .placeholder-note { color: var(--text-dim); font-style: italic; }   /* visible marker until designed (NR 2026-10-13) */
+
+/* member types */
+.cols-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 48px); }
+.tier { border-top: 1px solid var(--rule); padding-top: 24px; }
+.tier .t-title { margin-bottom: 10px; }
+.tier-desc { font-size: 16px; line-height: 1.65; color: var(--text-body); }
+@media (max-width: 1100px) { .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } }
+@media (max-width: 600px) { .cols-4 { grid-template-columns: minmax(0, 1fr); row-gap: 24px; } }
+
+.close-media img { object-position: 60% 50%; }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -216,12 +45,11 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 
 
 <nav>
-  <div style="display:flex; align-items:center; gap:40px;">
+  <div class="nav-left">
     <a href="index.html" class="nav-logo">EMIR</a>
     <ul class="nav-links" id="site-menu">
       <li><a href="membership.html" class="active">Members</a></li>
       <li><a href="private-office.html">Private Office</a></li>
-      <li class="nav-extra"><a href="about.html">About</a></li>
       <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
       <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
     </ul>
@@ -353,26 +181,26 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <p class="copy reveal reveal-d1">Our members are sitting and former chairs, CEOs and board members, ministers and senior officials, family-office principals, and private or sovereign capital allocators.</p>
   </div>
   <div class="cols-4 reveal reveal-d2">
-    <div class="tier"><h3 class="tier-name">Chairs</h3><p class="tier-desc">Chairs of public and private boards, sovereign funds and family offices.</p></div>
-    <div class="tier"><h3 class="tier-name">Chief executives</h3><p class="tier-desc">Sitting CEOs and senior leaders making strategic decisions at scale.</p></div>
-    <div class="tier"><h3 class="tier-name">Principals</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
-    <div class="tier"><h3 class="tier-name">Officials</h3><p class="tier-desc">Sitting and former ministers, diplomats, senior officials and policymakers.</p></div>
+    <div class="tier"><h3 class="t-title">Chairs</h3><p class="tier-desc">Chairs of public and private boards, sovereign funds and family offices.</p></div>
+    <div class="tier"><h3 class="t-title">Chief executives</h3><p class="tier-desc">Sitting CEOs and senior leaders making strategic decisions at scale.</p></div>
+    <div class="tier"><h3 class="t-title">Principals</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
+    <div class="tier"><h3 class="t-title">Officials</h3><p class="tier-desc">Sitting and former ministers, diplomats, senior officials and policymakers.</p></div>
   </div>
 </section>
 
-<!-- INSIDE THE NETWORK (NR 2026-10-13): one full-screen section on the dinner image (deck slide 8 art), heading and list at left in the page's own type. Old list: membership.backup-2026-10-13-values-list.html -->
-<section id="value" class="inside">
-  <article class="inside-slide">
-    <img class="inside-bg" src="images/event-bahrain-dinner.jpg" alt="A long dinner table laid for a private EMIR gathering" loading="lazy">
-    <div class="inside-scrim"></div>
-    <div class="inside-cap">
+<!-- INSIDE THE NETWORK (NR 2026-10-13): one deck section on the dinner image (deck slide 8 art), heading and list at left. Old list: membership.backup-2026-10-13-values-list.html -->
+<section id="value" class="deck-group">
+  <article class="deck-section">
+    <img class="deck-bg" src="images/event-bahrain-dinner.jpg" alt="A long dinner table laid for a private EMIR gathering" loading="lazy">
+    <div class="deck-scrim"></div>
+    <div class="deck-cap">
       <h2 class="display reveal">What happens inside.</h2>
       <p class="copy reveal reveal-d1">Members gather in person each quarter and in smaller private sessions every month, and stay connected online in between. Always in confidence, always among peers.</p>
     </div>
-    <div class="inside-foot values-stack reveal reveal-d2">
-        <div class="value-item"><h3 class="value-name">Peer advice and off-the-record conversations.</h3><p class="value-desc">Counsel from peers on the issues that matter most.</p></div>
-        <div class="value-item"><h3 class="value-name">Confidential intelligence &amp; data.</h3><p class="value-desc">Written reports, CEO surveys and direct briefings from the people closest to events.</p></div>
-        <div class="value-item"><h3 class="value-name">Private investment opportunities and deals.</h3><p class="value-desc">Co-investment and transactions, family offices, corporate M&amp;A, and institutional partners.</p></div>
+    <div class="deck-foot deck-list reveal reveal-d2">
+        <div><h3 class="t-subhead">Peer advice and off-the-record conversations.</h3><p class="copy">Counsel from peers on the issues that matter most.</p></div>
+        <div><h3 class="t-subhead">Confidential intelligence and data.</h3><p class="copy">Written reports, CEO surveys and direct briefings from the people closest to events.</p></div>
+        <div><h3 class="t-subhead">Private investment opportunities and deals.</h3><p class="copy">Co-investment and transactions, family offices, corporate M&amp;A, and institutional partners.</p></div>
     </div>
   </article>
 </section>
@@ -395,7 +223,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
       <a href="register.html" class="cta-btn">Register your interest</a>
     </div>
   </div>
-  <div class="close-media"><img src="images/forge-anvil-gold.jpg" alt="A shaft of sunlight falling through still air onto an anvil at rest, with gold nuggets on its face" loading="lazy" style="object-position: 60% 50%;"></div>
+  <div class="close-media"><img src="images/forge-anvil-gold.jpg" alt="A shaft of sunlight falling through still air onto an anvil at rest, with gold nuggets on its face" loading="lazy"></div>
 </section>
 
 </main>
