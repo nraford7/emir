@@ -138,7 +138,7 @@ h1.display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); }
 
 /* ===== DECK SECTION (DESIGN.md "Image section"): full screen, image right two thirds, text left ===== */
 .deck-group { display: block; padding: 0; text-align: left; background: var(--ink); border-top: 1px solid var(--rule-soft); }
-.deck-section { position: relative; height: 100vh; min-height: 640px; max-height: 1100px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(112px, 16vh, 168px) var(--gutter) clamp(64px, 11vh, 120px); background: var(--ink); }
+.deck-section { position: relative; min-height: clamp(640px, 80vh, 900px); gap: 48px;   /* about 80% of the screen so the next section peeks in, growing if the text needs more (NR 2026-10-13) */  overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(112px, 16vh, 168px) var(--gutter) clamp(64px, 11vh, 120px); background: var(--ink); }
 .deck-section + .deck-section { border-top: 1px solid var(--rule-soft); }
 .deck-bg { position: absolute; top: 0; left: 34%; width: 66%; height: 100%; object-fit: cover; }
 .deck-scrim { position: absolute; inset: 0; background: var(--deck-scrim); }
