@@ -202,7 +202,7 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .members-map .map-svg { display: block; width: 100%; height: clamp(255px, 18.2vw, 360px); }   /* height follows width so Istanbul (top) and Singapore (bottom) stay in frame on wide screens */
 .members-map .city .halo { transform-box: fill-box; transform-origin: center; }
 .members-map .city line { stroke-dasharray: 1; }
-#stats .members-map { width: 100%; margin: 0; border-top: 0; }   /* NR 2026-10-13: map sits directly under the stats bar */
+#stats .members-map { width: 100%; margin: 0; border-top: 0; border-bottom: 1px solid var(--rule); }   /* gold line closes the map, same as the stats bar lines (NR 2026-10-13) */   /* NR 2026-10-13: map sits directly under the stats bar */
 @media (max-width: 600px) { .members-map .map-svg { height: 180px; } }
 .nav-extra { display: none; }
 .full-nav .nav-extra { display: list-item; }
