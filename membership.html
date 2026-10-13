@@ -187,18 +187,13 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .inside-cap, .inside-foot { position: relative; z-index: 2; max-width: min(620px, 44vw); }
 .inside-slide .display { font-size: clamp(34px, 3.6vw, 48px); text-wrap: balance; margin-bottom: 24px; font-variant-numeric: lining-nums; }
 .inside-slide .copy { margin: 0; text-wrap: pretty; }
-.inside-slide .copy b { color: var(--off-white); font-weight: 500; }
-.inside-project { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; color: var(--off-white); margin-bottom: 10px; font-variant-numeric: lining-nums; }
-.inside-stats-head { font-size: 16px; font-weight: 500; color: var(--off-white); margin-bottom: 8px; }
-.inside-stat { display: flex; align-items: center; gap: clamp(20px, 2.4vw, 36px); padding: 8px 0; }
-.inside-stat .num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-variant-numeric: lining-nums; font-size: clamp(56px, 5.6vw, 92px); line-height: .95; color: var(--off-white); width: clamp(120px, 11vw, 180px); flex-shrink: 0; }
-.inside-stat.emir .num { color: var(--gold-light); }
-.inside-stat .lbl { font-size: 16px; line-height: 1.6; color: var(--text-body); max-width: 34ch; }
-.nw { white-space: nowrap; }
+.values-stack { display: flex; flex-direction: column; gap: clamp(28px, 4vh, 40px); }   /* the previous list format */
+.value-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin-bottom: 8px; }
+.value-desc { font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 52ch; }
 @media (max-width: 900px) {
-  .inside-slide { height: auto; min-height: 100svh; max-height: none; padding: 112px 22px 64px; justify-content: flex-start; gap: 56px; }
+  .inside-slide { height: auto; min-height: 100svh; max-height: none; padding: 96px 22px 64px; justify-content: flex-start; gap: 48px; }
   .inside-bg { left: 0; width: 100%; }
-  .inside-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.7) 45%, rgba(8,8,6,.88) 100%); }
+  .inside-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.84) 45%, rgba(8,8,6,.92) 100%); }
   .inside-cap, .inside-foot { max-width: none; }
   .inside-foot { margin-top: auto; }
 }
@@ -207,8 +202,8 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
 .members-map .map-svg { display: block; width: 100%; height: clamp(255px, 18.2vw, 360px); }   /* height follows width so Istanbul (top) and Singapore (bottom) stay in frame on wide screens */
 .members-map .city .halo { transform-box: fill-box; transform-origin: center; }
 .members-map .city line { stroke-dasharray: 1; }
-#members:has(.members-map) { padding-bottom: 0; }
-@media (max-width: 600px) { .members-map { margin: 48px -22px 0; } .members-map .map-svg { height: 180px; } }
+#stats .members-map { width: 100%; margin: 0; border-top: 0; }   /* NR 2026-10-13: map sits directly under the stats bar */
+@media (max-width: 600px) { .members-map .map-svg { height: 180px; } }
 .nav-extra { display: none; }
 .full-nav .nav-extra { display: list-item; }
 </style>
@@ -255,20 +250,6 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
     <div class="stat"><div class="stat-num">$120bn</div><div class="stat-label">Combined enterprise value</div></div>
     <div class="stat"><div class="stat-num">14</div><div class="stat-label">Years in operation</div></div>
     <div class="stat"><div class="stat-num">40</div><div class="stat-label">Countries covered</div></div>
-  </div>
-</section>
-
-<!-- WHO OUR MEMBERS ARE -->
-<section id="members" class="stacked">
-  <div class="stacked-head">
-    <h2 class="display reveal">Membership is governed by strict seniority rules.</h2>
-    <p class="copy reveal reveal-d1">Our members are sitting and former chairs, CEOs and board members, ministers and senior officials, family-office principals, and private or sovereign capital allocators.</p>
-  </div>
-  <div class="cols-4 reveal reveal-d2">
-    <div class="tier"><h3 class="tier-name">Chairs</h3><p class="tier-desc">Chairs of public and private boards, sovereign funds and family offices.</p></div>
-    <div class="tier"><h3 class="tier-name">Chief executives</h3><p class="tier-desc">Sitting CEOs and senior leaders making strategic decisions at scale.</p></div>
-    <div class="tier"><h3 class="tier-name">Principals</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
-    <div class="tier"><h3 class="tier-name">Officials</h3><p class="tier-desc">Sitting and former ministers, diplomats, senior officials and policymakers.</p></div>
   </div>
   <div class="members-map">
 <svg class="map-svg" xmlns="http://www.w3.org/2000/svg" viewBox="396 148 1469 268" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map marking Dubai, Abu Dhabi, Riyadh, Istanbul and Singapore">
@@ -363,43 +344,33 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   </div>
 </section>
 
-<!-- INSIDE THE NETWORK (NR 2026-10-13): full-screen image sections from deck slides 8, 9, 10, in the page's own type (section .display heads, .copy body). Old list: membership.backup-2026-10-13-values-list.html -->
+<!-- WHO OUR MEMBERS ARE -->
+<section id="members" class="stacked">
+  <div class="stacked-head">
+    <h2 class="display reveal">Membership is governed by strict seniority rules.</h2>
+    <p class="copy reveal reveal-d1">Our members are sitting and former chairs, CEOs and board members, ministers and senior officials, family-office principals, and private or sovereign capital allocators.</p>
+  </div>
+  <div class="cols-4 reveal reveal-d2">
+    <div class="tier"><h3 class="tier-name">Chairs</h3><p class="tier-desc">Chairs of public and private boards, sovereign funds and family offices.</p></div>
+    <div class="tier"><h3 class="tier-name">Chief executives</h3><p class="tier-desc">Sitting CEOs and senior leaders making strategic decisions at scale.</p></div>
+    <div class="tier"><h3 class="tier-name">Principals</h3><p class="tier-desc">Family-office principals, sovereign fund executives and allocators of significant capital.</p></div>
+    <div class="tier"><h3 class="tier-name">Officials</h3><p class="tier-desc">Sitting and former ministers, diplomats, senior officials and policymakers.</p></div>
+  </div>
+</section>
+
+<!-- INSIDE THE NETWORK (NR 2026-10-13): one full-screen section on the dinner image (deck slide 8 art), heading and list at left in the page's own type. Old list: membership.backup-2026-10-13-values-list.html -->
 <section id="value" class="inside">
-  <article class="inside-slide first">
+  <article class="inside-slide">
     <img class="inside-bg" src="images/event-bahrain-dinner.jpg" alt="A long dinner table laid for a private EMIR gathering" loading="lazy">
     <div class="inside-scrim"></div>
     <div class="inside-cap">
       <h2 class="display reveal">What happens inside.</h2>
       <p class="copy reveal reveal-d1">Members gather in person each quarter and in smaller private sessions every month, and stay connected online in between. Always in confidence, always among peers.</p>
     </div>
-    <div class="inside-foot reveal reveal-d2">
-      <h3 class="display">Peer advice and <em><span class="nw">off-the-record</span> conversations</em>.</h3>
-      <p class="copy"><b>Counsel from peers</b> on the issues that matter most.</p>
-    </div>
-  </article>
-  <article class="inside-slide">
-    <img class="inside-bg" src="images/insights-touchstone.jpg" alt="A gold nugget on dark stone with a trail of gold dust" loading="lazy">
-    <div class="inside-scrim"></div>
-    <div class="inside-cap reveal">
-      <h3 class="display">Confidential <em>intelligence &amp; data</em>.</h3>
-      <p class="copy"><b>Written reports, CEO surveys and direct briefings</b> from the people closest to events.</p>
-    </div>
-    <div class="inside-foot inside-stats reveal reveal-d1">
-      <p class="inside-stats-head">January 2026 CEO meeting</p>
-      <div class="inside-stat"><span class="num">10%</span><span class="lbl">Members’ own estimate of the likelihood of conflict with Iran in the next six months.</span></div>
-      <div class="inside-stat emir"><span class="num">70%</span><span class="lbl">EMIR intelligence briefing on the likelihood of conflict in the next six months.</span></div>
-    </div>
-  </article>
-  <article class="inside-slide">
-    <img class="inside-bg" src="images/project-f1-car.jpg" alt="A Formula 1 car in a dark studio" loading="lazy">
-    <div class="inside-scrim"></div>
-    <div class="inside-cap reveal">
-      <h3 class="display">Private <em>investment opportunities</em> and deals.</h3>
-      <p class="copy"><b><span class="nw">Co-investment</span> and transactions,</b> family offices, corporate M&amp;A, and institutional partners.</p>
-    </div>
-    <div class="inside-foot reveal reveal-d1">
-      <p class="inside-project">A significant stake in a Formula 1 team</p>
-      <p class="copy">An <span class="nw">off-market</span> opportunity brought to EMIR, and placed in front of qualified investors from the network.</p>
+    <div class="inside-foot values-stack reveal reveal-d2">
+        <div class="value-item"><h3 class="value-name">Peer advice and off-the-record conversations.</h3><p class="value-desc">Counsel from peers on the issues that matter most.</p></div>
+        <div class="value-item"><h3 class="value-name">Confidential intelligence &amp; data.</h3><p class="value-desc">Written reports, CEO surveys and direct briefings from the people closest to events.</p></div>
+        <div class="value-item"><h3 class="value-name">Private investment opportunities and deals.</h3><p class="value-desc">Co-investment and transactions, family offices, corporate M&amp;A, and institutional partners.</p></div>
     </div>
   </article>
 </section>
