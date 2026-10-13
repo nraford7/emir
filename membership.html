@@ -74,18 +74,6 @@ body::after { content: ''; position: fixed; inset: 0; background-image: url("dat
   .stat-label { letter-spacing: 0.08em; }
 }
 
-/* VALUES (members page, option 2, 2026-09-28): headline left stays in view, list right */
-#value.values-split { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 0; align-items: start; justify-content: stretch; text-align: left; padding: clamp(96px, 12vw, 150px) 0; background: var(--ink-warm); border-top: 1px solid var(--rule-soft); }
-.values-head { position: sticky; top: 120px; padding: 0 clamp(40px, 6vw, 96px) 0 52px; }
-.values-head .display { font-size: clamp(34px, 3.6vw, 48px); max-width: 18ch; }
-.values-stack { display: flex; flex-direction: column; gap: 40px; padding: 8px 52px 0 0; }
-.value-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin-bottom: 8px; }
-.value-desc { font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 52ch; }
-@media (max-width: 900px) {
-  #value.values-split { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 80px 22px; }
-  .values-head { position: static; padding: 0; }
-  .values-stack { padding: 0; }
-}
 
 
 /* CLOSING SECTION WITH IMAGE (2026-09-28) */
@@ -192,6 +180,36 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   .reveal, .wordmark, .hero-sub, .hero-rule, .hero-lede { opacity: 1 !important; transform: none !important; }
 }
 /* ===== END SITE SHARED ===== */
+/* WHAT HAPPENS INSIDE (NR 2026-10-13): deck slides 8-10 as full-screen sections. Image holds the right two thirds; text on warm black at left; deck scrim gradients. */
+#value.inside { display: block; padding: 0; text-align: left; background: var(--ink); border-top: 1px solid var(--rule-soft); }
+.inside-head { padding: clamp(96px, 12vw, 150px) 52px clamp(64px, 7vw, 96px); }
+.inside-head .display { font-size: clamp(34px, 3.6vw, 48px); max-width: 18ch; }
+.inside-slide { position: relative; height: 100vh; min-height: 640px; max-height: 1200px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(110px, 15vh, 160px) 52px clamp(56px, 11vh, 120px); background: var(--ink); }
+.inside-bg { position: absolute; top: 0; bottom: 0; left: 34%; right: 0; width: 66%; height: 100%; object-fit: cover; }
+.inside-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 34%, rgba(8,8,6,.55) 46%, rgba(8,8,6,0) 62%), linear-gradient(180deg, rgba(8,8,6,.35) 0%, rgba(8,8,6,0) 22%, rgba(8,8,6,0) 78%, rgba(8,8,6,.6) 100%); }
+.inside-cap, .inside-foot { position: relative; z-index: 2; max-width: min(940px, 52vw); }
+.inside-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: clamp(40px, 3.75vw, 72px); line-height: 1.06; color: var(--off-white); text-wrap: balance; font-variant-numeric: lining-nums; }
+.inside-title em { font-style: italic; font-weight: 400; color: var(--gold-light); }
+.inside-title::after { content: ''; display: block; width: 64px; height: 2px; background: var(--gold); margin-top: clamp(22px, 1.7vw, 32px); }
+.inside-sub { margin-top: clamp(20px, 1.5vw, 28px); font-size: clamp(17px, 1.35vw, 26px); line-height: 1.45; color: #B3AA9F; max-width: min(860px, 45vw); text-wrap: pretty; }
+.inside-sub b { color: var(--off-white); font-weight: 500; }
+.inside-sub.small { margin-top: 10px; font-size: clamp(15px, 1.15vw, 22px); }
+.inside-project { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(24px, 1.8vw, 34px); line-height: 1.15; color: var(--off-white); text-wrap: balance; }
+.inside-stats-head { font-size: clamp(15px, 1.15vw, 22px); font-weight: 500; color: var(--off-white); padding-bottom: 12px; }
+.inside-stat { display: flex; align-items: center; gap: clamp(20px, 2vw, 40px); padding: 10px 0; }
+.inside-stat .num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-variant-numeric: lining-nums; font-size: clamp(64px, 7.4vw, 142px); line-height: .9; color: var(--off-white); width: clamp(140px, 15vw, 290px); flex-shrink: 0; }
+.inside-stat.emir .num { color: var(--gold-light); }
+.inside-stat .lbl { font-size: clamp(15px, 1.15vw, 22px); line-height: 1.45; color: #B3AA9F; max-width: 30ch; }
+.inside-cap .cta-btn { margin-top: clamp(28px, 2.4vw, 44px); background: rgba(201,169,110,0.06); }   /* page button, as in the closing section */
+.nw { white-space: nowrap; }
+@media (max-width: 900px) {
+  .inside-head { padding: 80px 22px 56px; }
+  .inside-slide { height: auto; min-height: 100svh; max-height: none; padding: 120px 22px 64px; justify-content: flex-start; gap: 48px; }
+  .inside-bg { left: 0; width: 100%; }
+  .inside-scrim { background: linear-gradient(180deg, rgba(8,8,6,.92) 0%, rgba(8,8,6,.7) 45%, rgba(8,8,6,.88) 100%); }
+  .inside-cap, .inside-foot, .inside-sub { max-width: none; }
+  .inside-foot { margin-top: auto; }
+}
 /* members map (after the member-type row): inline SVG so the city labels can animate in */
 .members-map { margin: clamp(48px, 5vw, 72px) -52px 0; border-top: 1px solid var(--rule); }
 .members-map .map-svg { display: block; width: 100%; height: clamp(255px, 18.2vw, 360px); }   /* height follows width so Istanbul (top) and Singapore (bottom) stay in frame on wide screens */
@@ -353,19 +371,39 @@ nav.menu-open .nav-toggle-bars { height: 1px; border-bottom: 0; }
   </div>
 </section>
 
-<!-- INSIDE THE NETWORK (what membership enables) -->
-<section id="value" class="values-split">
-  <div class="values-head">
+<!-- INSIDE THE NETWORK (NR 2026-10-13): full-screen image sections in the deck's language (deck slides 8, 9, 10; then gatherings and Private Office). Old list: membership.backup-2026-10-13-values-list.html -->
+<section id="value" class="inside">
+  <div class="inside-head">
     <h2 class="display reveal">What happens inside.</h2>
     <p class="copy values-intro reveal reveal-d1">Members gather in person each quarter and in smaller private sessions every month, and stay connected online in between. Always in confidence, always among peers.</p>
   </div>
-  <div class="values-stack">
-    <div class="value-item reveal"><h3 class="value-name">Private intelligence</h3><p class="value-desc">A live view of the signals shaping your markets, with written reports and direct briefings from people close to events, before they reach the market.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Closed-door gatherings</h3><p class="value-desc">Peers meeting in confidence, from a quarterly flagship to smaller conversations in between.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Peer advice</h3><p class="value-desc">Curated, confidential introductions to other Members and regional leaders, and their counsel on the issues that matter most.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Investment opportunities and deal making</h3><p class="value-desc">Private access to opportunities, co-investment and transactions shared among Members, sovereign and institutional partners.</p></div>
-    <div class="value-item reveal"><h3 class="value-name">Access to the Private Office</h3><p class="value-desc">For more sensitive or sizeable investments, engagements and projects, Members can call on the EMIR Private Office.</p></div>
-  </div>
+  <article class="inside-slide">
+    <img class="inside-bg" src="images/event-bahrain-dinner.jpg" alt="A long dinner table laid for a private EMIR gathering" loading="lazy">
+    <div class="inside-scrim"></div>
+    <div class="inside-cap reveal"><h3 class="inside-title">Peer advice and <em><span class="nw">off-the-record</span> conversations</em>.</h3><p class="inside-sub"><b>Counsel from peers</b> on the issues that matter most.</p></div>
+  </article>
+  <article class="inside-slide">
+    <img class="inside-bg" src="images/insights-touchstone.jpg" alt="A gold nugget on dark stone with a trail of gold dust" loading="lazy">
+    <div class="inside-scrim"></div>
+    <div class="inside-cap reveal"><h3 class="inside-title">Confidential <em><span class="nw">pre-market</span> intelligence</em>.</h3><p class="inside-sub"><b>Written reports, CEO surveys and direct briefings</b> from people close to events.</p></div>
+    <div class="inside-foot inside-stats reveal reveal-d1"><p class="inside-stats-head">January 2026 CEO meeting</p><div class="inside-stat"><span class="num">10%</span><span class="lbl">Members’ own estimate of the likelihood of conflict with Iran in the next six months.</span></div><div class="inside-stat emir"><span class="num">70%</span><span class="lbl">EMIR intelligence briefing on the likelihood of conflict in the next six months.</span></div></div>
+  </article>
+  <article class="inside-slide">
+    <img class="inside-bg" src="images/project-f1-car.jpg" alt="A Formula 1 car in a dark studio" loading="lazy">
+    <div class="inside-scrim"></div>
+    <div class="inside-cap reveal"><h3 class="inside-title">Private <em>investment opportunities</em> and deals.</h3><p class="inside-sub light"><b><span class="nw">Co-investment</span> and transactions,</b> family offices, corporate M&amp;A, and institutional partners.</p></div>
+    <div class="inside-foot inside-case reveal reveal-d1"><p class="inside-project">A significant stake in a Formula 1 team</p><p class="inside-sub small">An <span class="nw">off-market</span> opportunity brought to EMIR, and placed in front of qualified investors from the network.</p></div>
+  </article>
+  <article class="inside-slide">
+    <img class="inside-bg" src="images/event-embrace.jpg" alt="Two guests embracing at an EMIR dinner" loading="lazy">
+    <div class="inside-scrim"></div>
+    <div class="inside-cap reveal"><h3 class="inside-title">Closed-door <em>gatherings</em>.</h3><p class="inside-sub"><b>Peers meeting in confidence,</b> from a quarterly flagship to smaller conversations in between.</p></div>
+  </article>
+  <article class="inside-slide">
+    <img class="inside-bg" src="images/close-f-vein.jpg" alt="Dark forged metal with a single vein of gold" loading="lazy">
+    <div class="inside-scrim"></div>
+    <div class="inside-cap reveal"><h3 class="inside-title">Private <em>Office</em>.</h3><p class="inside-sub">A dedicated private office for members’ most complex, sensitive and special projects.</p><a href="private-office.html" class="cta-btn">Find out more</a></div>
+  </article>
 </section>
 
 <!-- INVITATION ONLY -->
