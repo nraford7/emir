@@ -15,7 +15,8 @@
 .split-media img { object-position: 88% 45%; }
 /* the form makes this section taller than a screen: keep the photo one screen high and fade it out (NR 2026-10-14) */
 @media (min-width: 901px) {
-  #top .split-media { bottom: auto; height: 100vh; height: 100svh; }
+  #top.split-hero { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); }   /* leave room for the footer on one screen */
+  #top .split-media { bottom: auto; height: calc(100vh - 56px); height: calc(100svh - 56px); }
   #top .split-media::after { background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,.55) 18%, rgba(14,12,9,0) 42%), linear-gradient(180deg, rgba(8,8,6,.35) 0%, rgba(8,8,6,0) 22%, rgba(8,8,6,0) 60%, var(--ink-warm) 100%); }
 }
 .contact-intro { max-width: 52ch; }
