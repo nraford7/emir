@@ -14,7 +14,9 @@
 /* CONTACT page only. Shared styles live in css/site.css (see DESIGN.md). */
 .split-media img { object-position: 88% 45%; }
 .contact-intro { max-width: 52ch; }
-.contact-actions { margin: 28px 0 44px; }
+.contact-form { max-width: min(560px, 40vw); margin: 36px 0 64px; }
+.contact-form .form-note { margin-top: 0; }
+@media (max-width: 900px) { .contact-form { max-width: none; } }
 .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 36px 72px; max-width: 640px; }
 .contact-block.wide { grid-column: 1 / -1; }
 .contact-block .t-label { margin-bottom: 14px; }
@@ -53,8 +55,27 @@
 <section id="top" class="split-hero">
   <div class="split-text">
     <h1 class="display">Contact <em>us</em>.</h1>
-    <p class="copy contact-intro">Write to us about membership, an introduction or the Private Office. Every enquiry is read by the EMIR team, handled in confidence and answered personally. To be considered for membership, please register your interest.</p>
-    <div class="contact-actions"><a href="register.html" class="cta-btn">Register your interest</a></div>
+    <p class="copy contact-intro">Write to us about membership, an introduction or the Private Office. Every message is read by the EMIR team, handled in confidence and answered personally.</p>
+    <div class="contact-form">
+    <p class="form-note">All fields are required unless marked optional.</p>
+    <form class="reg-form" id="msg-form" novalidate>
+        <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required aria-required="true" aria-describedby="m-name-err"><p class="field-error" id="m-name-err" hidden></p></div>
+        <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required aria-required="true" aria-describedby="m-email-err"><p class="field-error" id="m-email-err" hidden></p></div>
+        <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization" aria-describedby="m-org-err"><p class="field-error" id="m-org-err" hidden></p></div>
+        <div class="field"><label for="m-type">Enquiry about</label><select id="m-type" name="Enquiry about" required aria-required="true" aria-describedby="m-type-err">
+          <option value="">Please choose</option>
+          <option>Membership</option>
+          <option>The Private Office</option>
+          <option>Partnerships</option>
+          <option>Something else</option>
+        </select><p class="field-error" id="m-type-err" hidden></p></div>
+        <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required aria-required="true" aria-describedby="m-msg-err"></textarea><p class="field-error" id="m-msg-err" hidden></p></div>
+      <div class="form-actions">
+        <button type="submit" class="cta-btn">Send message</button>
+        <p class="form-status" id="msg-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    </div>
     <div class="contact-grid">
       <div class="contact-block wide">
         <h2 class="t-label">Email</h2>
@@ -75,39 +96,7 @@
   </div>
 </section>
 
-<!-- MESSAGE FORM -->
-<section id="message" class="form-section">
-  <div class="profile-grid">
-  <div class="form-wrap">
-    <h2 class="display reveal">Send us a message.</h2>
-    <p class="copy reveal reveal-d1">Tell us how we can help. Every message is read by the EMIR team and handled in confidence.</p>
-    <p class="form-note">All fields are required unless marked optional.</p>
-    <form class="reg-form" id="msg-form" novalidate>
-        <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required aria-required="true" aria-describedby="m-name-err"><p class="field-error" id="m-name-err" hidden></p></div>
-        <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required aria-required="true" aria-describedby="m-email-err"><p class="field-error" id="m-email-err" hidden></p></div>
-        <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization" aria-describedby="m-org-err"><p class="field-error" id="m-org-err" hidden></p></div>
-        <div class="field"><label for="m-type">Enquiry about</label><select id="m-type" name="Enquiry about" required aria-required="true" aria-describedby="m-type-err">
-          <option value="">Please choose</option>
-          <option>Membership</option>
-          <option>The Private Office</option>
-          <option>Partnerships</option>
-          <option>Something else</option>
-        </select><p class="field-error" id="m-type-err" hidden></p></div>
-        <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required aria-required="true" aria-describedby="m-msg-err"></textarea><p class="field-error" id="m-msg-err" hidden></p></div>
-      <div class="form-actions">
-        <button type="submit" class="cta-btn">Send message</button>
-        <p class="form-status" id="msg-status" role="status" aria-live="polite"></p>
-      </div>
-    </form>
-  </div>
-  <aside class="aside-panel" aria-label="What happens next">
-    <h3 class="t-title">What happens next.</h3>
-    <p><b>Read personally.</b> Every message goes to the EMIR team, is handled in confidence and is answered personally.</p>
-    <p><b>Interested in membership?</b> Please <a href="register.html">register your interest</a>, so we can consider it against our criteria.</p>
-    <p><a href="about.html" class="text-link">About the Founders</a></p>
-  </aside>
-  </div>
-</section>
+
 
 
 
@@ -160,6 +149,15 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     location.href = 'mailto:info@emirintelligence.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n\n'));
     status.innerHTML = 'Thank you. Your email app should now open with your message ready to send. If it does not, please write to us at <a href="mailto:info@emirintelligence.com">info@emirintelligence.com</a>.';
   });
+})();
+
+/* preselect the enquiry type from ?about= (e.g. contact.html?about=membership) */
+(function () {
+  const v = new URLSearchParams(location.search).get('about');
+  const sel = document.getElementById('m-type');
+  if (!v || !sel) return;
+  const map = { membership: 'Membership', 'private-office': 'The Private Office', partnerships: 'Partnerships' };
+  if (map[v]) sel.value = map[v];
 })();
 </script>
 </body>
