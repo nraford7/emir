@@ -18,24 +18,30 @@
 .founder .role { margin: 2px 0 12px; font-size: 14px; color: var(--text-dim); }   /* plain role line: no gold capitals (DESIGN.md, No Eyebrow Rule) */
 .founder .copy { font-size: 15px; line-height: 1.65; color: var(--text-plate); }
 @media (max-width: 900px) { .split-text .founders { grid-template-columns: minmax(0, 1fr); max-width: none; } }
-.advisors-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 48px clamp(48px, 6vw, 112px); align-items: center; }
+.advisors-split { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 48px clamp(48px, 6vw, 112px); align-items: start; }
 .advisors-split .stacked-head { margin-bottom: 0; }
 .adv-carousel { width: 100%; }
-.adv-slide { margin: 0; }
+.adv-slide { margin: 0; position: relative; }
 .adv-slide:not([hidden]) { animation: advFade .6s ease; }
 @keyframes advFade { from { opacity: 0; } to { opacity: 1; } }
-.adv-photo { aspect-ratio: 4 / 5; max-width: 100%; background: linear-gradient(160deg, #1a1712 0%, #0e0c09 100%); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
-.adv-photo span { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-.adv-slide figcaption { padding-top: 18px; }
+.adv-photo { aspect-ratio: 5 / 6; max-width: 100%; background: linear-gradient(160deg, #1a1712 0%, #0e0c09 100%); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
+.adv-photo span { margin-bottom: 30%; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+.adv-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 72px 28px 26px; background: linear-gradient(180deg, rgba(8,8,6,0) 0%, rgba(8,8,6,.72) 45%, rgba(8,8,6,.92) 100%); }
 .adv-slide .t-subhead { margin-bottom: 2px; }
-.adv-role { margin: 0 0 10px; font-size: 14px; color: var(--text-dim); }
-.adv-slide .copy { font-size: 15px; margin: 0; }
-.adv-controls { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
+.adv-role { margin: 0 0 10px; font-size: 14px; color: var(--text-plate); }
+.adv-slide .copy { font-size: 15px; margin: 0; color: var(--off-white); }
+.adv-stage { position: relative; }
+.adv-stage .adv-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; background: rgba(8,8,6,.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.adv-prev { left: 14px; } .adv-next { right: 14px; }
+.adv-dots { display: flex; justify-content: center; gap: 4px; margin-top: 14px; }
+.adv-dot { width: 28px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer; position: relative; }
+.adv-dot::after { content: ""; position: absolute; inset: 0; margin: auto; width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); transition: background .3s, transform .3s; }
+.adv-dot[aria-current="true"]::after { background: var(--gold); transform: scale(1.2); }
+.adv-dot:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
 .adv-btn { width: 44px; height: 44px; border: 1px solid var(--rule); background: transparent; color: var(--off-white); font-size: 16px; cursor: pointer; transition: border-color .3s, color .3s; }
 .adv-btn:hover { border-color: var(--gold); color: var(--gold-light, var(--gold)); }
 .adv-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
-.adv-count { font-size: 13px; color: var(--text-dim); font-variant-numeric: tabular-nums; }
-@media (max-width: 900px) { .advisors-split { grid-template-columns: minmax(0, 1fr); } .adv-carousel { max-width: 420px; } }
+@media (max-width: 900px) { .advisors-split { grid-template-columns: minmax(0, 1fr); } .adv-carousel { max-width: 520px; } }
 @media (prefers-reduced-motion: reduce) { .adv-slide:not([hidden]) { animation: none; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -95,6 +101,8 @@
     </div>
     <!-- PLACEHOLDER (NR 2026-10-14): advisor photos (images/advisor-*.jpg), names, titles and one-line bios to come. Old grid: about.backup-2026-10-14-advisors-grid.html -->
     <div class="adv-carousel reveal reveal-d2" aria-roledescription="carousel" aria-label="Senior advisors">
+      <div class="adv-stage">
+      <button type="button" class="adv-btn adv-prev" aria-label="Previous advisor">&larr;</button>
       <div class="adv-slides" aria-live="off">
         <figure class="adv-slide" aria-roledescription="slide" aria-label="1 of 4">
           <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo</span></div>
@@ -113,26 +121,18 @@
           <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
         </figure>
       </div>
-      <div class="adv-controls">
-        <button type="button" class="adv-btn adv-prev" aria-label="Previous advisor">&larr;</button>
-        <span class="adv-count" aria-hidden="true">1 / 4</span>
-        <button type="button" class="adv-btn adv-next" aria-label="Next advisor">&rarr;</button>
+      <button type="button" class="adv-btn adv-next" aria-label="Next advisor">&rarr;</button>
+      </div>
+      <div class="adv-dots">
+        <button type="button" class="adv-dot" aria-label="Advisor 1" aria-current="true"></button>
+        <button type="button" class="adv-dot" aria-label="Advisor 2"></button>
+        <button type="button" class="adv-dot" aria-label="Advisor 3"></button>
+        <button type="button" class="adv-dot" aria-label="Advisor 4"></button>
       </div>
     </div>
   </div>
 </section>
 
-<section id="next" class="close-split">
-  <div class="close-text">
-    <h2 class="display reveal">By <em>introduction</em>.</h2>
-    <p class="copy reveal reveal-d1">Membership begins with a trusted introduction. The Private Office works for EMIR members.</p>
-    <div class="close-actions reveal reveal-d2">
-      <a href="register.html" class="cta-btn">Register your interest</a>
-      <a href="private-office.html" class="text-link">The Private Office</a>
-    </div>
-  </div>
-  <div class="close-media"><img src="images/forge-strata.jpg" alt="Layers of dark stone folded by heat and pressure, with gold between them" loading="lazy"></div>
-</section>
 
 </main>
 
@@ -170,9 +170,10 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   const root = document.querySelector('.adv-carousel');
   if (!root) return;
   const slides = [...root.querySelectorAll('.adv-slide')];
-  const count = root.querySelector('.adv-count');
+  const dots = [...root.querySelectorAll('.adv-dot')];
   let i = 0, timer = null, paused = false;
-  const show = n => { i = (n + slides.length) % slides.length; slides.forEach((s, k) => s.hidden = k !== i); count.textContent = (i + 1) + ' / ' + slides.length; };
+  const show = n => { i = (n + slides.length) % slides.length; slides.forEach((s, k) => s.hidden = k !== i); dots.forEach((d, k) => k === i ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')); };
+  dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const start = () => { if (still || timer) return; timer = setInterval(() => { if (!paused) show(i + 1); }, 3000); };
   root.querySelector('.adv-prev').addEventListener('click', () => show(i - 1));
