@@ -18,15 +18,17 @@
 .founder .role { margin: 2px 0 12px; font-size: 14px; color: var(--text-dim); }   /* plain role line: no gold capitals (DESIGN.md, No Eyebrow Rule) */
 .founder .copy { font-size: 15px; line-height: 1.65; color: var(--text-plate); }
 @media (max-width: 900px) { .split-text .founders { grid-template-columns: minmax(0, 1fr); max-width: none; } }
-.advisors-split { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 48px clamp(48px, 6vw, 112px); align-items: start; }
+#advisors { padding-right: 0; }
+.advisors-split { display: grid; grid-template-columns: minmax(0, 1fr) 50vw; gap: 48px clamp(48px, 6vw, 112px); align-items: start; }
+.advisors-split .stacked-head { padding-right: 0; }
 .advisors-split .stacked-head { margin-bottom: 0; }
 .adv-carousel { width: 100%; }
 .adv-slide { margin: 0; position: relative; }
 .adv-slide:not([hidden]) { animation: advFade .6s ease; }
 @keyframes advFade { from { opacity: 0; } to { opacity: 1; } }
-.adv-photo { aspect-ratio: 5 / 6; max-width: 100%; background: linear-gradient(160deg, #1a1712 0%, #0e0c09 100%); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
-.adv-photo span { margin-bottom: 30%; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-.adv-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 72px 28px 26px; background: linear-gradient(180deg, rgba(8,8,6,0) 0%, rgba(8,8,6,.72) 45%, rgba(8,8,6,.92) 100%); }
+.adv-photo { aspect-ratio: 5 / 6; max-width: 100%; background: radial-gradient(ellipse 60% 45% at 50% 38%, #5a4d3c 0%, #3a3127 45%, #241f19 100%); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
+.adv-photo span { margin-bottom: 30%; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-plate); }
+.adv-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 28px 24px; background: linear-gradient(180deg, rgba(8,8,6,0) 0%, rgba(8,8,6,.6) 40%, rgba(8,8,6,.85) 100%); }
 .adv-slide .t-subhead { margin-bottom: 2px; }
 .adv-role { margin: 0 0 10px; font-size: 14px; color: var(--text-plate); }
 .adv-slide .copy { font-size: 15px; margin: 0; color: var(--off-white); }
@@ -41,7 +43,7 @@
 .adv-btn { width: 44px; height: 44px; border: 1px solid var(--rule); background: transparent; color: var(--off-white); font-size: 16px; cursor: pointer; transition: border-color .3s, color .3s; }
 .adv-btn:hover { border-color: var(--gold); color: var(--gold-light, var(--gold)); }
 .adv-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
-@media (max-width: 900px) { .advisors-split { grid-template-columns: minmax(0, 1fr); } .adv-carousel { max-width: 520px; } }
+@media (max-width: 900px) { #advisors { padding-right: var(--gutter); } .advisors-split { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .adv-slide:not([hidden]) { animation: none; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -105,19 +107,19 @@
       <button type="button" class="adv-btn adv-prev" aria-label="Previous advisor">&larr;</button>
       <div class="adv-slides" aria-live="off">
         <figure class="adv-slide" aria-roledescription="slide" aria-label="1 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo</span></div>
+          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
           <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
         </figure>
         <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="2 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo</span></div>
+          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
           <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
         </figure>
         <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="3 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo</span></div>
+          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
           <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
         </figure>
         <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="4 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo</span></div>
+          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
           <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
         </figure>
       </div>
