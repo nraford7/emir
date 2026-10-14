@@ -13,6 +13,11 @@
 <style>
 /* CONTACT page only. Shared styles live in css/site.css (see DESIGN.md). */
 .split-media img { object-position: 88% 45%; }
+/* the form makes this section taller than a screen: keep the photo one screen high and fade it out (NR 2026-10-14) */
+@media (min-width: 901px) {
+  #top .split-media { bottom: auto; height: 100vh; height: 100svh; }
+  #top .split-media::after { background: linear-gradient(90deg, var(--ink-warm) 0%, rgba(14,12,9,.55) 18%, rgba(14,12,9,0) 42%), linear-gradient(180deg, rgba(8,8,6,.35) 0%, rgba(8,8,6,0) 22%, rgba(8,8,6,0) 60%, var(--ink-warm) 100%); }
+}
 .contact-intro { max-width: 52ch; }
 .contact-form { max-width: min(560px, 40vw); margin: 36px 0 64px; }
 .contact-form .form-note { margin-top: 0; }
