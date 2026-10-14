@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<script src="js/gate.js"></script>
+<script src="js/nav-mode.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About EMIR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+/* ABOUT page only. Shared styles live in css/site.css (see DESIGN.md). Added 2026-10-14 (Kata 6ykm). */
+.split-media img { object-position: 55% 40%; }
+.split-text .founders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin-top: 40px; max-width: min(640px, 44vw); }
+.founder { border-top: 1px solid var(--rule); padding-top: 20px; }
+.founder .role { margin: 2px 0 12px; font-size: 14px; color: var(--text-dim); }   /* plain role line: no gold capitals (DESIGN.md, No Eyebrow Rule) */
+.founder .copy { font-size: 15px; line-height: 1.65; color: var(--text-plate); }
+.advisor-example { max-width: 640px; margin-bottom: 48px; padding-top: 18px; border-top: 1px solid var(--rule); }   /* no panel: panels are for form side notes only (DESIGN.md) */
+.advisor-example .t-subhead { margin-bottom: 6px; }
+.advisors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px clamp(24px, 3vw, 48px); }
+.advisor { border-top: 1px solid var(--rule); padding-top: 16px; }
+.advisor .copy { font-size: 15px; }
+#advisors .placeholder-note { margin-top: 24px; }
+@media (max-width: 1100px) { .advisors { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .split-text .founders { grid-template-columns: minmax(0, 1fr); max-width: none; } }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">EMIR</a>
+    <ul class="nav-links" id="site-menu">
+      <li><a href="membership.html">Members</a></li>
+      <li><a href="private-office.html">Private Office</a></li>
+      <li class="nav-mobile-only"><span class="nav-mobile-text">Member sign in</span></li>
+      <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
+      <li class="nav-mobile-only"><a href="about.html">About EMIR</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <span class="nav-signin">Member sign in</span>
+    <a href="contact.html" class="nav-cta">Contact us</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu<span class="nav-toggle-bars" aria-hidden="true"></span></button>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ABOUT EMIR (NR 2026-10-14, Kata 6ykm): reached from the footer, Contact ("About the Founders"), Private Office and the phone menu; not in the main menu -->
+<section id="top" class="split-hero">
+  <div class="split-text">
+    <h1 class="display">Born in the <em>UAE</em>.</h1>
+    <p class="copy lead">From the GCC's most influential network to a global network of leaders across the world's fastest-growing economies.</p>
+    <div class="founders">
+      <div class="founder">
+        <h2 class="t-subhead">Trevor McFarlane</h2>
+        <p class="role">Founder</p>
+        <p class="copy">Founded EMIR on a single conviction: that the quality of a decision is determined by the calibre of the people in the room, and the rigour of the intelligence they act on.</p>
+      </div>
+      <div class="founder">
+        <h2 class="t-subhead">Dr Noah Raford</h2>
+        <p class="role">Managing Partner</p>
+        <p class="copy">Joined in 2023 after more than 12 years in the UAE Prime Minister's Office and the Government of Dubai, as Chief Futurist and founding Executive Director of the Dubai Future Foundation and the Museum of the Future.</p>
+      </div>
+    </div>
+  </div>
+  <div class="split-media">
+    <img src="images/event-embrace.jpg" alt="Two guests embracing at an EMIR dinner" fetchpriority="high">
+  </div>
+</section>
+
+<section id="advisors" class="stacked">
+  <div class="stacked-head">
+    <h2 class="display reveal">Senior <em>advisors</em>.</h2>
+    <p class="copy reveal reveal-d1">EMIR is not a consultancy or an advisory firm. It is a network of senior people, sitting and former chairs, chief executives, ministers and principals, who come together to help one another with their time, their judgment and their introductions.</p>
+  </div>
+  <div class="advisor-example reveal reveal-d1">
+    <p class="t-subhead">Peer advisory credits</p>
+    <p class="copy">When a member shares their experience to answer another member's question, they receive credits to draw on the network in return.</p>
+  </div>
+  <!-- PLACEHOLDER: advisor names and roles to come from NR -->
+  <div class="advisors reveal reveal-d2">
+    <div class="advisor"><p class="t-subhead">Advisor name</p><p class="copy">Role, former office</p></div>
+    <div class="advisor"><p class="t-subhead">Advisor name</p><p class="copy">Role, former office</p></div>
+    <div class="advisor"><p class="t-subhead">Advisor name</p><p class="copy">Role, former office</p></div>
+    <div class="advisor"><p class="t-subhead">Advisor name</p><p class="copy">Role, former office</p></div>
+  </div>
+  <p class="copy placeholder-note">Placeholder: advisor names to come.</p>
+</section>
+
+<section id="next" class="close-split">
+  <div class="close-text">
+    <h2 class="display reveal">By <em>introduction</em>.</h2>
+    <p class="copy reveal reveal-d1">Membership begins with a trusted introduction. The Private Office works for EMIR members.</p>
+    <div class="close-actions reveal reveal-d2">
+      <a href="register.html" class="cta-btn">Register your interest</a>
+      <a href="private-office.html" class="text-link">The Private Office</a>
+    </div>
+  </div>
+  <div class="close-media"><img src="images/forge-strata.jpg" alt="Layers of dark stone folded by heat and pressure, with gold between them" loading="lazy"></div>
+</section>
+
+</main>
+
+<footer class="splash-foot">
+  <div class="splash-foot-inner">
+    <span>© 2026 Emerging Markets Intelligence &amp; Research (EMIR) · Dubai</span>
+    <span class="splash-foot-links">
+      <a href="about.html">About EMIR</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* site nav: mobile menu */
+(function () {
+  const nav = document.querySelector('nav');
+  const btn = nav && nav.querySelector('.nav-toggle');
+  if (!btn) return;
+  const close = () => { nav.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
+})();
+</script>
+</body>
+</html>

@@ -212,6 +212,8 @@ h1.display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); }
 .aside-panel b { color: var(--off-white); font-weight: 500; }
 .aside-panel a, .form-status a { color: var(--off-white); border-bottom: 1px solid var(--rule); }
 .aside-panel a:hover { color: var(--gold-light); }
+.aside-panel a.text-link { border-bottom: 0; color: var(--gold-light); }
+.aside-panel a.text-link:hover { color: var(--off-white); }
 @media (max-width: 900px) {
   .form-section { padding: 80px var(--gutter) 88px; }
   .reg-form { grid-template-columns: minmax(0, 1fr); }
