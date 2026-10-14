@@ -61,15 +61,14 @@
     <form class="reg-form" id="msg-form" novalidate>
         <div class="field"><label for="m-name">Full name</label><input id="m-name" name="Full name" autocomplete="name" required aria-required="true" aria-describedby="m-name-err"><p class="field-error" id="m-name-err" hidden></p></div>
         <div class="field"><label for="m-email">Email</label><input id="m-email" name="Email" type="email" autocomplete="email" required aria-required="true" aria-describedby="m-email-err"><p class="field-error" id="m-email-err" hidden></p></div>
-        <div class="field"><label for="m-org">Organisation <span class="opt">(optional)</span></label><input id="m-org" name="Organisation" autocomplete="organization" aria-describedby="m-org-err"><p class="field-error" id="m-org-err" hidden></p></div>
+        <div class="field"><label for="m-org">Organisation</label><input id="m-org" name="Organisation" autocomplete="organization" required aria-required="true" aria-describedby="m-org-err"><p class="field-error" id="m-org-err" hidden></p></div>
         <div class="field"><label for="m-type">Enquiry about</label><select id="m-type" name="Enquiry about" required aria-required="true" aria-describedby="m-type-err">
           <option value="">Please choose</option>
           <option>Membership</option>
           <option>The Private Office</option>
-          <option>Partnerships</option>
           <option>Something else</option>
         </select><p class="field-error" id="m-type-err" hidden></p></div>
-        <div class="field wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required aria-required="true" aria-describedby="m-msg-err"></textarea><p class="field-error" id="m-msg-err" hidden></p></div>
+        <div class="field wide"><label for="m-msg">Message <span class="opt">(optional)</span></label><textarea id="m-msg" name="Message" aria-describedby="m-msg-err"></textarea><p class="field-error" id="m-msg-err" hidden></p></div>
       <div class="form-actions">
         <button type="submit" class="cta-btn">Send message</button>
         <p class="form-status" id="msg-status" role="status" aria-live="polite"></p>
@@ -135,7 +134,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 (function () {
   const f = document.getElementById('msg-form'); if (!f) return;
   const status = document.getElementById('msg-status');
-  const msgs = { 'm-name': 'Please add your full name.', 'm-email': 'Please add an email address we can reply to.', 'm-type': 'Please choose what your enquiry is about.', 'm-msg': 'Please write your message.' };
+  const msgs = { 'm-name': 'Please add your full name.', 'm-email': 'Please add an email address we can reply to.', 'm-org': 'Please add your organisation.', 'm-type': 'Please choose what your enquiry is about.' };
   const fields = Array.from(f.querySelectorAll('input, select, textarea'));
   function setErr(el, text) { const e = document.getElementById(el.id + '-err'); if (text) { el.setAttribute('aria-invalid', 'true'); if (e) { e.textContent = text; e.hidden = false; } } else { el.removeAttribute('aria-invalid'); if (e) { e.textContent = ''; e.hidden = true; } } }
   function check(el) { if (!el.required) return ''; if (!el.value.trim()) return msgs[el.id]; if (el.type === 'email' && !el.checkValidity()) return 'Please check the email address, for example name@company.com.'; return ''; }
@@ -156,7 +155,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   const v = new URLSearchParams(location.search).get('about');
   const sel = document.getElementById('m-type');
   if (!v || !sel) return;
-  const map = { membership: 'Membership', 'private-office': 'The Private Office', partnerships: 'Partnerships' };
+  const map = { membership: 'Membership', 'private-office': 'The Private Office' };
   if (map[v]) sel.value = map[v];
 })();
 </script>
