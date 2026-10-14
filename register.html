@@ -6,7 +6,7 @@
 <script src="js/nav-mode.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMIR Register</title>
-<meta name="description" content="Register your interest in EMIR membership. Membership is by invitation only; every enquiry is reviewed in confidence.">
+<meta name="description" content="Register your interest in EMIR membership. Membership begins with a trusted introduction; every enquiry is read personally and handled in confidence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,25 +14,10 @@
 <style>
 /* REGISTER page only. Shared styles live in css/site.css (see DESIGN.md). */
 /* the form is the first section, so it clears the fixed nav like a page hero */
-#profile { padding-top: clamp(124px, 17vh, 156px); border-top: 0; }
-@media (max-width: 900px) { #profile { padding-top: 120px; } }
-
-/* grouped form */
-.reg-form fieldset { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; grid-column: 1 / -1; }
-.reg-form fieldset + fieldset, #behalf-set { margin-top: 24px; }
-.reg-form fieldset[hidden] { display: none; }
-.reg-form legend { font-family: var(--serif); font-size: clamp(22px, 2vw, 26px); font-weight: 400; color: var(--off-white); padding: 0; margin-bottom: 20px; grid-column: 1 / -1; float: left; width: 100%; }
-.reg-form legend + * { clear: both; }
-.reg-form legend .opt { font-family: var(--sans); font-size: 14px; color: var(--text-dim); margin-left: 6px; }
-.check-wrap { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--text-body); }
-.check input { appearance: none; -webkit-appearance: none; flex: none; width: 20px; height: 20px; margin: 3px 0 0; border: 1px solid var(--gold); background: transparent; cursor: pointer; display: grid; place-content: center; transition: background 0.2s ease; }
-.check input::after { content: ''; width: 10px; height: 6px; border-left: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
-.check input:checked { background: var(--gold); }
-.check input:checked::after { opacity: 1; }
-.check input:focus-visible { outline: 1px solid var(--gold-light); outline-offset: 3px; }
-.check input[aria-invalid="true"] { border-color: var(--gold-light); outline: 1px solid var(--gold-light); outline-offset: 3px; }
-@media (max-width: 900px) { .reg-form fieldset { grid-template-columns: minmax(0, 1fr); } }
+#register { padding-top: clamp(124px, 17vh, 156px); border-top: 0; }
+@media (max-width: 900px) { #register { padding-top: 120px; } #register .aside-panel { order: 0; } }   /* title first on phones */
+#register .form-head .display { margin-bottom: 24px; }
+#register .form-head .copy + .copy { margin-top: 18px; }
 
 /* criteria for membership */
 #criteria { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0; align-items: start; text-align: left; padding: clamp(96px, 10vw, 130px) 0; background: var(--ink-warm); border-top: 1px solid var(--rule-soft); }
@@ -78,50 +63,20 @@
 
 <main id="main">
 
-<!-- PROFILE FORM -->
-<section id="profile" class="form-section">
-  <div class="form-head page-open">
-    <h1 class="display">Your profile.</h1>
-    <p class="copy">Tell us who you are and what you would bring to the network. Your profile is read only by the EMIR team and handled in confidence.</p>
-  </div>
+<!-- REGISTER INTEREST (NR 2026-10-14, Kata 3zka): email us and we reply with further requirements. Old profile form: register.backup-2026-10-14-form.html -->
+<section id="register" class="form-section">
   <div class="profile-grid">
-  <div class="form-wrap">
-    <p class="form-note">All fields are required unless marked optional.</p>
-    <form class="reg-form" id="reg-form" novalidate>
-      <fieldset><legend>Who you are</legend>
-        <div class="field"><label for="f-name">Full name</label><input id="f-name" name="Full name" autocomplete="name" required aria-required="true" aria-describedby="f-name-err"><p class="field-error" id="f-name-err" hidden></p></div>
-        <div class="field"><label for="f-role">Role or title</label><input id="f-role" name="Role or title" autocomplete="organization-title" required aria-required="true" aria-describedby="f-role-err"><p class="field-error" id="f-role-err" hidden></p></div>
-        <div class="field"><label for="f-org">Organisation</label><input id="f-org" name="Organisation" autocomplete="organization" required aria-required="true" aria-describedby="f-org-err"><p class="field-error" id="f-org-err" hidden></p></div>
-        <div class="field"><label for="f-loc">City and country</label><input id="f-loc" name="City and country" required aria-required="true" aria-describedby="f-loc-err"><p class="field-error" id="f-loc-err" hidden></p></div>
-        <div class="field wide"><label for="f-about">About you</label><textarea id="f-about" name="About you" required aria-required="true" aria-describedby="f-about-err" placeholder="Your role and responsibilities, what you have built or led, and what you would bring to the network."></textarea><p class="field-error" id="f-about-err" hidden></p></div>
-      </fieldset>
-      <fieldset><legend>How to reach you</legend>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" autocomplete="email" required aria-required="true" aria-describedby="f-email-err"><p class="field-error" id="f-email-err" hidden></p></div>
-        <div class="field"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="Phone" type="tel" autocomplete="tel" aria-describedby="f-phone-err"><p class="field-error" id="f-phone-err" hidden></p></div>
-        <div class="field wide"><label for="f-link">LinkedIn or profile link <span class="opt">(optional)</span></label><input id="f-link" name="LinkedIn or profile link" type="url" placeholder="https://" aria-describedby="f-link-err"><p class="field-error" id="f-link-err" hidden></p></div>
-      </fieldset>
-      <div class="check-wrap"><label class="check"><input type="checkbox" id="f-behalf" name="Submitted on behalf"> I am an executive or personal assistant, or chief of staff, submitting this profile on someone else's behalf.</label></div>
-      <fieldset id="behalf-set" hidden><legend>Your details</legend>
-        <div class="field"><label for="f-ea-name">Your full name</label><input id="f-ea-name" name="Assistant name" autocomplete="off" required aria-required="true" aria-describedby="f-ea-name-err"><p class="field-error" id="f-ea-name-err" hidden></p></div>
-        <div class="field"><label for="f-ea-phone">Your phone</label><input id="f-ea-phone" name="Assistant phone" type="tel" autocomplete="off" required aria-required="true" aria-describedby="f-ea-phone-err"><p class="field-error" id="f-ea-phone-err" hidden></p></div>
-        <div class="field"><label for="f-ea-email">Your email</label><input id="f-ea-email" name="Assistant email" type="email" autocomplete="off" required aria-required="true" aria-describedby="f-ea-email-err"><p class="field-error" id="f-ea-email-err" hidden></p></div>
-        <div class="field"><label for="f-ea-link">Your LinkedIn <span class="opt">(optional)</span></label><input id="f-ea-link" name="Assistant LinkedIn" type="url" placeholder="https://" aria-describedby="f-ea-link-err"><p class="field-error" id="f-ea-link-err" hidden></p></div>
-      </fieldset>
-      <fieldset><legend>Who introduced you <span class="opt">(if applicable)</span></legend>
-        <div class="field wide"><label for="f-ref">Name</label><input id="f-ref" name="Who introduced you" aria-describedby="f-ref-err"><p class="field-error" id="f-ref-err" hidden></p></div>
-      </fieldset>
-      <div class="check-wrap"><label class="check"><input type="checkbox" id="f-agree" name="Confidentiality" required aria-required="true" aria-describedby="f-agree-err"> I understand that membership requires agreeing to EMIR's confidentiality agreement and house rules.</label><p class="field-error" id="f-agree-err" hidden></p></div>
-      <div class="form-actions">
-        <button type="submit" class="cta-btn">Submit your profile</button>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-      </div>
-    </form>
+  <div class="form-head page-open">
+    <h1 class="display">Register your <em>interest</em>.</h1>
+    <p class="copy lead">Membership begins with a trusted introduction. If you do not have one yet, write to us.</p>
+    <p class="copy">Tell us your name, your role and organisation, where you are based, and who introduced you, if anyone. A few lines about yourself are enough. An assistant or chief of staff is welcome to write on your behalf.</p>
+    <div class="close-actions"><a href="mailto:info@emirintelligence.com?subject=Membership%20interest&amp;body=Name%3A%0ARole%20and%20organisation%3A%0ACity%20and%20country%3A%0AWho%20introduced%20you%20%28if%20anyone%29%3A%0AA%20few%20lines%20about%20you%3A%0A" class="cta-btn">Email us</a></div>
   </div>
-  <aside class="aside-panel" aria-label="Before you submit">
-    <h3 class="t-title">Before you submit.</h3>
-    <p><b>Your profile stays private.</b> It is read only by the EMIR team and never shared without your permission.</p>
-    <p><b>What happens next.</b> Every profile is reviewed personally against the criteria below. Where there is a fit, we will reach out for an introductory call.</p>
-    <p><b>On your behalf.</b> An assistant or chief of staff is welcome to submit this profile for you, and can add their own contact details in the form.</p>
+  <aside class="aside-panel" aria-label="What happens next">
+    <h3 class="t-title">What happens next.</h3>
+    <p><b>Read personally.</b> Every enquiry is read by the EMIR team and handled in confidence.</p>
+    <p><b>Further requirements.</b> We reply with anything else we need to know. Where there is a fit, we invite you to an introductory call.</p>
+    <p><b>Kept private.</b> What you send is never shared without your permission.</p>
   </aside>
   </div>
 </section>
@@ -183,40 +138,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
 })();
 
-/* profile form (UI only; NR will wire a form service later). Validates inline, keeps a draft, then composes an email. */
-(function () {
-  const f = document.getElementById('reg-form'); if (!f) return;
-  const status = document.getElementById('form-status');
-  const KEY = 'emir-profile-draft';
-  const msgs = { 'f-name': 'Please add your full name.', 'f-role': 'Please add your role or title.', 'f-org': 'Please add your organisation.', 'f-loc': 'Please add your city and country.', 'f-email': 'Please add an email address we can reply to.', 'f-about': 'Please tell us a little about yourself.', 'f-agree': 'Please confirm you understand the confidentiality agreement and house rules.', 'f-ea-name': 'Please add your own full name.', 'f-ea-phone': 'Please add a phone number where we can reach you.', 'f-ea-email': 'Please add your own email address.' };
-  const fields = Array.from(f.querySelectorAll('input, select, textarea'));
-  function setErr(el, text) { const e = document.getElementById(el.id + '-err'); if (text) { el.setAttribute('aria-invalid', 'true'); if (e) { e.textContent = text; e.hidden = false; } } else { el.removeAttribute('aria-invalid'); if (e) { e.textContent = ''; e.hidden = true; } } }
-  const behalf = document.getElementById('f-behalf'), behalfSet = document.getElementById('behalf-set');
-  function syncBehalf() { behalfSet.hidden = !behalf.checked; }
-  function check(el) {
-    if (!el.required || el.closest('[hidden]')) return '';
-    if (el.type === 'checkbox') return el.checked ? '' : msgs[el.id];
-    if (!el.value.trim()) return msgs[el.id];
-    if (el.type === 'email' && !el.checkValidity()) return 'Please check the email address, for example name@company.com.';
-    return '';
-  }
-  try { const d = JSON.parse(sessionStorage.getItem(KEY) || '{}'); fields.forEach(el => { if (d[el.id] != null) { if (el.type === 'checkbox') el.checked = d[el.id]; else el.value = d[el.id]; } }); } catch (e) {}
-  syncBehalf();
-  function save() { try { const d = {}; fields.forEach(el => d[el.id] = el.type === 'checkbox' ? el.checked : el.value); sessionStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
-  // assistant fields: shown only when submitting on someone's behalf
-  fields.forEach(el => el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'input', () => { if (el.hasAttribute('aria-invalid')) setErr(el, check(el)); if (el === behalf) syncBehalf(); save(); }));
-  f.addEventListener('submit', e => {
-    e.preventDefault();
-    const bad = fields.filter(el => { const m = check(el); setErr(el, m); return !!m; });
-    if (bad.length) { status.textContent = bad.length === 1 ? 'One field needs your attention.' : bad.length + ' fields need your attention.'; bad[0].focus(); return; }
-    const lines = fields.filter(el => el.type !== 'checkbox' && el.value.trim() && !(el.closest('[hidden]'))).map(el => el.name + ': ' + el.value.trim());
-    if (behalf.checked) lines.unshift('Submitted on behalf of the person below by their assistant or chief of staff.');
-    lines.push('Confidentiality agreement and house rules: understood');
-    const subject = 'Membership profile: ' + document.getElementById('f-name').value.trim();
-    location.href = 'mailto:' + ['info', 'emirintelligence.com'].join('@') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n\n'));
-    status.innerHTML = 'Thank you. Your email app should now open with your profile ready to send. If it does not, please write to us through the <a href="contact.html">contact page</a>. Your draft is kept on this page until you close it.';
-  });
-})();
 </script>
 </body>
 </html>
