@@ -27,9 +27,7 @@
 #how .stacked-head .display { margin-bottom: 0; }
 #how .stacked-head .copy { max-width: 56ch; padding-top: 10px; }
 @media (max-width: 900px) { #how .stacked-head { grid-template-columns: 1fr; gap: 24px; } #how .stacked-head .copy { padding-top: 0; } }
-#examples { padding-bottom: clamp(48px, 5vw, 64px); }
-#examples .stacked-head { margin-bottom: 0; }
-#examples .stacked-head .display { margin-bottom: 0; max-width: none; }
+#work .examples-title { max-width: none; margin-bottom: clamp(40px, 5vh, 64px); }
 #work .deck-cap h3.display { font-size: clamp(30px, 2.8vw, 38px); }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -75,24 +73,18 @@
   </div>
 </section>
 
-<!-- EXAMPLES HEADING (NR 2026-10-15): wraps the four examples -->
-<section id="examples" class="stacked">
-  <div class="stacked-head">
-    <h2 class="display reveal">Examples of recent <em>Special Projects</em>.</h2>
-  </div>
-</section>
-
 <!-- AREAS OF WORK (NR 2026-10-13): deck slides 13-16 as full-screen sections, replacing 'What we take on' and the 'Notable special projects' carousel. Old version: private-office.backup-2026-10-13-services-projects.html -->
 <section id="work" class="deck-group">
   <article class="deck-section">
     <img class="deck-bg" src="images/project-hormuz-storm.jpg" alt="A cargo ship in a storm beside sea cliffs" loading="lazy">
     <div class="deck-scrim"></div>
     <div class="deck-cap reveal">
+      <h2 class="display examples-title">Examples of recent <em>Special Projects</em>.</h2>
       <h3 class="display">Board advice, strategy and <em>governance</em>.</h3>
       <p class="copy"><b>We assemble boards and advisory teams, set strategy and design organisations,</b> and help leadership think through their most sensitive decisions.</p>
     </div>
     <div class="deck-foot reveal reveal-d1">
-      <p class="t-subhead">Board strategy through the Hormuz disruption</p>
+      <p class="t-subhead">Steering leadership teams through the Hormuz disruption</p>
       <p class="copy">Nearly sixty confidential board briefings as the Strait of Hormuz closed.</p>
     </div>
   </article>
