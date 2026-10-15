@@ -20,6 +20,10 @@
 #work .deck-foot .t-subhead { font-size: 17px; margin-bottom: 4px; }
 #work .deck-foot .copy { font-size: 13.5px; line-height: 1.55; color: var(--text-plate); margin-left: auto; }
 @media (max-width: 900px) { #work .deck-scrim { background: var(--deck-scrim-mobile); } #work .deck-foot { max-width: none; } }
+.po-intro { font-family: var(--serif); font-weight: 300; font-size: clamp(24px, 2.3vw, 34px); line-height: 1.22; color: var(--off-white); text-wrap: pretty; margin-top: 20px; }
+.po-intro em { font-style: italic; color: var(--gold-light); }
+#how .stacked-head { max-width: 760px; }
+#how .stacked-head .copy + .copy { margin-top: 18px; }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -49,13 +53,20 @@
 <section id="top" class="split-hero">
   <div class="split-text">
     <h1 class="display one-line">EMIR <em>Private Office</em>.</h1>
-    <p class="copy lead">For when a decision needs more than advice.</p>
-    <p class="copy">Some work is so sensitive, high-stakes, complex or new that it requires the highest levels of trust, confidence, fresh thinking and experience.</p>
-    <p class="copy"><b>We call these Special Projects.</b> For each one, we bring together a custom group of former board chairs, chief executives and government ministers who have made similar decisions or delivered projects of similar scale before. They work with EMIR’s own team and leading specialists in science, design, law, technology and other fields.</p>
-    <p class="copy">Their advice is frank and impartial, and every project is held in confidence.</p>
+    <p class="po-intro">For when a decision needs more than advice.</p>
+    <p class="po-intro">Some work is so sensitive, high-stakes, complex or new that it requires the highest levels of trust, confidence, fresh thinking and experience.</p>
+    <p class="po-intro">We call these <em>Special Projects</em>.</p>
   </div>
   <div class="split-media">
     <img src="images/close-f-vein.jpg" alt="Folded layers of dark stone with a single vein of gold, lit by a shaft of light" fetchpriority="high">
+  </div>
+</section>
+
+<!-- HOW SPECIAL PROJECTS WORK (NR 2026-10-15): split out of the hero -->
+<section id="how" class="stacked">
+  <div class="stacked-head">
+    <p class="copy lead reveal">For each one, we bring together a custom group of former board chairs, chief executives and government ministers who have made similar decisions or delivered projects of similar scale before. They work with EMIR’s own team and leading specialists in science, design, law, technology and other fields.</p>
+    <p class="copy reveal reveal-d1">Their advice is frank and impartial, and every project is held in confidence.</p>
   </div>
 </section>
 
