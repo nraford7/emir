@@ -25,7 +25,10 @@
 #how .stacked-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: start; margin-bottom: 0; }
 #how .stacked-head .display { margin-bottom: 0; }
 #how .stacked-head .copy { max-width: 56ch; padding-top: 10px; }
-@media (max-width: 900px) { #how .stacked-head { grid-template-columns: 1fr; gap: 24px; } #how .stacked-head .copy { padding-top: 0; } }
+#how .po-body { max-width: 56ch; padding-top: 10px; }
+#how .po-body .copy { max-width: none; padding-top: 0; }
+#how .po-body .copy + .copy { margin-top: 16px; }
+@media (max-width: 900px) { #how .stacked-head { grid-template-columns: 1fr; gap: 24px; } #how .stacked-head .copy, #how .po-body { padding-top: 0; } }
 #work .deck-cap h3.display { font-size: clamp(30px, 2.8vw, 38px); }
 .ast { font-size: 0.5em; vertical-align: super; line-height: 0; color: var(--gold-light); margin-left: 1px; }
 .po-note { position: absolute; left: var(--gutter); bottom: clamp(28px, 5vh, 48px); z-index: 2; margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-dim); }
@@ -72,7 +75,13 @@
 <section id="how" class="stacked">
   <div class="stacked-head">
     <h2 class="display reveal">When everyone around you has a stake in the outcome, you need people who have <em>none</em>.</h2>
-    <p class="copy reveal reveal-d1"><b>Each project is led by people who have been in your shoes.</b> For every Special Project we bring together former board chairs, chief executives and government ministers who have made decisions like yours, and they work alongside EMIR’s own team and leading specialists. Your own team reports to you, and your consultants want the next engagement. These advisers want neither, so you get advice from peers that you cannot get anywhere else.</p>
+    <div class="po-body reveal reveal-d1">
+      <p class="copy"><b>Each project is led by people who have been in your shoes,</b> including former board chairs, chief executives and government ministers who are now EMIR Senior Advisors.</p>
+      <p class="copy">They work alongside EMIR’s own team and leading specialists, brought together for each engagement.</p>
+      <p class="copy">You will hear what you won’t hear anywhere else: frank advice drawn from decades of experience and deep networks across government, business, science, technology and the arts.</p>
+      <p class="copy">This is advice you often cannot get from your own team, or from consultants selling a method, a benchmark or their next engagement.</p>
+      <p class="copy">Below are the four areas we work in, each with a recent project.</p>
+    </div>
   </div>
 </section>
 
