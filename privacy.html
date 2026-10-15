@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<script src="js/gate.js"></script>
+<script src="js/nav-mode.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMIR Privacy Policy</title>
+<meta name="description" content="How EMIR handles information collected through this website and through messages sent to us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+/* LEGAL pages only (privacy.html, terms.html). Shared styles live in css/site.css. */
+.legal { padding: clamp(140px, 18vh, 180px) var(--gutter) clamp(96px, 10vw, 130px); background: var(--ink); text-align: left; display: block; }
+.legal ul + .copy { margin-top: 14px; }
+.legal > * { margin-left: 0 !important; margin-right: 0 !important; text-align: left; }
+.legal h1 { margin-bottom: 16px; }
+.legal .legal-date { color: var(--text-dim); font-size: 15px; margin-bottom: 56px; }
+.legal h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin: 48px 0 14px; }
+.legal .copy { max-width: 64ch; }
+.legal .copy + .copy { margin-top: 14px; }
+.legal ul { max-width: 64ch; margin: 14px 0 0 1.1em; color: var(--text-body); line-height: 1.75; }
+.legal li + li { margin-top: 6px; }
+.legal a { color: var(--gold-light); }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">EMIR</a>
+    <ul class="nav-links" id="site-menu">
+      <li><a href="membership.html">Members</a></li>
+      <li><a href="private-office.html">Private Office</a></li>
+      <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
+      <li class="nav-mobile-only"><a href="about.html">About EMIR</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Contact us</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu<span class="nav-toggle-bars" aria-hidden="true"></span></button>
+  </div>
+</nav>
+
+<main id="main">
+<section class="legal">
+  <h1 class="display">Privacy <em>Policy</em>.</h1>
+  <p class="legal-date">Last updated 15 October 2026</p>
+  <p class="copy">This policy explains what Emerging Markets Intelligence and Research (EMIR) collects through this website and through messages sent to us, and how we use it. EMIR is based at Office 124, Building 9, Dubai Media City, Dubai, United Arab Emirates.</p>
+  <h2>What this website collects</h2>
+  <p class="copy">This website has no forms, no advertising and no analytics. It does not set tracking cookies.</p>
+  <p class="copy">While the site is in preview, it stores one value in your browser’s session storage to remember that you have entered the preview password. It is deleted when you close your browser.</p>
+  <h2>Services the website relies on</h2>
+  <ul>
+    <li>The site is hosted on GitHub Pages. GitHub records visitors’ IP addresses for security and operations.</li>
+    <li>Our typefaces are loaded from Google Fonts. Google receives your IP address and browser details when the fonts load.</li>
+  </ul>
+  <p class="copy">Each provider handles that information under its own privacy policy.</p>
+  <h2>When you write to us</h2>
+  <p class="copy">If you email us, we receive your name, your email address and anything you include in your message. We use it only to reply and, for membership enquiries, to consider your enquiry against our membership criteria.</p>
+  <p class="copy">Every message is handled in confidence. We do not sell your information. We share it outside EMIR only with your permission, or where the law requires us to.</p>
+  <p class="copy">We keep enquiries only for as long as we need them for these purposes.</p>
+  <h2>Members</h2>
+  <p class="copy">Information about EMIR members is governed by the membership terms each member agrees to. We do not disclose who our members are or what is said in our meetings.</p>
+  <h2>Your choices</h2>
+  <p class="copy">You may ask us what information we hold about you, and ask us to correct or delete it, by writing to <a href="mailto:info@emirintelligence.com">info@emirintelligence.com</a>. We will reply personally.</p>
+  <h2>Changes</h2>
+  <p class="copy">If this policy changes, we will update this page and the date above.</p>
+</section>
+</main>
+
+<footer class="splash-foot">
+  <div class="splash-foot-inner">
+    <span>© 2026 Emerging Markets Intelligence &amp; Research (EMIR) · Dubai</span>
+    <span class="splash-foot-links">
+      <a href="about.html">About EMIR</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* site nav: mobile menu */
+(function () {
+  const nav = document.querySelector('nav');
+  const btn = nav && nav.querySelector('.nav-toggle');
+  if (!btn) return;
+  const close = () => { nav.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
+})();
+
+/* advisors carousel: one at a time, auto every 3s, pauses on hover/focus, no auto with reduced motion */
+(function () {
+  const root = document.querySelector('.adv-carousel');
+  if (!root) return;
+  const slides = [...root.querySelectorAll('.adv-slide')];
+  const dots = [...root.querySelectorAll('.adv-dot')];
+  let i = 0, timer = null, paused = false;
+  const show = n => { i = (n + slides.length) % slides.length; slides.forEach((s, k) => s.hidden = k !== i); dots.forEach((d, k) => k === i ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')); };
+  dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start = () => { if (still || timer) return; timer = setInterval(() => { if (!paused) show(i + 1); }, 3000); };
+  root.querySelector('.adv-prev').addEventListener('click', () => show(i - 1));
+  root.querySelector('.adv-next').addEventListener('click', () => show(i + 1));
+  root.addEventListener('mouseenter', () => paused = true);
+  root.addEventListener('mouseleave', () => paused = false);
+  root.addEventListener('focusin', () => paused = true);
+  root.addEventListener('focusout', () => paused = false);
+  start();
+})();
+</script>
+</body>
+</html>

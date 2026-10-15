@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<script src="js/gate.js"></script>
+<script src="js/nav-mode.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMIR Terms and Conditions</title>
+<meta name="description" content="The terms that apply to your use of the EMIR website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+/* LEGAL pages only (privacy.html, terms.html). Shared styles live in css/site.css. */
+.legal { padding: clamp(140px, 18vh, 180px) var(--gutter) clamp(96px, 10vw, 130px); background: var(--ink); text-align: left; display: block; }
+.legal ul + .copy { margin-top: 14px; }
+.legal > * { margin-left: 0 !important; margin-right: 0 !important; text-align: left; }
+.legal h1 { margin-bottom: 16px; }
+.legal .legal-date { color: var(--text-dim); font-size: 15px; margin-bottom: 56px; }
+.legal h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; color: var(--off-white); margin: 48px 0 14px; }
+.legal .copy { max-width: 64ch; }
+.legal .copy + .copy { margin-top: 14px; }
+.legal ul { max-width: 64ch; margin: 14px 0 0 1.1em; color: var(--text-body); line-height: 1.75; }
+.legal li + li { margin-top: 6px; }
+.legal a { color: var(--gold-light); }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">EMIR</a>
+    <ul class="nav-links" id="site-menu">
+      <li><a href="membership.html">Members</a></li>
+      <li><a href="private-office.html">Private Office</a></li>
+      <li class="nav-mobile-only"><a href="contact.html">Contact us</a></li>
+      <li class="nav-mobile-only"><a href="about.html">About EMIR</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-cta">Contact us</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu<span class="nav-toggle-bars" aria-hidden="true"></span></button>
+  </div>
+</nav>
+
+<main id="main">
+<section class="legal">
+  <h1 class="display">Terms and <em>Conditions</em>.</h1>
+  <p class="legal-date">Last updated 15 October 2026</p>
+  <p class="copy">These terms apply to your use of this website, which is operated by Emerging Markets Intelligence and Research (EMIR), Office 124, Building 9, Dubai Media City, Dubai, United Arab Emirates. By using the site, you accept them.</p>
+  <h2>What the website is for</h2>
+  <p class="copy">This website describes EMIR’s member network and the EMIR Private Office. It is for information only. Nothing on it is an offer, a solicitation or investment, financial, legal or other professional advice.</p>
+  <h2>Membership and Private Office work</h2>
+  <p class="copy">Membership is by invitation. Using this website, or writing to us, does not create membership or any other relationship with EMIR. Membership and Private Office work are governed by separate written agreements.</p>
+  <h2>The examples on this site</h2>
+  <p class="copy">Examples of our work are described in summary, without confidential detail. Where a client or partner is named, the work is already public.</p>
+  <h2>Our content</h2>
+  <p class="copy">The text, images, design, the EMIR name and the EMIR wordmark belong to EMIR or to those who license them to us. Please do not copy or reuse them without our written permission.</p>
+  <h2>Accuracy</h2>
+  <p class="copy">We take care to keep this website accurate, but we cannot promise that everything on it is complete or current, and we may change it at any time.</p>
+  <h2>Other websites</h2>
+  <p class="copy">Links to other websites, such as LinkedIn and YouTube, are provided for convenience. We are not responsible for their content or their privacy practices.</p>
+  <h2>Liability</h2>
+  <p class="copy">To the extent the law allows, EMIR is not liable for any loss arising from your use of this website or from reliance on its content.</p>
+  <h2>Governing law</h2>
+  <p class="copy">These terms are governed by the laws of the Emirate of Dubai and the federal laws of the United Arab Emirates. The courts of Dubai have jurisdiction over any dispute.</p>
+  <h2>Contact</h2>
+  <p class="copy">Questions about these terms can be sent to <a href="mailto:info@emirintelligence.com">info@emirintelligence.com</a>.</p>
+</section>
+</main>
+
+<footer class="splash-foot">
+  <div class="splash-foot-inner">
+    <span>© 2026 Emerging Markets Intelligence &amp; Research (EMIR) · Dubai</span>
+    <span class="splash-foot-links">
+      <a href="about.html">About EMIR</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* site nav: mobile menu */
+(function () {
+  const nav = document.querySelector('nav');
+  const btn = nav && nav.querySelector('.nav-toggle');
+  if (!btn) return;
+  const close = () => { nav.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-open')) { close(); btn.focus(); } });
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', close));
+})();
+
+/* advisors carousel: one at a time, auto every 3s, pauses on hover/focus, no auto with reduced motion */
+(function () {
+  const root = document.querySelector('.adv-carousel');
+  if (!root) return;
+  const slides = [...root.querySelectorAll('.adv-slide')];
+  const dots = [...root.querySelectorAll('.adv-dot')];
+  let i = 0, timer = null, paused = false;
+  const show = n => { i = (n + slides.length) % slides.length; slides.forEach((s, k) => s.hidden = k !== i); dots.forEach((d, k) => k === i ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')); };
+  dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start = () => { if (still || timer) return; timer = setInterval(() => { if (!paused) show(i + 1); }, 3000); };
+  root.querySelector('.adv-prev').addEventListener('click', () => show(i - 1));
+  root.querySelector('.adv-next').addEventListener('click', () => show(i + 1));
+  root.addEventListener('mouseenter', () => paused = true);
+  root.addEventListener('mouseleave', () => paused = false);
+  root.addEventListener('focusin', () => paused = true);
+  root.addEventListener('focusout', () => paused = false);
+  start();
+})();
+</script>
+</body>
+</html>
