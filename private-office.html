@@ -30,6 +30,9 @@
 #work .examples-title { max-width: none; margin-bottom: clamp(40px, 5vh, 64px); }
 @media (min-width: 901px) { #work .examples-title { white-space: nowrap; } }
 #work .deck-cap h3.display { font-size: clamp(30px, 2.8vw, 38px); }
+.ast { font-size: 0.5em; vertical-align: super; line-height: 0; color: var(--gold-light); margin-left: 1px; }
+.po-note { position: absolute; left: var(--gutter); bottom: clamp(28px, 5vh, 48px); z-index: 2; margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-dim); }
+@media (max-width: 900px) { #top .split-text { order: 1; padding-bottom: 16px; } .po-note { position: static; order: 2; padding: 0 var(--gutter) 32px; } #top .split-media { order: 3; } }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -58,9 +61,10 @@
 <!-- HERO -->
 <section id="top" class="split-hero">
   <div class="split-text">
-    <h1 class="display">The Private Office takes on <em>Special Projects</em> for EMIR members, by invitation only.</h1>
+    <h1 class="display">The Private Office takes on <em>Special Projects</em> for EMIR members.<span class="ast" aria-hidden="true">*</span></h1>
     <p class="po-intro">Some work is so sensitive, high-stakes or complex that it requires the highest levels of trust, confidence and experience.</p>
   </div>
+  <p class="po-note"><span aria-hidden="true">*</span>By invitation only.</p>
   <div class="split-media">
     <img src="images/close-f-vein.jpg" alt="Folded layers of dark stone with a single vein of gold, lit by a shaft of light" fetchpriority="high">
   </div>
