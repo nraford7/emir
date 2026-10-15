@@ -15,10 +15,10 @@
 /* PRIVATE OFFICE page only. Shared styles live in css/site.css (see DESIGN.md). */
 @media (min-width: 901px) and (max-height: 880px) { #top .split-text { padding-bottom: 32px; } #top .copy + .copy { margin-top: 12px; } }
 .close-media img { object-position: 70% 50%; }
-/* Work examples: small captions, bottom right over the image, with a local shade for legibility (NR 2026-10-14) */
+/* Work examples: small captions, bottom right over the image, text left-aligned (NR 2026-10-15), with a local shade for legibility (NR 2026-10-14) */
 #work .deck-scrim { background: radial-gradient(ellipse 72% 64% at 100% 100%, rgba(8,8,6,.94) 0%, rgba(8,8,6,.72) 48%, rgba(8,8,6,0) 100%), var(--deck-scrim); }
-#work .deck-foot { align-self: flex-end; text-align: right; max-width: min(420px, 34vw); }
-#work .deck-foot .copy { font-size: 15px; line-height: 1.65; color: var(--text-plate); margin-left: auto; }
+#work .deck-foot { align-self: flex-end; text-align: left; max-width: min(420px, 34vw); }
+#work .deck-foot .copy { font-size: 15px; line-height: 1.65; color: var(--text-plate); margin-left: 0; }
 @media (max-width: 900px) { #work .deck-scrim { background: var(--deck-scrim-mobile); } #work .deck-foot { max-width: none; align-self: flex-start; text-align: left; } #work .deck-foot .copy { margin-left: 0; } }
 #top .copy.lead { margin-top: 28px; }
 #how { padding-block: clamp(80px, 8vw, 110px); }
