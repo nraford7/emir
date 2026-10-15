@@ -152,11 +152,13 @@ h1.display { font-size: clamp(40px, min(4.6vw, 7.4vh), 68px); }
 .deck-list .t-subhead { margin-bottom: 6px; }
 .deck-list .copy { max-width: 52ch; line-height: 1.7; }
 @media (max-width: 900px) {
-  .deck-section { height: auto; min-height: 100svh; max-height: none; padding: 96px var(--gutter) 64px; justify-content: flex-start; gap: 48px; }
-  .deck-bg { left: 0; width: 100%; }
-  .deck-scrim { background: var(--deck-scrim-mobile); }
+  /* Phones (NR 2026-10-15): the image sits as a visible band between the heading and the example, not behind the text */
+  .deck-section { height: auto; min-height: 0; max-height: none; padding: 80px var(--gutter) 56px; justify-content: flex-start; gap: 0; }
+  .deck-cap { order: 1; }
+  .deck-bg { position: relative; order: 2; top: auto; left: auto; width: calc(100% + 2 * var(--gutter)); height: 64vw; min-height: 240px; margin: 32px calc(-1 * var(--gutter)); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%); }
+  .deck-scrim { display: none; }
+  .deck-foot { order: 3; margin-top: 0; }
   .deck-cap, .deck-foot, .deck-cap .copy { max-width: none; }
-  .deck-foot { margin-top: auto; }
 }
 
 /* ===== CLOSING SECTION (text left, image right) ===== */
