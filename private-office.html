@@ -27,6 +27,10 @@
 #how .stacked-head .display { margin-bottom: 0; }
 #how .stacked-head .copy { max-width: 56ch; padding-top: 10px; }
 @media (max-width: 900px) { #how .stacked-head { grid-template-columns: 1fr; gap: 24px; } #how .stacked-head .copy { padding-top: 0; } }
+#examples { padding-bottom: clamp(48px, 5vw, 64px); }
+#examples .stacked-head { margin-bottom: 0; }
+#examples .stacked-head .display { margin-bottom: 0; max-width: none; }
+#work .deck-cap h3.display { font-size: clamp(30px, 2.8vw, 38px); }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -55,10 +59,8 @@
 <!-- HERO -->
 <section id="top" class="split-hero">
   <div class="split-text">
-    <h1 class="display">For when a decision needs more than <em>advice</em>.</h1>
-    <p class="po-intro">Some work is so sensitive, high-stakes, complex or new that it requires the highest levels of trust, confidence, fresh thinking and experience.</p>
-    <p class="po-intro">We call these <em>Special Projects</em>.</p>
-    <p class="copy lead">The Private Office takes on this work for EMIR members, by invitation.</p>
+    <h1 class="display">The Private Office takes on <em>Special Projects</em> for EMIR members, by invitation only.</h1>
+    <p class="po-intro">Some work is so sensitive, high-stakes, complex or new that it requires the highest levels of trust, confidence, thinking and experience.</p>
   </div>
   <div class="split-media">
     <img src="images/close-f-vein.jpg" alt="Folded layers of dark stone with a single vein of gold, lit by a shaft of light" fetchpriority="high">
@@ -73,13 +75,20 @@
   </div>
 </section>
 
+<!-- EXAMPLES HEADING (NR 2026-10-15): wraps the four examples -->
+<section id="examples" class="stacked">
+  <div class="stacked-head">
+    <h2 class="display reveal">Examples of recent <em>Special Projects</em>.</h2>
+  </div>
+</section>
+
 <!-- AREAS OF WORK (NR 2026-10-13): deck slides 13-16 as full-screen sections, replacing 'What we take on' and the 'Notable special projects' carousel. Old version: private-office.backup-2026-10-13-services-projects.html -->
 <section id="work" class="deck-group">
   <article class="deck-section">
     <img class="deck-bg" src="images/project-hormuz-storm.jpg" alt="A cargo ship in a storm beside sea cliffs" loading="lazy">
     <div class="deck-scrim"></div>
     <div class="deck-cap reveal">
-      <h2 class="display">Board advice, strategy and <em>governance</em>.</h2>
+      <h3 class="display">Board advice, strategy and <em>governance</em>.</h3>
       <p class="copy"><b>We assemble boards and advisory teams, set strategy and design organisations,</b> and help leadership think through their most sensitive decisions.</p>
     </div>
     <div class="deck-foot reveal reveal-d1">
@@ -91,7 +100,7 @@
     <img class="deck-bg" src="images/project-ras-el-hekma.jpg" alt="Two guests looking at a large projected model of a coastal city" loading="lazy">
     <div class="deck-scrim"></div>
     <div class="deck-cap reveal">
-      <h2 class="display">Positioning and <em>reputation</em>.</h2>
+      <h3 class="display">Positioning and <em>reputation</em>.</h3>
       <p class="copy"><b>We shape your story, choose your platforms and build your relationships,</b> so you are heard by the ministers, investors and boards your plans depend on.</p>
     </div>
     <div class="deck-foot reveal reveal-d1">
@@ -103,7 +112,7 @@
     <img class="deck-bg" src="images/project-institution-hall.jpg" alt="A vast curved hall with a beam of light falling onto rows of small figures" loading="lazy">
     <div class="deck-scrim"></div>
     <div class="deck-cap reveal">
-      <h2 class="display">Moonshots and <em>masterpieces</em>.</h2>
+      <h3 class="display">Moonshots and <em>masterpieces</em>.</h3>
       <p class="copy"><b>We imagine, design and deliver</b> new institutions, landmarks and experiences, from first idea to opening.</p>
     </div>
     <div class="deck-foot reveal reveal-d1">
@@ -115,7 +124,7 @@
     <img class="deck-bg" src="images/project-investopia-dublin.jpg" alt="A ministerial panel on stage at Investopia Dublin" loading="lazy">
     <div class="deck-scrim"></div>
     <div class="deck-cap reveal">
-      <h2 class="display">Private gatherings and <em>public platforms</em>.</h2>
+      <h3 class="display">Private gatherings and <em>public platforms</em>.</h3>
       <p class="copy"><b>We choose the guests, shape the conversation and host it in confidence,</b> so the right people meet and decisions move.</p>
     </div>
     <div class="deck-foot reveal reveal-d1">
