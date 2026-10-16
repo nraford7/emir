@@ -28,10 +28,11 @@
 .adv-slide:not([hidden]) { animation: advFade .6s ease; }
 @keyframes advFade { from { opacity: 0; } to { opacity: 1; } }
 .adv-photo { aspect-ratio: 5 / 6; max-width: 100%; background: radial-gradient(ellipse 60% 45% at 50% 38%, #5a4d3c 0%, #3a3127 45%, #241f19 100%); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
+img.adv-photo { display: block; width: 100%; object-fit: cover; object-position: 50% 20%; }
 .adv-photo span { margin-bottom: 30%; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-plate); }
 .adv-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 28px 24px; background: linear-gradient(180deg, rgba(8,8,6,0) 0%, rgba(8,8,6,.6) 40%, rgba(8,8,6,.85) 100%); }
 .adv-slide .t-subhead { margin-bottom: 2px; }
-.adv-role { margin: 0 0 10px; font-size: 14px; color: var(--text-plate); }
+.adv-role { margin: 0; font-size: 14px; color: var(--text-plate); }
 .adv-slide .copy { font-size: 15px; margin: 0; color: var(--off-white); }
 .adv-stage { position: relative; }
 .adv-stage .adv-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; background: rgba(8,8,6,.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
@@ -100,35 +101,60 @@
       <h2 class="display reveal">Senior <em>Advisors</em>.</h2>
       <p class="copy reveal reveal-d1">EMIR’s Senior Advisors are sitting and former board chairs, chief executives, government ministers and family office principals. Members can call on them for advice, and they lead the Private Office’s Special Projects alongside EMIR’s own team.</p>
     </div>
-    <!-- PLACEHOLDER (NR 2026-10-14): advisor photos (images/advisor-*.jpg), names, titles and one-line bios to come. Old grid: about.backup-2026-10-14-advisors-grid.html -->
+    <!-- Senior Advisors carousel (NR 2026-10-16): names, photos and former titles from EMIR_net advisor profiles; Walid's title from NR -->
     <div class="adv-carousel reveal reveal-d2" aria-roledescription="carousel" aria-label="Senior advisors">
       <div class="adv-stage">
       <button type="button" class="adv-btn adv-prev" aria-label="Previous advisor">&larr;</button>
       <div class="adv-slides" aria-live="off">
-        <figure class="adv-slide" aria-roledescription="slide" aria-label="1 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
-          <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
+        <figure class="adv-slide" aria-roledescription="slide" aria-label="1 of 9">
+          <img class="adv-photo" src="images/advisor-simon-coveney.jpg" alt="Simon Coveney">
+          <figcaption><p class="t-subhead">Simon Coveney</p><p class="adv-role">Former Deputy Prime Minister and Minister for Foreign Affairs of Ireland</p></figcaption>
         </figure>
-        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="2 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
-          <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="2 of 9">
+          <img class="adv-photo" src="images/advisor-simon-penney.jpg" alt="Simon Penney" loading="lazy">
+          <figcaption><p class="t-subhead">Simon Penney</p><p class="adv-role">Former HM Trade Commissioner to the Middle East</p></figcaption>
         </figure>
-        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="3 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
-          <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="3 of 9">
+          <img class="adv-photo" src="images/advisor-walid-abukhaled.jpg" alt="Walid Abukhaled" loading="lazy">
+          <figcaption><p class="t-subhead">Walid Abukhaled</p><p class="adv-role">Former CEO, Saudi Arabian Military Industries (SAMI)</p></figcaption>
         </figure>
-        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="4 of 4">
-          <div class="adv-photo" role="img" aria-label="Advisor photo to come"><span>Photo to come</span></div>
-          <figcaption><p class="t-subhead">Advisor name</p><p class="adv-role">Title, former office</p><p class="copy">One-line bio to come.</p></figcaption>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="4 of 9">
+          <img class="adv-photo" src="images/advisor-dietmar-siersdorfer.jpg" alt="Dietmar Siersdorfer" loading="lazy">
+          <figcaption><p class="t-subhead">Dietmar Siersdorfer</p><p class="adv-role">Former CEO, Siemens Middle East</p></figcaption>
+        </figure>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="5 of 9">
+          <img class="adv-photo" src="images/advisor-norm-gilsdorf.jpg" alt="Norm Gilsdorf" loading="lazy">
+          <figcaption><p class="t-subhead">Norm Gilsdorf</p><p class="adv-role">Former President and CEO, Honeywell Middle East</p></figcaption>
+        </figure>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="6 of 9">
+          <img class="adv-photo" src="images/advisor-menassie-taddese.jpg" alt="Menassie Taddese" loading="lazy">
+          <figcaption><p class="t-subhead">Menassie Taddese</p><p class="adv-role">Former President, Emerging Markets, Pfizer</p></figcaption>
+        </figure>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="7 of 9">
+          <img class="adv-photo" src="images/advisor-simon-clegg.jpg" alt="Simon Clegg" loading="lazy">
+          <figcaption><p class="t-subhead">Simon Clegg</p><p class="adv-role">Former Chief Executive, British Olympic Association</p></figcaption>
+        </figure>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="8 of 9">
+          <img class="adv-photo" src="images/advisor-alexis-lecanuet.jpg" alt="Alexis Lecanuet" loading="lazy">
+          <figcaption><p class="t-subhead">Alexis Lecanuet</p><p class="adv-role">Former Chairman, Accenture Saudi Arabia</p></figcaption>
+        </figure>
+        <figure class="adv-slide" hidden aria-roledescription="slide" aria-label="9 of 9">
+          <img class="adv-photo" src="images/advisor-sunil-sinha.jpg" alt="Sunil Sinha" loading="lazy">
+          <figcaption><p class="t-subhead">Sunil Sinha</p><p class="adv-role">Former Resident Director, Tata Sons, Middle East and North Africa</p></figcaption>
         </figure>
       </div>
       <button type="button" class="adv-btn adv-next" aria-label="Next advisor">&rarr;</button>
       </div>
       <div class="adv-dots">
-        <button type="button" class="adv-dot" aria-label="Advisor 1" aria-current="true"></button>
-        <button type="button" class="adv-dot" aria-label="Advisor 2"></button>
-        <button type="button" class="adv-dot" aria-label="Advisor 3"></button>
-        <button type="button" class="adv-dot" aria-label="Advisor 4"></button>
+        <button type="button" class="adv-dot" aria-label="Simon Coveney" aria-current="true"></button>
+        <button type="button" class="adv-dot" aria-label="Simon Penney"></button>
+        <button type="button" class="adv-dot" aria-label="Walid Abukhaled"></button>
+        <button type="button" class="adv-dot" aria-label="Dietmar Siersdorfer"></button>
+        <button type="button" class="adv-dot" aria-label="Norm Gilsdorf"></button>
+        <button type="button" class="adv-dot" aria-label="Menassie Taddese"></button>
+        <button type="button" class="adv-dot" aria-label="Simon Clegg"></button>
+        <button type="button" class="adv-dot" aria-label="Alexis Lecanuet"></button>
+        <button type="button" class="adv-dot" aria-label="Sunil Sinha"></button>
       </div>
     </div>
   </div>
